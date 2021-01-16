@@ -7,16 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA6E638D25B2EE16002567D2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA6E638B25B2EE16002567D2 /* Model.xcdatamodeld */; };
+		AA6E639125B2F00E002567D2 /* PersistentCloudKitContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E639025B2F00E002567D2 /* PersistentCloudKitContainer.swift */; };
+		AAC82EC325AEF03600236F31 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EC225AEF03600236F31 /* WelcomeViewModel.swift */; };
+		AAC82EC625AEF07700236F31 /* LastUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EC525AEF07700236F31 /* LastUpdate.swift */; };
+		AAC82EC925AEF10300236F31 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EC825AEF10300236F31 /* Message.swift */; };
+		AAC82ECF25AEFCBE00236F31 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82ECE25AEFCBE00236F31 /* InfoView.swift */; };
+		AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EDD25AF2DFC00236F31 /* LineListView.swift */; };
 		AAE9B11B25AE7FA200D90F32 /* tarBUSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */; };
-		AAE9B11D25AE7FA200D90F32 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11C25AE7FA200D90F32 /* ContentView.swift */; };
+		AAE9B11D25AE7FA200D90F32 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11C25AE7FA200D90F32 /* WelcomeView.swift */; };
 		AAE9B11F25AE7FA400D90F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE9B11E25AE7FA400D90F32 /* Assets.xcassets */; };
 		AAE9B12225AE7FA400D90F32 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE9B12125AE7FA400D90F32 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA6E638C25B2EE16002567D2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		AA6E639025B2F00E002567D2 /* PersistentCloudKitContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentCloudKitContainer.swift; sourceTree = "<group>"; };
+		AAC82EC225AEF03600236F31 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
+		AAC82EC525AEF07700236F31 /* LastUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUpdate.swift; sourceTree = "<group>"; };
+		AAC82EC825AEF10300236F31 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		AAC82ECE25AEFCBE00236F31 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		AAC82EDD25AF2DFC00236F31 /* LineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineListView.swift; sourceTree = "<group>"; };
 		AAE9B11725AE7FA200D90F32 /* tarBUS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tarBUS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tarBUSApp.swift; sourceTree = "<group>"; };
-		AAE9B11C25AE7FA200D90F32 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AAE9B11C25AE7FA200D90F32 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		AAE9B11E25AE7FA400D90F32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAE9B12125AE7FA400D90F32 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AAE9B12325AE7FA400D90F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,9 +66,13 @@
 		AAE9B11925AE7FA200D90F32 /* tarBUS */ = {
 			isa = PBXGroup;
 			children = (
-				AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */,
-				AAE9B11C25AE7FA200D90F32 /* ContentView.swift */,
+				AAE9B12D25AE800300D90F32 /* App */,
+				AAE9B12C25AE7FFD00D90F32 /* Models */,
+				AAE9B12B25AE7FF600D90F32 /* ViewModels */,
+				AAE9B12A25AE7FEF00D90F32 /* Views */,
 				AAE9B11E25AE7FA400D90F32 /* Assets.xcassets */,
+				AA6E638B25B2EE16002567D2 /* Model.xcdatamodeld */,
+				AA6E639025B2F00E002567D2 /* PersistentCloudKitContainer.swift */,
 				AAE9B12325AE7FA400D90F32 /* Info.plist */,
 				AAE9B12025AE7FA400D90F32 /* Preview Content */,
 			);
@@ -67,6 +85,41 @@
 				AAE9B12125AE7FA400D90F32 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AAE9B12A25AE7FEF00D90F32 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAE9B11C25AE7FA200D90F32 /* WelcomeView.swift */,
+				AAC82ECE25AEFCBE00236F31 /* InfoView.swift */,
+				AAC82EDD25AF2DFC00236F31 /* LineListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AAE9B12B25AE7FF600D90F32 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AAC82EC225AEF03600236F31 /* WelcomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AAE9B12C25AE7FFD00D90F32 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AAC82EC525AEF07700236F31 /* LastUpdate.swift */,
+				AAC82EC825AEF10300236F31 /* Message.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AAE9B12D25AE800300D90F32 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +191,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAE9B11D25AE7FA200D90F32 /* ContentView.swift in Sources */,
+				AAE9B11D25AE7FA200D90F32 /* WelcomeView.swift in Sources */,
+				AAC82EC325AEF03600236F31 /* WelcomeViewModel.swift in Sources */,
+				AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */,
+				AAC82EC625AEF07700236F31 /* LastUpdate.swift in Sources */,
 				AAE9B11B25AE7FA200D90F32 /* tarBUSApp.swift in Sources */,
+				AA6E638D25B2EE16002567D2 /* Model.xcdatamodeld in Sources */,
+				AAC82ECF25AEFCBE00236F31 /* InfoView.swift in Sources */,
+				AAC82EC925AEF10300236F31 /* Message.swift in Sources */,
+				AA6E639125B2F00E002567D2 /* PersistentCloudKitContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +337,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jakubflorek.tarBUS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jakubflorek.tarBUSapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -299,7 +359,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jakubflorek.tarBUS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jakubflorek.tarBUSapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -328,6 +388,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		AA6E638B25B2EE16002567D2 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				AA6E638C25B2EE16002567D2 /* Model.xcdatamodel */,
+			);
+			currentVersion = AA6E638C25B2EE16002567D2 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AAE9B10F25AE7FA100D90F32 /* Project object */;
 }

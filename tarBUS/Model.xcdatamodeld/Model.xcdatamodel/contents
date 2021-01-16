@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BusLine" representedClassName="BusLine" syncable="YES" codeGenerationType="class">
+        <attribute name="busLineId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="busLineName" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="BusStop" representedClassName="BusStop" syncable="YES" codeGenerationType="class">
+        <attribute name="busStopName" optional="YES" attributeType="String"/>
+        <attribute name="busStopNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="busStopSearchName" optional="YES" attributeType="String"/>
+        <attribute name="busStopType" optional="YES" attributeType="String"/>
+        <attribute name="isCity" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="DayType" representedClassName="DayType" syncable="YES" codeGenerationType="class">
+        <attribute name="idDayType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Departure" representedClassName="Departure" syncable="YES" codeGenerationType="class">
+        <attribute name="departureBusLineId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="departureBusStopNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="departureId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="departureTrackId" optional="YES" attributeType="String"/>
+        <attribute name="timeInSec" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Destination" representedClassName="Destination" syncable="YES" codeGenerationType="class">
+        <attribute name="descriptionLong" optional="YES" attributeType="String"/>
+        <attribute name="descriptionShort" optional="YES" attributeType="String"/>
+        <attribute name="destinationBusLineId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="destinationId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="destinationName" optional="YES" attributeType="String"/>
+        <attribute name="destinationShortcut" optional="YES" attributeType="String"/>
+        <attribute name="lastBusStopNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="IgnoredDestinations" representedClassName="IgnoredDestinations" syncable="YES" codeGenerationType="class">
+        <attribute name="ignoredDestinationId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="parentDestinationId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Track" representedClassName="Track" syncable="YES" codeGenerationType="class">
+        <attribute name="dayType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="destinationStatus" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="trackDestinationId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="trackId" optional="YES" attributeType="String"/>
+        <attribute name="trackTypes" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="BusLine" positionX="-63" positionY="-18" width="128" height="59"/>
+        <element name="BusStop" positionX="-54" positionY="9" width="128" height="104"/>
+        <element name="DayType" positionX="-36" positionY="54" width="128" height="59"/>
+        <element name="Departure" positionX="-18" positionY="63" width="128" height="104"/>
+        <element name="Destination" positionX="0" positionY="99" width="128" height="134"/>
+        <element name="Track" positionX="18" positionY="135" width="128" height="104"/>
+        <element name="IgnoredDestinations" positionX="36" positionY="153" width="128" height="59"/>
+    </elements>
+</model>
