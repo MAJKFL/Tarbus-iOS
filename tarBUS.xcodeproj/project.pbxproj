@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AA6E638D25B2EE16002567D2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA6E638B25B2EE16002567D2 /* Model.xcdatamodeld */; };
 		AA6E639125B2F00E002567D2 /* PersistentCloudKitContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6E639025B2F00E002567D2 /* PersistentCloudKitContainer.swift */; };
+		AAB4673C25B3354B00B46614 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB4673B25B3354B00B46614 /* MailView.swift */; };
 		AAC82EC325AEF03600236F31 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EC225AEF03600236F31 /* WelcomeViewModel.swift */; };
 		AAC82EC625AEF07700236F31 /* LastUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EC525AEF07700236F31 /* LastUpdate.swift */; };
 		AAC82EC925AEF10300236F31 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EC825AEF10300236F31 /* Message.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		AA6E638C25B2EE16002567D2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		AA6E639025B2F00E002567D2 /* PersistentCloudKitContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentCloudKitContainer.swift; sourceTree = "<group>"; };
+		AAB4673B25B3354B00B46614 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		AAC82EC225AEF03600236F31 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		AAC82EC525AEF07700236F31 /* LastUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUpdate.swift; sourceTree = "<group>"; };
 		AAC82EC825AEF10300236F31 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		AAE9B12A25AE7FEF00D90F32 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AAB4673B25B3354B00B46614 /* MailView.swift */,
 				AAE9B11C25AE7FA200D90F32 /* WelcomeView.swift */,
 				AAC82ECE25AEFCBE00236F31 /* InfoView.swift */,
 				AAC82EDD25AF2DFC00236F31 /* LineListView.swift */,
@@ -200,6 +203,7 @@
 				AAC82ECF25AEFCBE00236F31 /* InfoView.swift in Sources */,
 				AAC82EC925AEF10300236F31 /* Message.swift in Sources */,
 				AA6E639125B2F00E002567D2 /* PersistentCloudKitContainer.swift in Sources */,
+				AAB4673C25B3354B00B46614 /* MailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

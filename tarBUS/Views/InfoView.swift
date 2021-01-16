@@ -6,9 +6,19 @@
 //
 
 import SwiftUI
+import MessageUI
 
 struct InfoView: View {
+    @Environment(\.openURL) var openURL
+    @State private var isShowingMailView = false
+    @State var result: Result<MFMailComposeResult, Error>? = nil
+    
     static let contacts = ["mail", "linkedin", "github", "facebook"]
+    static let links = ["linkedin": "https://twitter.com/MAJKFL", "github": "https://github.com/MAJKFL", "facebook": "https://www.facebook.com/jakub.florek.98"]
+    
+    init() {
+        UITableView.appearance().showsVerticalScrollIndicator = false
+    }
     
     var body: some View {
         VStack {
@@ -28,7 +38,7 @@ struct InfoView: View {
                     Text("Informacje o aplikacji:")
                         .font(.headline)
                     
-                    Text("Aplikacja tarBUSto mobilny rozkład jazdy dla nowych, pozamiejskich linii autobusowych. Stworzona z myślą o tych mieszkańcach okolic Tarnowa, co na co dzień przyzwyczajenie byli do dosyć nowoczesnych rozwiązań oferowanych nam przez linie miejskie, a przez zmianę na prywatnego przewoźnika - całkowicie stracili do nich dostęp")
+                    Text("Aplikacja tarBUS to mobilny rozkład jazdy dla nowych, pozamiejskich linii autobusowych. Stworzona z myślą o tych mieszkańcach okolic Tarnowa, co na co dzień przyzwyczajenie byli do dosyć nowoczesnych rozwiązań oferowanych nam przez linie miejskie, a przez zmianę na prywatnego przewoźnika - całkowicie stracili do nich dostęp")
                 }
                 
                 VStack(alignment: .leading) {
@@ -49,7 +59,11 @@ struct InfoView: View {
                         
                         ForEach(Self.contacts, id: \.self) { contact in
                             Button(action: {
-                                print(contact)
+                                if contact == "mail" {
+                                    isShowingMailView = true
+                                } else {
+                                    openURL(URL(string: (Self.links[contact]?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)!)
+                                }
                             }, label: {
                                 Image(contact)
                                     .resizable()
@@ -66,6 +80,9 @@ struct InfoView: View {
                 }
                 
                 Text("Wersja aplikacji: 1.0.0")
+            }
+            .sheet(isPresented: $isShowingMailView) {
+                MailView(result: self.$result)
             }
             .listStyle(InsetListStyle())
             .navigationTitle("Informacje o aplikacji")

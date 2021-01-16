@@ -13,65 +13,67 @@ struct WelcomeView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Image("logoHorizontal")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 300, height: 150)
-                
-                Text(welcomeVM.message?.message ?? "")
-                    .font(.body)
-                    .padding(.horizontal)
-                
-                VStack(alignment: .leading) {
-                    Divider()
+            ScrollView {
+                VStack {
+                    Image("logoHorizontal")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 300, height: 150)
                     
-                    NavigationLink(destination: LineListView(), label: {
-                        HStack(spacing: 20) {
-                            Image(systemName: "bus.fill")
-                            
-                            Text("Linie autobusowe")
-                            
-                            Spacer()
-                        }
+                    Text(welcomeVM.message?.message ?? "")
+                        .font(.body)
                         .padding(.horizontal)
-                    })
                     
-                    Divider()
-                    
-                    NavigationLink(destination: Text("Szukaj przystanku"), label: {
-                        HStack(spacing: 20) {
-                            Image(systemName: "magnifyingglass")
-                            
-                            Text("Szukaj przystanku")
-                            
-                            Spacer()
-                        }
-                        .padding(.horizontal)
-                    })
-                    
-                    Divider()
-                    
-                    NavigationLink(destination: InfoView(), label: {
-                        HStack(spacing: 20) {
-                            Image(systemName: "info.circle.fill")
-                            
-                            Text("Informacje o aplikacji")
-                        }
+                    VStack(alignment: .leading) {
+                        Divider()
                         
-                        Spacer()
-                    })
-                    .padding(.horizontal)
+                        NavigationLink(destination: LineListView(), label: {
+                            HStack(spacing: 20) {
+                                Image(systemName: "bus.fill")
+                                
+                                Text("Linie autobusowe")
+                                
+                                Spacer()
+                            }
+                            .padding(.horizontal)
+                        })
+                        
+                        Divider()
+                        
+                        NavigationLink(destination: Text("Szukaj przystanku"), label: {
+                            HStack(spacing: 20) {
+                                Image(systemName: "magnifyingglass")
+                                
+                                Text("Szukaj przystanku")
+                                
+                                Spacer()
+                            }
+                            .padding(.horizontal)
+                        })
+                        
+                        Divider()
+                        
+                        NavigationLink(destination: InfoView(), label: {
+                            HStack(spacing: 20) {
+                                Image(systemName: "info.circle.fill")
+                                
+                                Text("Informacje o aplikacji")
+                            }
+                            
+                            Spacer()
+                        })
+                        .padding(.horizontal)
+                        
+                        Divider()
+                    }
                     
-                    Divider()
+                    Text("Data ostatniej aktualizacji: \(welcomeVM.lastUpdate?.formatted ?? "")")
+                        .font(.footnote)
+                    
+                    Spacer()
                 }
-                
-                Text("Data ostatniej aktualizacji: \(welcomeVM.lastUpdate?.formatted ?? "")")
-                    .font(.footnote)
-                
-                Spacer()
+                .font(.title)
             }
-            .font(.title)
             .onAppear {
                 welcomeVM.fetchMessage()
                 welcomeVM.fetchLastUpdate()
