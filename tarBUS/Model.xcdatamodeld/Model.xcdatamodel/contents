@@ -3,6 +3,13 @@
     <entity name="BusLine" representedClassName="BusLine" syncable="YES" codeGenerationType="class">
         <attribute name="busLineId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="busLineName" optional="YES" attributeType="String"/>
+        <relationship name="departures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Departure" inverseName="busLine" inverseEntity="Departure"/>
+        <relationship name="destinations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Destination" inverseName="busLine" inverseEntity="Destination"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="busLineId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="BusStop" representedClassName="BusStop" syncable="YES" codeGenerationType="class">
         <attribute name="busStopName" optional="YES" attributeType="String"/>
@@ -10,10 +17,22 @@
         <attribute name="busStopSearchName" optional="YES" attributeType="String"/>
         <attribute name="busStopType" optional="YES" attributeType="String"/>
         <attribute name="isCity" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="departure" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Departure" inverseName="busStop" inverseEntity="Departure"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="busStopNumber"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="DayType" representedClassName="DayType" syncable="YES" codeGenerationType="class">
         <attribute name="idDayType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="tracks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="trackDayType" inverseEntity="Track"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="idDayType"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Departure" representedClassName="Departure" syncable="YES" codeGenerationType="class">
         <attribute name="departureBusLineId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -21,6 +40,14 @@
         <attribute name="departureId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="departureTrackId" optional="YES" attributeType="String"/>
         <attribute name="timeInSec" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="busLine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusLine" inverseName="departures" inverseEntity="BusLine"/>
+        <relationship name="busStop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusStop" inverseName="departure" inverseEntity="BusStop"/>
+        <relationship name="track" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Track" inverseName="departures" inverseEntity="Track"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="departureId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Destination" representedClassName="Destination" syncable="YES" codeGenerationType="class">
         <attribute name="descriptionLong" optional="YES" attributeType="String"/>
@@ -30,10 +57,26 @@
         <attribute name="destinationName" optional="YES" attributeType="String"/>
         <attribute name="destinationShortcut" optional="YES" attributeType="String"/>
         <attribute name="lastBusStopNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="busLine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusLine" inverseName="destinations" inverseEntity="BusLine"/>
+        <relationship name="ignoredDestinations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IgnoredDestinations" inverseName="ignoredDestinations" inverseEntity="IgnoredDestinations"/>
+        <relationship name="parentDestinations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="IgnoredDestinations" inverseName="parentDestinations" inverseEntity="IgnoredDestinations"/>
+        <relationship name="tracks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="destination" inverseEntity="Track"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="destinationId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="IgnoredDestinations" representedClassName="IgnoredDestinations" syncable="YES" codeGenerationType="class">
         <attribute name="ignoredDestinationId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="parentDestinationId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="ignoredDestinations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Destination" inverseName="ignoredDestinations" inverseEntity="Destination"/>
+        <relationship name="parentDestinations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Destination" inverseName="parentDestinations" inverseEntity="Destination"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="ignoredDestinationId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Track" representedClassName="Track" syncable="YES" codeGenerationType="class">
         <attribute name="dayType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -41,14 +84,22 @@
         <attribute name="trackDestinationId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="trackId" optional="YES" attributeType="String"/>
         <attribute name="trackTypes" optional="YES" attributeType="String"/>
+        <relationship name="departures" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Departure" inverseName="track" inverseEntity="Departure"/>
+        <relationship name="destination" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Destination" inverseName="tracks" inverseEntity="Destination"/>
+        <relationship name="trackDayType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayType" inverseName="tracks" inverseEntity="DayType"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="trackId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="BusLine" positionX="-63" positionY="-18" width="128" height="59"/>
-        <element name="BusStop" positionX="-54" positionY="9" width="128" height="104"/>
-        <element name="DayType" positionX="-36" positionY="54" width="128" height="59"/>
-        <element name="Departure" positionX="-18" positionY="63" width="128" height="104"/>
-        <element name="Destination" positionX="0" positionY="99" width="128" height="134"/>
-        <element name="Track" positionX="18" positionY="135" width="128" height="104"/>
-        <element name="IgnoredDestinations" positionX="36" positionY="153" width="128" height="59"/>
+        <element name="BusLine" positionX="-471.9765014648438" positionY="-66.80743408203119" width="128" height="103"/>
+        <element name="BusStop" positionX="401.2550659179687" positionY="-137.2698059082031" width="128" height="133"/>
+        <element name="DayType" positionX="-79.80242919921875" positionY="326.9030303955078" width="128" height="88"/>
+        <element name="Departure" positionX="-222.8391723632812" positionY="-4.083343505859375" width="153.9508056640625" height="163"/>
+        <element name="Destination" positionX="-112.1334228515626" positionY="-215.1761779785156" width="128" height="208"/>
+        <element name="IgnoredDestinations" positionX="123.7493896484375" positionY="-269.043701171875" width="128" height="103"/>
+        <element name="Track" positionX="137.472412109375" positionY="178.9672546386719" width="128" height="163"/>
     </elements>
 </model>

@@ -13,8 +13,8 @@ struct InfoView: View {
     @State private var isShowingMailView = false
     @State var result: Result<MFMailComposeResult, Error>? = nil
     
-    static let contacts = ["mail", "linkedin", "github", "facebook"]
-    static let links = ["linkedin": "https://twitter.com/MAJKFL", "github": "https://github.com/MAJKFL", "facebook": "https://www.facebook.com/jakub.florek.98"]
+    static let contacts = ["mail", "twitter", "github", "facebook"]
+    static let links = ["twitter": "https://twitter.com/MAJKFL", "github": "https://github.com/MAJKFL", "facebook": "https://www.facebook.com/jakub.florek.98"]
     
     init() {
         UITableView.appearance().showsVerticalScrollIndicator = false

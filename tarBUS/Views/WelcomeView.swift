@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct WelcomeView: View {
     @StateObject var welcomeVM = WelcomeViewModel()
@@ -20,7 +19,7 @@ struct WelcomeView: View {
                         .scaledToFit()
                         .frame(width: 300, height: 150)
                     
-                    Text(welcomeVM.message?.message ?? "")
+                    Text(welcomeVM.message?.message ?? "Mamy problem z połączeniem z naszą bazą danych, rozkład będzie dostępny w formie offline")
                         .font(.body)
                         .padding(.horizontal)
                     
@@ -78,7 +77,7 @@ struct WelcomeView: View {
                 welcomeVM.fetchMessage()
                 welcomeVM.fetchLastUpdate()
             }
-            .navigationTitle("Rozkład jazdy GKP")
+            .navigationTitle("tarBUS")
             .navigationBarTitleDisplayMode(.inline)
         }
     }

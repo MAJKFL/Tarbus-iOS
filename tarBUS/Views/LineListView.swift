@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct LineListView: View {
-    @FetchRequest(entity: BusLine.entity(), sortDescriptors: []) var busLines: FetchedResults<BusLine>
+    @ObservedObject var dataBaseHelper = DataBaseHelper()
+    @State private var busLines = [BusLine]()
     
     let columns = [
         GridItem(.flexible()),
@@ -21,12 +21,12 @@ struct LineListView: View {
         ScrollView {
             VStack {
                 LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(busLines, id: \.self) { line in
-                        NavigationLink(destination: Text(line.busLineName ?? ""), label: {
+                    ForEach(busLines) { line in
+                        NavigationLink(destination: RouteListView(busLine: line), label: {
                             HStack {
                                 Image(systemName: "bus.fill")
                                 
-                                Text(line.busLineName ?? "")
+                                Text(line.name)
                             }
                             .font(Font.headline.weight(.bold))
                             .foregroundColor(.white)
@@ -43,5 +43,8 @@ struct LineListView: View {
             .padding()
         }
         .navigationTitle("Linie Autobusowe")
+        .onAppear {
+            busLines = dataBaseHelper.getBusLines()
+        }
     }
 }
