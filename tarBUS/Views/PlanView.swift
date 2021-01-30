@@ -36,7 +36,7 @@ struct PlanView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(routes) { route in
-                            RouteCellView(route: route, busStop: busStop, dayTypeIntValue: 1)
+                            RouteCellView(route: route, busStop: busStop, dayTypeString: "1,3,4")
                         }
                     }
                 }
@@ -45,7 +45,7 @@ struct PlanView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(routes) { route in
-                            RouteCellView(route: route, busStop: busStop, dayTypeIntValue: 2)
+                            RouteCellView(route: route, busStop: busStop, dayTypeString: "2,4,8,9")
                         }
                     }
                 }
@@ -54,7 +54,7 @@ struct PlanView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(routes) { route in
-                            RouteCellView(route: route, busStop: busStop, dayTypeIntValue: 3)
+                            RouteCellView(route: route, busStop: busStop, dayTypeString: "2,6,7")
                         }
                     }
                 }
@@ -74,8 +74,22 @@ struct RouteCellView: View {
     @StateObject var dataBaseHelper = DataBaseHelper()
     let route: Route
     let busStop: BusStop
-    let dayTypeIntValue: Int
+    let dayTypeString: String
     @State private var showHours = false
+    @State private var departures = [Departure]()
+    
+    var legend: [String] {
+        var legendArray = [String]()
+        
+        for departure in departures {
+            if departure.legend != "-" {
+                legendArray.append(departure.legend)
+            }
+        }
+        
+        return legendArray.removeDuplicates()
+    }
+    
     
     let columns = [
         GridItem(.flexible()),
@@ -106,7 +120,7 @@ struct RouteCellView: View {
             
             if showHours {
                 LazyVGrid(columns: columns, spacing: 10) {
-                    ForEach(getDepartures()) { departure in
+                    ForEach(departures) { departure in
                         HStack(spacing: 0) {
                             Text(departure.timeString)
                             
@@ -117,7 +131,22 @@ struct RouteCellView: View {
                         }
                     }
                 }
-                .padding(.bottom, 10)
+                .onAppear {
+                    withAnimation(.spring()) { departures = getDepartures() }
+                }
+                
+                VStack(alignment: .leading) {
+                    ForEach(legend, id: \.self) { str in
+                        HStack {
+                            Text(str)
+                                .font(.footnote)
+                                .foregroundColor(.secondary)
+                            
+                            Spacer()
+                        }
+                   }
+                }
+                .padding([.horizontal, .bottom])
             }
         }
         .background(Color("lightGray"))
@@ -129,6 +158,6 @@ struct RouteCellView: View {
     }
     
     func getDepartures() -> [Departure] {
-        return dataBaseHelper.getDepartures(busStopId: busStop.id, dayType: dayTypeIntValue).filter({ $0.busLineId == route.busLineId })
+        return dataBaseHelper.getDepartures(busStopId: busStop.id, dayType: dayTypeString).filter({ $0.busLineId == route.busLineId && $0.routeId == route.id })
     }
 }

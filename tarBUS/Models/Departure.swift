@@ -16,6 +16,8 @@ struct Departure: Identifiable, Equatable {
     let timeInMin: Int
     let timeString: String
     let symbols: String
+    let routeId: Int
+    let legend: String
     
     static func ==(lhs: Departure, rhs: Departure) -> Bool {
         return lhs.id == rhs.id

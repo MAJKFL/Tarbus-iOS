@@ -197,7 +197,7 @@ class DataBaseHelper: ObservableObject {
                 let timeInMin = Optional(row[5]) as! Int64
                 let timeString = Optional(row[6]) as! String
                 let symbols = Optional(row[7]) as! String
-                let newDeparture = Departure(id: Int(id), busStopId: Int(busStopId), trackId: trackId, busLineId: Int(busLineId), busStopLp: Int(busStopLp), timeInMin: Int(timeInMin), timeString: timeString, symbols: symbols)
+                let newDeparture = Departure(id: Int(id), busStopId: Int(busStopId), trackId: trackId, busLineId: Int(busLineId), busStopLp: Int(busStopLp), timeInMin: Int(timeInMin), timeString: timeString, symbols: symbols, routeId: 0, legend: "")
                 departures.append(newDeparture)
             }
         } catch {
@@ -207,7 +207,7 @@ class DataBaseHelper: ObservableObject {
         return departures
     }
     
-    func getDepartures(busStopId: Int, dayType: Int) -> [Departure] {
+    func getDepartures(busStopId: Int, dayType: String) -> [Departure] {
         var departures = [Departure]()
         
         let fileManager = FileManager.default
@@ -216,7 +216,7 @@ class DataBaseHelper: ObservableObject {
         let db = try! Connection(url.absoluteString)
         
         do {
-            for row in try db.prepare("SELECT * FROM Departure JOIN BusStop ON BusStop.bs_id = Departure.d_bus_stop_id JOIN Track ON Departure.d_track_id = Track.t_id JOIN BusLine ON BusLine.bl_id = Departure.d_bus_line_id JOIN Destinations ON Departure.d_symbols = Destinations.ds_symbol JOIN Route ON Track.t_route_id = Route.r_id WHERE Departure.d_bus_stop_id = \(busStopId) AND Track.t_day_id IN (\(dayType)) ORDER BY Departure.d_bus_stop_lp") {
+            for row in try db.prepare("SELECT * FROM Departure JOIN BusStop ON BusStop.bs_id = Departure.d_bus_stop_id JOIN Track ON Departure.d_track_id = Track.t_id JOIN BusLine ON BusLine.bl_id = Departure.d_bus_line_id JOIN Destinations ON Departure.d_symbols = Destinations.ds_symbol AND Destinations.ds_route_id = Route.r_id JOIN Route ON Track.t_route_id = Route.r_id WHERE Departure.d_bus_stop_id = \(busStopId) AND Track.t_day_id IN (\(dayType)) ORDER BY Departure.d_time_in_min") {
                 let id = Optional(row[0]) as! Int64
                 let busStopId = Optional(row[1]) as! Int64
                 let trackId = Optional(row[2]) as! String
@@ -225,14 +225,16 @@ class DataBaseHelper: ObservableObject {
                 let timeInMin = Optional(row[5]) as! Int64
                 let timeString = Optional(row[6]) as! String
                 let symbols = Optional(row[7]) as! String
-                let newDeparture = Departure(id: Int(id), busStopId: Int(busStopId), trackId: trackId, busLineId: Int(busLineId), busStopLp: Int(busStopLp), timeInMin: Int(timeInMin), timeString: timeString, symbols: symbols)
+                let legend = Optional(row[25]) as! String
+                let routeId = Optional(row[26]) as! Int64
+                let newDeparture = Departure(id: Int(id), busStopId: Int(busStopId), trackId: trackId, busLineId: Int(busLineId), busStopLp: Int(busStopLp), timeInMin: Int(timeInMin), timeString: timeString, symbols: symbols, routeId: Int(routeId), legend: legend)
                 departures.append(newDeparture)
             }
         } catch {
             print(error)
         }
         
-        return departures.removeDuplicates().sorted(by: { $0.timeInMin < $1.timeInMin })
+        return departures.removeDuplicates()
     }
     
     func getDestinations(busStopId: Int) -> [Route] {
