@@ -23,13 +23,8 @@
 		AAC82ECF25AEFCBE00236F31 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82ECE25AEFCBE00236F31 /* InfoView.swift */; };
 		AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EDD25AF2DFC00236F31 /* LineListView.swift */; };
 		AAD6247E25C058410038C8CE /* Departure.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6247D25C058410038C8CE /* Departure.swift */; };
-		AAD6248125C059330038C8CE /* BusStopConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248025C059330038C8CE /* BusStopConnection.swift */; };
 		AAD6248425C0599B0038C8CE /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248325C0599B0038C8CE /* Track.swift */; };
-		AAD6248725C059DE0038C8CE /* DayType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248625C059DE0038C8CE /* DayType.swift */; };
 		AAD6248A25C05A3E0038C8CE /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248925C05A3E0038C8CE /* Route.swift */; };
-		AAD6248D25C05A760038C8CE /* RouteConnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248C25C05A760038C8CE /* RouteConnections.swift */; };
-		AAD6249025C05AD00038C8CE /* Destinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248F25C05AD00038C8CE /* Destinations.swift */; };
-		AAD6249325C05B3A0038C8CE /* RoadType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6249225C05B3A0038C8CE /* RoadType.swift */; };
 		AAE9B11B25AE7FA200D90F32 /* tarBUSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */; };
 		AAE9B11D25AE7FA200D90F32 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11C25AE7FA200D90F32 /* WelcomeView.swift */; };
 		AAE9B11F25AE7FA400D90F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE9B11E25AE7FA400D90F32 /* Assets.xcassets */; };
@@ -52,13 +47,8 @@
 		AAC82ECE25AEFCBE00236F31 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		AAC82EDD25AF2DFC00236F31 /* LineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineListView.swift; sourceTree = "<group>"; };
 		AAD6247D25C058410038C8CE /* Departure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Departure.swift; sourceTree = "<group>"; };
-		AAD6248025C059330038C8CE /* BusStopConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopConnection.swift; sourceTree = "<group>"; };
 		AAD6248325C0599B0038C8CE /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
-		AAD6248625C059DE0038C8CE /* DayType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayType.swift; sourceTree = "<group>"; };
 		AAD6248925C05A3E0038C8CE /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
-		AAD6248C25C05A760038C8CE /* RouteConnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteConnections.swift; sourceTree = "<group>"; };
-		AAD6248F25C05AD00038C8CE /* Destinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destinations.swift; sourceTree = "<group>"; };
-		AAD6249225C05B3A0038C8CE /* RoadType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadType.swift; sourceTree = "<group>"; };
 		AAE9B11725AE7FA200D90F32 /* tarBUS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tarBUS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tarBUSApp.swift; sourceTree = "<group>"; };
 		AAE9B11C25AE7FA200D90F32 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -150,13 +140,8 @@
 				AA78CDD825B9EDB20052455A /* BusLine.swift */,
 				AA75086625BC7B5D0045FFD5 /* BusStop.swift */,
 				AAD6247D25C058410038C8CE /* Departure.swift */,
-				AAD6248025C059330038C8CE /* BusStopConnection.swift */,
 				AAD6248325C0599B0038C8CE /* Track.swift */,
-				AAD6248625C059DE0038C8CE /* DayType.swift */,
 				AAD6248925C05A3E0038C8CE /* Route.swift */,
-				AAD6248C25C05A760038C8CE /* RouteConnections.swift */,
-				AAD6248F25C05AD00038C8CE /* Destinations.swift */,
-				AAD6249225C05B3A0038C8CE /* RoadType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,27 +233,22 @@
 			files = (
 				AA09E84425C1BD7800FA4A70 /* RouteListView.swift in Sources */,
 				AAE9B11D25AE7FA200D90F32 /* WelcomeView.swift in Sources */,
-				AAD6249025C05AD00038C8CE /* Destinations.swift in Sources */,
 				AA75086325BC5F000045FFD5 /* DatabaseHelper.swift in Sources */,
-				AAD6248125C059330038C8CE /* BusStopConnection.swift in Sources */,
 				AA78CDD925B9EDB20052455A /* BusLine.swift in Sources */,
 				AAC82EC325AEF03600236F31 /* WelcomeViewModel.swift in Sources */,
 				AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */,
 				AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */,
 				AAC82EC625AEF07700236F31 /* LastUpdate.swift in Sources */,
 				AAD6247E25C058410038C8CE /* Departure.swift in Sources */,
-				AAD6248D25C05A760038C8CE /* RouteConnections.swift in Sources */,
 				AAE9B11B25AE7FA200D90F32 /* tarBUSApp.swift in Sources */,
 				AAD6248425C0599B0038C8CE /* Track.swift in Sources */,
 				AA1151A125C4A75D00A2F299 /* BusStopView.swift in Sources */,
 				AA3C459825C5C4A100148F1E /* date+extensions.swift in Sources */,
 				AAC82ECF25AEFCBE00236F31 /* InfoView.swift in Sources */,
-				AAD6248725C059DE0038C8CE /* DayType.swift in Sources */,
 				AAC82EC925AEF10300236F31 /* Message.swift in Sources */,
 				AAB4673C25B3354B00B46614 /* MailView.swift in Sources */,
 				AAD6248A25C05A3E0038C8CE /* Route.swift in Sources */,
 				AA3C459B25C5D2B500148F1E /* PlanView.swift in Sources */,
-				AAD6249325C05B3A0038C8CE /* RoadType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

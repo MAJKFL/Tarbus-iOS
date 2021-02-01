@@ -14,11 +14,12 @@ struct PlanView: View {
         case holidays = "Święta"
     }
     
-    let busStop: BusStop
     @ObservedObject var dataBaseHelper = DataBaseHelper()
     @State private var dayType: dayTypes = .workingDays
     @State private var routes = [Route]()
     @State private var departures = [Departure]()
+    
+    let busStop: BusStop
     
     var body: some View {
         VStack {
@@ -83,12 +84,13 @@ struct PlanView: View {
 
 struct RouteCellView: View {
     @StateObject var dataBaseHelper = DataBaseHelper()
-    let route: Route
-    let busStop: BusStop
-    let dayTypeString: String
     @State private var showHours = false
     @State private var departures = [Departure]()
     @State private var busLineName = ""
+    
+    let route: Route
+    let busStop: BusStop
+    let dayTypeString: String
     
     var legend: [String] {
         var legendArray = [String]()

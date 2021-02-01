@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct RouteListView: View {
-    let busLine: BusLine
     @StateObject var dataBaseHelper = DataBaseHelper()
     @State private var routes = [Route]()
+    
+    let busLine: BusLine
     
     var body: some View {
         ScrollView {
@@ -31,8 +32,9 @@ struct RouteListView: View {
 
 struct RouteView: View {
     @StateObject var dataBaseHelper = DataBaseHelper()
-    let route: Route
     @State private var isShowingRoute = false
+    
+    let route: Route
     
     var body: some View {
         VStack {
