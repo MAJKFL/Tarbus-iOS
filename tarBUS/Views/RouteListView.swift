@@ -16,16 +16,7 @@ struct RouteListView: View {
         ScrollView {
             VStack(spacing: 10) {
                 ForEach(routes) { route in
-                    NavigationLink(destination: BusStopListView(busStops: dataBaseHelper.getBusStops(routeId: route.id), routeName: route.destinationName)) {
-                        Text(route.destinationName)
-                            .font(Font.largeTitle.bold())
-                            .foregroundColor(.white)
-                            .frame(width: UIScreen.main.bounds.width - 50, height: 100)
-                            .background(Color("MainColor"))
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            .padding([.top, .horizontal])
-                    }
-                    .buttonStyle(PlainButtonStyle())
+                    RouteView(route: route)
                 }
                 
                 Spacer()
@@ -38,9 +29,43 @@ struct RouteListView: View {
     }
 }
 
+struct RouteView: View {
+    @StateObject var dataBaseHelper = DataBaseHelper()
+    let route: Route
+    @State private var isShowingRoute = false
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text(route.destinationName)
+                    .fontWeight(.bold)
+                
+                Spacer()
+                
+                Image(systemName: "chevron.down")
+                    .rotationEffect(.degrees(isShowingRoute ? 0 : -180))
+            }
+            .padding(.horizontal)
+            .frame(height: 50)
+                
+                
+        
+            if isShowingRoute {
+                BusStopListView(busStops: dataBaseHelper.getBusStops(routeId: route.id))
+            }
+        }
+        .background(Color("lightGray"))
+        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+        .shadow(radius: 5, x: 5, y: 5)
+        .padding([.top, .horizontal])
+        .onTapGesture {
+            withAnimation(.spring()) { isShowingRoute.toggle() }
+        }
+    }
+}
+
 struct BusStopListView: View {
     let busStops: [BusStop]
-    let routeName: String
     
     var body: some View {
         ScrollView {
@@ -67,8 +92,6 @@ struct BusStopListView: View {
                     .buttonStyle(PlainButtonStyle())
                 }
             }
-            .navigationTitle(routeName)
-            .navigationBarTitleDisplayMode(.large)
         }
     }
 }

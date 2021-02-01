@@ -18,6 +18,7 @@ struct Departure: Identifiable, Equatable {
     let symbols: String
     let routeId: Int
     let legend: String
+    let busLineName: String
     
     static func ==(lhs: Departure, rhs: Departure) -> Bool {
         return lhs.id == rhs.id

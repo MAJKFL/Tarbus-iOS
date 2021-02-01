@@ -13,11 +13,24 @@ struct tarBUSApp: App {
     
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
-                .onAppear {
-                    dataBaseHelper.copyDatabaseIfNeeded()
-                    dataBaseHelper.fetchData()
-                }
+            TabView {
+                WelcomeView()
+                    .tabItem {
+                        Label("Start", systemImage: "house.fill")
+                    }
+                Text("Linie")
+                    .tabItem {
+                        Label("Linie", systemImage: "point.fill.topleft.down.curvedto.point.fill.bottomright.up")
+                    }
+                Text("Szukaj")
+                    .tabItem {
+                        Label("Szukaj", systemImage: "magnifyingglass")
+                    }
+            }
+            .onAppear {
+                dataBaseHelper.copyDatabaseIfNeeded()
+                dataBaseHelper.fetchData()
+            }
         }
     }
 }

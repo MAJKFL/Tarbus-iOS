@@ -197,7 +197,7 @@ class DataBaseHelper: ObservableObject {
                 let timeInMin = Optional(row[5]) as! Int64
                 let timeString = Optional(row[6]) as! String
                 let symbols = Optional(row[7]) as! String
-                let newDeparture = Departure(id: Int(id), busStopId: Int(busStopId), trackId: trackId, busLineId: Int(busLineId), busStopLp: Int(busStopLp), timeInMin: Int(timeInMin), timeString: timeString, symbols: symbols, routeId: 0, legend: "")
+                let newDeparture = Departure(id: Int(id), busStopId: Int(busStopId), trackId: trackId, busLineId: Int(busLineId), busStopLp: Int(busStopLp), timeInMin: Int(timeInMin), timeString: timeString, symbols: symbols, routeId: 0, legend: "", busLineName: "")
                 departures.append(newDeparture)
             }
         } catch {
@@ -227,7 +227,8 @@ class DataBaseHelper: ObservableObject {
                 let symbols = Optional(row[7]) as! String
                 let legend = Optional(row[25]) as! String
                 let routeId = Optional(row[26]) as! Int64
-                let newDeparture = Departure(id: Int(id), busStopId: Int(busStopId), trackId: trackId, busLineId: Int(busLineId), busStopLp: Int(busStopLp), timeInMin: Int(timeInMin), timeString: timeString, symbols: symbols, routeId: Int(routeId), legend: legend)
+                let busLineName = Optional(row[20]) as! String
+                let newDeparture = Departure(id: Int(id), busStopId: Int(busStopId), trackId: trackId, busLineId: Int(busLineId), busStopLp: Int(busStopLp), timeInMin: Int(timeInMin), timeString: timeString, symbols: symbols, routeId: Int(routeId), legend: legend, busLineName: busLineName)
                 departures.append(newDeparture)
             }
         } catch {
@@ -247,6 +248,7 @@ class DataBaseHelper: ObservableObject {
         
         do {
             for row in try db.prepare("SELECT * FROM Route WHERE Route.r_id IN (SELECT DISTINCT t_route_id FROM Departure JOIN Track ON Departure.d_track_id = Track.t_id WHERE d_bus_stop_id = \(busStopId))") {
+                print("destinations")
                 let id = Optional(row[0]) as! Int64
                 let destinationName = Optional(row[1]) as! String
                 let busLineId = Optional(row[2]) as! Int64
@@ -270,6 +272,7 @@ class DataBaseHelper: ObservableObject {
         
         do {
             for row in try db.prepare("SELECT * FROM BusLine WHERE BusLine.bl_id = \(busLineId)") {
+                print("busline")
                 let id: Int64 = Optional(row[0]) as! Int64
                 let name: String = Optional(row[1]) as! String
                 let newBusLine = BusLine(id: Int(id), name: name)

@@ -33,6 +33,7 @@ struct LineListView: View {
                             .frame(maxWidth: .infinity, minHeight: 50)
                             .background(Color("MainColor"))
                             .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                            .shadow(radius: 3, x: 3, y: 3)
                         })
                         .buttonStyle(PlainButtonStyle())
                     }

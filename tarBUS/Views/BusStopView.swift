@@ -9,24 +9,29 @@ import SwiftUI
 
 struct BusStopView: View {
     let busStop: BusStop
-    @StateObject var dataBaseHelper = DataBaseHelper()
-    @State private var showPlan = false
     
     var body: some View {
-        VStack {
-            if showPlan {
-               PlanView(busStop: busStop)
-            } else {
-                ScrollView {
-                    Text("Lorem ipsum")
-                }
-                    .transition(AnyTransition.opacity.combined(with: .move(edge: .trailing)))
+        TabView {
+            ScrollView {
+                Text("Lorem ipsum")
             }
+            
+            PlanView(busStop: busStop)
         }
-        .navigationBarItems(trailing: Button(action: {
-            withAnimation(.easeIn) { showPlan.toggle() }
+        .tabViewStyle(PageTabViewStyle())
+        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+        .navigationBarItems(trailing:Menu(content: {
+            Button(action: {
+            }, label: {
+                Label("Dodaj do ulubionych", systemImage: "heart")
+            })
+            
+            Button(action: {
+            }, label: {
+                Label("Więcej informacji", systemImage: "info.circle")
+            })
         }, label: {
-            Image(systemName: "calendar\(showPlan ? ".badge.exclamationmark" : "")")
+            Image(systemName: "ellipsis.circle")
         }))
         .navigationTitle(busStop.name)
         .navigationBarTitleDisplayMode(.inline)

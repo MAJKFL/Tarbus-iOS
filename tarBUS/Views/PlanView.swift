@@ -15,7 +15,7 @@ struct PlanView: View {
     }
     
     let busStop: BusStop
-    @StateObject var dataBaseHelper = DataBaseHelper()
+    @ObservedObject var dataBaseHelper = DataBaseHelper()
     @State private var dayType: dayTypes = .workingDays
     @State private var routes = [Route]()
     @State private var departures = [Departure]()
@@ -39,6 +39,9 @@ struct PlanView: View {
                             RouteCellView(route: route, busStop: busStop, dayTypeString: "1,3,4")
                         }
                     }
+                    
+                    Color.clear
+                        .frame(minHeight: 30)
                 }
                 .transition(.slide)
             case .saturdays:
@@ -48,6 +51,9 @@ struct PlanView: View {
                             RouteCellView(route: route, busStop: busStop, dayTypeString: "2,4,8,9")
                         }
                     }
+                    
+                    Color.clear
+                        .frame(minHeight: 30)
                 }
                 .transition(.slide)
             default:
@@ -57,13 +63,18 @@ struct PlanView: View {
                             RouteCellView(route: route, busStop: busStop, dayTypeString: "2,6,7")
                         }
                     }
+                    
+                    Color.clear
+                        .frame(minHeight: 30)
                 }
                 .transition(.slide)
             }
         }
         .transition(AnyTransition.opacity.combined(with: .move(edge: .trailing)))
         .onAppear {
-            routes = dataBaseHelper.getDestinations(busStopId: busStop.id)
+            if routes.isEmpty {
+                routes = dataBaseHelper.getDestinations(busStopId: busStop.id)
+            }
         }
     }
     
@@ -77,6 +88,7 @@ struct RouteCellView: View {
     let dayTypeString: String
     @State private var showHours = false
     @State private var departures = [Departure]()
+    @State private var busLineName = ""
     
     var legend: [String] {
         var legendArray = [String]()
@@ -89,7 +101,6 @@ struct RouteCellView: View {
         
         return legendArray.removeDuplicates()
     }
-    
     
     let columns = [
         GridItem(.flexible()),
@@ -104,7 +115,7 @@ struct RouteCellView: View {
                 HStack {
                     Image(systemName: "bus.fill")
                     
-                    Text(dataBaseHelper.getBusLine(busLineId: route.busLineId).name)
+                    Text(busLineName)
                 }
                 .font(Font.headline.weight(.bold))
                 .foregroundColor(.white)
@@ -116,6 +127,11 @@ struct RouteCellView: View {
                     .font(.title)
                 
                 Spacer()
+                
+                Image(systemName: "chevron.down")
+                    .font(Font.body.bold())
+                    .rotationEffect(.degrees(showHours ? 0 : -180))
+                    .padding(.trailing)
             }
             
             if showHours {
@@ -151,7 +167,13 @@ struct RouteCellView: View {
         }
         .background(Color("lightGray"))
         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+        .shadow(radius: 5, x: 5, y: 5)
         .padding(.horizontal)
+        .onAppear {
+            if busLineName.isEmpty {
+                busLineName = dataBaseHelper.getBusLine(busLineId: route.busLineId).name
+            }
+        }
         .onTapGesture {
             withAnimation(.spring()) { showHours.toggle() }
         }
