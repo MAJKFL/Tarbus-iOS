@@ -35,7 +35,6 @@ struct RouteView: View {
     @StateObject var dataBaseHelper = DataBaseHelper()
     @State private var isShowingRoute = false
     @State private var busStops = [BusStop]()
-    @State private var isShowingPreview = true
     
     let route: Route
     
@@ -46,20 +45,13 @@ struct RouteView: View {
                     .foregroundColor(Color("MainColor"))
                 
                 VStack(alignment: .leading) {
-                    if isShowingPreview {
-                        VStack(alignment: .leading) {
-                            Text(busStops.first?.name ?? "")
-                            
-                            Image(systemName: "arrow.down")
-                            
-                            Text(busStops.last?.name ?? "")
-                        }
+                    Text(route.destinationName)
+                        .fontWeight(.bold)
+                    
+                    Text("\(busStops.first?.name ?? "") -> \(busStops.last?.name ?? "")")
                         .font(.footnote)
+                        .foregroundColor(.secondary)
                         .lineLimit(1)
-                    } else {
-                        Text(route.destinationName)
-                            .fontWeight(.bold)
-                    }
                 }
                 
                 Spacer()
@@ -68,11 +60,6 @@ struct RouteView: View {
                     .rotationEffect(.degrees(isShowingRoute ? 0 : -180))
             }
             .padding()
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-                    withAnimation(Animation.easeIn(duration: 0.25)) { isShowingPreview = false }
-                }
-            }
                 
             if isShowingRoute {
                 BusStopListView(busStops: busStops)
