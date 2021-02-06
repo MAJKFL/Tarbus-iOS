@@ -12,9 +12,7 @@ struct BusStopView: View {
     
     var body: some View {
         TabView {
-            ScrollView {
-                Text("Lorem ipsum")
-            }
+            NextDeparturesView(busStop: busStop)
             
             PlanView(busStop: busStop)
         }

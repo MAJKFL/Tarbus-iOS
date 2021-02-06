@@ -24,6 +24,7 @@ struct RouteListView: View {
             }
         }
         .navigationTitle("\(busLine.name) - Kierunki")
+        .navigationBarTitleDisplayMode(.large)
         .onAppear {
             routes = dataBaseHelper.getRoutes(busLineId: busLine.id)
         }
@@ -33,33 +34,57 @@ struct RouteListView: View {
 struct RouteView: View {
     @StateObject var dataBaseHelper = DataBaseHelper()
     @State private var isShowingRoute = false
+    @State private var busStops = [BusStop]()
+    @State private var isShowingPreview = true
     
     let route: Route
     
     var body: some View {
         VStack {
             HStack {
-                Text(route.destinationName)
-                    .fontWeight(.bold)
+                Image(systemName: "arrow.turn.up.right")
+                    .foregroundColor(Color("MainColor"))
+                
+                VStack(alignment: .leading) {
+                    if isShowingPreview {
+                        VStack(alignment: .leading) {
+                            Text(busStops.first?.name ?? "")
+                            
+                            Image(systemName: "arrow.down")
+                            
+                            Text(busStops.last?.name ?? "")
+                        }
+                        .font(.footnote)
+                        .lineLimit(1)
+                    } else {
+                        Text(route.destinationName)
+                            .fontWeight(.bold)
+                    }
+                }
                 
                 Spacer()
                 
                 Image(systemName: "chevron.down")
                     .rotationEffect(.degrees(isShowingRoute ? 0 : -180))
             }
-            .padding(.horizontal)
-            .frame(height: 50)
+            .padding()
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+                    withAnimation(Animation.easeIn(duration: 0.25)) { isShowingPreview = false }
+                }
+            }
                 
-                
-        
             if isShowingRoute {
-                BusStopListView(busStops: dataBaseHelper.getBusStops(routeId: route.id))
+                BusStopListView(busStops: busStops)
             }
         }
         .background(Color("lightGray"))
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         .shadow(radius: 5, x: 5, y: 5)
         .padding([.top, .horizontal])
+        .onAppear {
+            busStops = dataBaseHelper.getBusStops(routeId: route.id)
+        }
         .onTapGesture {
             withAnimation(.spring()) { isShowingRoute.toggle() }
         }
@@ -70,29 +95,27 @@ struct BusStopListView: View {
     let busStops: [BusStop]
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                ForEach(busStops.indices) { index in
-                    NavigationLink(destination: BusStopView(busStop: busStops[index])) {
-                        HStack {
-                            switch(index) {
-                            case 0:
-                                Image("firstBusStop")
-                            case busStops.count - 1:
-                                Image("lastBusStop")
-                            default:
-                                Image("nextBusStop")
-                            }
-                            
-                            Text(busStops[index].name)
-                            
-                            Spacer()
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(busStops.indices) { index in
+                NavigationLink(destination: BusStopView(busStop: busStops[index])) {
+                    HStack {
+                        switch(index) {
+                        case 0:
+                            Image("firstBusStop")
+                        case busStops.count - 1:
+                            Image("lastBusStop")
+                        default:
+                            Image("nextBusStop")
                         }
-                        .font(.headline)
-                        .padding(.horizontal)
+                        
+                        Text(busStops[index].name)
+                        
+                        Spacer()
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    .font(.headline)
+                    .padding(.horizontal)
                 }
+                .buttonStyle(PlainButtonStyle())
             }
         }
     }

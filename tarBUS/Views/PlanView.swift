@@ -12,6 +12,17 @@ struct PlanView: View {
         case workingDays = "Dni robocze"
         case saturdays = "Soboty"
         case holidays = "Święta"
+        
+        var databaseQuery: String {
+            switch self {
+            case .holidays:
+                return "instr(Track.t_day_types, \'SW\')"
+            case .saturdays:
+                return "instr(Track.t_day_types, \'WS\')"
+            default:
+                return "instr(Track.t_day_types, \'RO\') OR instr(Track.t_day_types, \'SC\')"
+            }
+        }
     }
     
     @ObservedObject var dataBaseHelper = DataBaseHelper()
@@ -37,7 +48,7 @@ struct PlanView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(routes) { route in
-                            RouteCellView(route: route, busStop: busStop, dayTypeString: "1,3,4")
+                            RouteCellView(route: route, busStop: busStop, dayTypeQuery: dayType.databaseQuery)
                         }
                     }
                     
@@ -49,7 +60,7 @@ struct PlanView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(routes) { route in
-                            RouteCellView(route: route, busStop: busStop, dayTypeString: "2,4,8,9")
+                            RouteCellView(route: route, busStop: busStop, dayTypeQuery: dayType.databaseQuery)
                         }
                     }
                     
@@ -61,7 +72,7 @@ struct PlanView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(routes) { route in
-                            RouteCellView(route: route, busStop: busStop, dayTypeString: "2,6,7")
+                            RouteCellView(route: route, busStop: busStop, dayTypeQuery: dayType.databaseQuery)
                         }
                     }
                     
@@ -90,7 +101,7 @@ struct RouteCellView: View {
     
     let route: Route
     let busStop: BusStop
-    let dayTypeString: String
+    let dayTypeQuery: String
     
     var legend: [String] {
         var legendArray = [String]()
@@ -182,6 +193,6 @@ struct RouteCellView: View {
     }
     
     func getDepartures() -> [Departure] {
-        return dataBaseHelper.getDepartures(busStopId: busStop.id, dayType: dayTypeString).filter({ $0.busLineId == route.busLineId && $0.routeId == route.id })
+        return dataBaseHelper.getDeparturesByRouteAndDay(dayTypesQuery: dayTypeQuery, routeId: route.id, busStopId: busStop.id)
     }
 }

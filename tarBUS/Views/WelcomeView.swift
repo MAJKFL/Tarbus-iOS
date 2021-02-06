@@ -26,7 +26,7 @@ struct WelcomeView: View {
                     VStack(alignment: .leading) {
                         Divider()
                         
-                        NavigationLink(destination: LineListView(), label: {
+                        NavigationLink(destination: Text("Lorem ipsum"), label: {
                             HStack(spacing: 20) {
                                 Image(systemName: "bus.fill")
                                 

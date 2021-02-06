@@ -18,32 +18,34 @@ struct LineListView: View {
     ]
     
     var body: some View {
-        ScrollView {
-            VStack {
-                LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(busLines) { line in
-                        NavigationLink(destination: RouteListView(busLine: line), label: {
-                            HStack {
-                                Image(systemName: "bus.fill")
-                                
-                                Text(line.name)
-                            }
-                            .font(Font.headline.weight(.bold))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity, minHeight: 50)
-                            .background(Color("MainColor"))
-                            .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-                            .shadow(radius: 3, x: 3, y: 3)
-                        })
-                        .buttonStyle(PlainButtonStyle())
+        NavigationView {
+            ScrollView {
+                VStack {
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach(busLines) { line in
+                            NavigationLink(destination: RouteListView(busLine: line), label: {
+                                HStack {
+                                    Image(systemName: "bus.fill")
+                                    
+                                    Text(line.name)
+                                }
+                                .font(Font.headline.weight(.bold))
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity, minHeight: 50)
+                                .background(Color("MainColor"))
+                                .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                                .shadow(radius: 3, x: 3, y: 3)
+                            })
+                            .buttonStyle(PlainButtonStyle())
+                        }
                     }
+                    
+                    Spacer()
                 }
-                
-                Spacer()
+                .padding()
             }
-            .padding()
+            .navigationTitle("Linie Autobusowe")
         }
-        .navigationTitle("Linie Autobusowe")
         .onAppear {
             busLines = dataBaseHelper.getBusLines()
         }

@@ -18,11 +18,11 @@ struct tarBUSApp: App {
                     .tabItem {
                         Label("Start", systemImage: "house.fill")
                     }
-                Text("Linie")
+                LineListView()
                     .tabItem {
                         Label("Linie", systemImage: "point.fill.topleft.down.curvedto.point.fill.bottomright.up")
                     }
-                Text("Szukaj")
+                SearchPickerView()
                     .tabItem {
                         Label("Szukaj", systemImage: "magnifyingglass")
                     }
