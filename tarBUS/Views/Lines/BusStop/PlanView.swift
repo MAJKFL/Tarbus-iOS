@@ -28,7 +28,6 @@ struct PlanView: View {
     @ObservedObject var dataBaseHelper = DataBaseHelper()
     @State private var dayType: dayTypes = .workingDays
     @State private var routes = [Route]()
-    @State private var departures = [Departure]()
     
     let busStop: BusStop
     
@@ -96,7 +95,7 @@ struct PlanView: View {
 struct RouteCellView: View {
     @StateObject var dataBaseHelper = DataBaseHelper()
     @State private var showHours = false
-    @State private var departures = [Departure]()
+    @State private var departures = [BoardDeparture]()
     @State private var busLineName = ""
     
     let route: Route
@@ -126,7 +125,7 @@ struct RouteCellView: View {
         VStack {
             HStack {
                 HStack {
-                    Image(systemName: "bus.fill")
+                    Image(systemName: "note.text")
                     
                     Text(busLineName)
                 }
@@ -161,7 +160,7 @@ struct RouteCellView: View {
                     }
                 }
                 .onAppear {
-                    withAnimation(.spring()) { departures = getDepartures() }
+                    getDepartures()
                 }
                 
                 VStack(alignment: .leading) {
@@ -192,7 +191,7 @@ struct RouteCellView: View {
         }
     }
     
-    func getDepartures() -> [Departure] {
-        return dataBaseHelper.getDeparturesByRouteAndDay(dayTypesQuery: dayTypeQuery, routeId: route.id, busStopId: busStop.id)
+    func getDepartures() {
+        withAnimation(.spring()) { departures = dataBaseHelper.getDeparturesByRouteAndDay(dayTypesQuery: dayTypeQuery, routeId: route.id, busStopId: busStop.id) }
     }
 }

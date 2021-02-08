@@ -10,6 +10,7 @@ import Foundation
 
 class DataBaseHelper: ObservableObject {
     static let tableNames = ["BusStop", "Departure", "BusLine", "Calendar", "Destinations", "Track", "AlertHistory", "RouteConnections", "LastUpdated", "BusStopConnection", "LastUpdated", "Route"]
+    static let databaseFileName = "tarbus2-1-1.db"
     
     func fetchData() {
         let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-1/database.json")!
@@ -21,7 +22,7 @@ class DataBaseHelper: ObservableObject {
                     if let anyObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as? [AnyObject] {
                         let fileManager = FileManager.default
                         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-                        let url = documentsUrl.first!.appendingPathComponent("tarbus.db")
+                        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
                         let db = try! Connection(url.absoluteString)
                         for object in anyObject {
                             if (object["type"] as? String) ?? "" == "table" {
@@ -65,7 +66,7 @@ class DataBaseHelper: ObservableObject {
     func deleteAllData() {
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent("tarbus.db")
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         for tableName in Self.tableNames {
@@ -89,12 +90,20 @@ class DataBaseHelper: ObservableObject {
                 return // Could not find documents URL
             }
             
-            let finalDatabaseURL = documentsUrl.first!.appendingPathComponent("tarbus.db")
+            let finalDatabaseURL = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
         
-            if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false) {
+            if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false){
                 print("DB does not exist in documents folder")
                 
-                let documentsURL = Bundle.main.resourceURL?.appendingPathComponent("tarbus.db")
+                let fileURLs = try? FileManager.default.contentsOfDirectory(at: documentsUrl.first!, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+                
+                for fileURL in fileURLs ?? [] {
+                    if fileURL.pathExtension == "db" {
+                        try? FileManager.default.removeItem(at: fileURL)
+                    }
+                }
+                
+                let documentsURL = Bundle.main.resourceURL?.appendingPathComponent(Self.databaseFileName)
                 
                 do {
                       try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
@@ -113,7 +122,7 @@ class DataBaseHelper: ObservableObject {
         
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent("tarbus.db")
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -135,7 +144,7 @@ class DataBaseHelper: ObservableObject {
         
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent("tarbus.db")
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -158,7 +167,7 @@ class DataBaseHelper: ObservableObject {
         
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent("tarbus.db")
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -179,12 +188,12 @@ class DataBaseHelper: ObservableObject {
         return busStops
     }
     
-    func getNextDepartures(busStopId: Int, dayTypes: String, startFromTime: Int) -> [Departure] {
-        var departures = [Departure]()
+    func getNextDepartures(busStopId: Int, dayTypes: String, startFromTime: Int) -> [NextDeparture] {
+        var departures = [NextDeparture]()
         
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent("tarbus.db")
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         let strArray = dayTypes.components(separatedBy: " ")
@@ -211,19 +220,12 @@ class DataBaseHelper: ObservableObject {
                     ORDER BY d_time_in_min
                 """) {
                 let id = Optional(row[0]) as! Int64
-                let busStopId = Optional(row[1]) as! Int64
                 let trackId = Optional(row[2]) as! String
-                let busLineId = Optional(row[3]) as! Int64
-                let busStopLp = Optional(row[4]) as! Int64
-                let timeInMin = Optional(row[5]) as! Int64
                 let timeString = Optional(row[6]) as! String
-                let symbols = Optional(row[7]) as! String
-                let legend = Optional(row[26]) as! String
-                let routeId = Optional(row[25]) as! Int64
                 let busLineName = Optional(row[20]) as! String
                 let boardName = Optional(row[27]) as! String
                 
-                let newDeparture = Departure(id: Int(id), busStopId: Int(busStopId), trackId: trackId, busLineId: Int(busLineId), busStopLp: Int(busStopLp), timeInMin: Int(timeInMin), timeString: timeString, symbols: symbols, routeId: Int(routeId), legend: legend, busLineName: busLineName, dayId: 0, boardName: boardName, route: nil)
+                let newDeparture = NextDeparture(id: Int(id), trackId: trackId, timeString: timeString, busLineName: busLineName, boardName: boardName)
                 departures.append(newDeparture)
             }
         } catch {
@@ -233,12 +235,12 @@ class DataBaseHelper: ObservableObject {
         return departures
     }
     
-    func getDeparturesByRouteAndDay(dayTypesQuery: String, routeId: Int, busStopId: Int) -> [Departure] {
-        var departures = [Departure]()
+    func getDeparturesByRouteAndDay(dayTypesQuery: String, routeId: Int, busStopId: Int) -> [BoardDeparture] {
+        var departures = [BoardDeparture]()
         
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent("tarbus.db")
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -255,17 +257,10 @@ class DataBaseHelper: ObservableObject {
                 ORDER BY d_time_in_min
                 """) {
                 let id = Optional(row[0]) as! Int64
-                let busStopId = Optional(row[1]) as! Int64
-                let trackId = Optional(row[2]) as! String
-                let busLineId = Optional(row[3]) as! Int64
-                let busStopLp = Optional(row[4]) as! Int64
-                let timeInMin = Optional(row[5]) as! Int64
                 let timeString = Optional(row[6]) as! String
                 let symbols = Optional(row[7]) as! String
                 let legend = Optional(row[28]) as! String
-                let routeId = Optional(row[25]) as! Int64
-                let busLineName = Optional(row[20]) as! String
-                let newDeparture = Departure(id: Int(id), busStopId: Int(busStopId), trackId: trackId, busLineId: Int(busLineId), busStopLp: Int(busStopLp), timeInMin: Int(timeInMin), timeString: timeString, symbols: symbols, routeId: Int(routeId), legend: legend, busLineName: busLineName, dayId: 0, boardName: nil, route: nil)
+                let newDeparture = BoardDeparture(id: Int(id), legend: legend, symbols: symbols, timeString: timeString)
                 departures.append(newDeparture)
             }
         } catch {
@@ -280,7 +275,7 @@ class DataBaseHelper: ObservableObject {
         
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent("tarbus.db")
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -299,7 +294,7 @@ class DataBaseHelper: ObservableObject {
         
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent("tarbus.db")
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -322,7 +317,7 @@ class DataBaseHelper: ObservableObject {
         
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent("tarbus.db")
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -344,10 +339,10 @@ class DataBaseHelper: ObservableObject {
         
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent("tarbus.db")
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
-        let searchText = text.lowercased().folding(options: .diacriticInsensitive, locale: .current)
+        let searchText = text.lowercased().folding(options: .diacriticInsensitive, locale: .current).replacingOccurrences(of: "ł", with: "l")
         
         let words = searchText.components(separatedBy: " ")
         
@@ -388,10 +383,10 @@ class DataBaseHelper: ObservableObject {
         
         let fileManager = FileManager.default
         let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent("tarbus.db")
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
-        let searchText = text.lowercased().folding(options: .diacriticInsensitive, locale: .current)
+        let searchText = text.lowercased().folding(options: .diacriticInsensitive, locale: .current).replacingOccurrences(of: "ł", with: "l")
         
         let words = searchText.components(separatedBy: " ")
         
@@ -422,18 +417,32 @@ class DataBaseHelper: ObservableObject {
         
         return busLines
     }
-}
-
-extension Array where Element:Equatable {
-    func removeDuplicates() -> [Element] {
-        var result = [Element]()
-
-        for value in self {
-            if result.contains(value) == false {
-                result.append(value)
+    
+    func getDeparturesFromTrack(trackId: String) -> [ListDeparture] {
+        var departures = [ListDeparture]()
+        
+        let fileManager = FileManager.default
+        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let db = try! Connection(url.absoluteString)
+        
+        do {
+            for row in try db.prepare("""
+                SELECT * FROM Departure
+                JOIN BusStop ON BusStop.bs_id = Departure.d_bus_stop_id
+                WHERE Departure.d_track_id = '\(trackId)'
+                ORDER BY Departure.d_time_in_min
+                """) {
+                let id = Optional(row[0]) as! Int64
+                let timeString = Optional(row[6]) as! String
+                let busStopName = Optional(row[10]) as! String
+                let newDeparture = ListDeparture(id: Int(id), timeString: timeString, busStopName: busStopName)
+                departures.append(newDeparture)
             }
+        } catch {
+            print(error)
         }
-
-        return result
+        
+        return departures
     }
 }

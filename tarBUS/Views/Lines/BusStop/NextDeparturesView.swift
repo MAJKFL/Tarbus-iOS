@@ -8,24 +8,29 @@
 import SwiftUI
 
 struct NextDeparturesView: View {
-    @ObservedObject var dataBaseHelper = DataBaseHelper()
+    @ObservedObject var databaseHelper = DataBaseHelper()
     let busStop: BusStop
     
-    @State private var departures = [Departure]()
-    @State private var departuresForNextDay = [Departure]()
+    @State private var departures = [NextDeparture]()
+    @State private var departuresForNextDay = [NextDeparture]()
     
     var body: some View {
         ScrollView {
             VStack(spacing: 10) {
                 ForEach(departures) { departure in
-                    nextDepartureCellView(departure: departure, isTomorow: false)
+                    NavigationLink(destination: DepartureListView(mainDeparture: departure), label: {
+                        NextDepartureCellView(departure: departure, isTomorow: false)
+                    })
+                    .buttonStyle(PlainButtonStyle())
                 }
                 
                 Divider()
-                    .padding()
                 
                 ForEach(departuresForNextDay) { departure in
-                    nextDepartureCellView(departure: departure, isTomorow: true)
+                    NavigationLink(destination: DepartureListView(mainDeparture: departure), label: {
+                        NextDepartureCellView(departure: departure, isTomorow: true)
+                    })
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
             .padding()
@@ -43,14 +48,14 @@ struct NextDeparturesView: View {
         
         let date = Date()
         
-        departures = dataBaseHelper.getNextDepartures(busStopId: busStop.id, dayTypes: dataBaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date)), startFromTime: Date().minutesSinceMidnight)
+        departures = databaseHelper.getNextDepartures(busStopId: busStop.id, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date)), startFromTime: Date().minutesSinceMidnight)
 
-        departuresForNextDay = dataBaseHelper.getNextDepartures(busStopId: busStop.id, dayTypes: dataBaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date.addingTimeInterval(86400))), startFromTime: 0)
+        departuresForNextDay = databaseHelper.getNextDepartures(busStopId: busStop.id, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date.addingTimeInterval(86400))), startFromTime: 0)
     }
 }
 
-struct nextDepartureCellView: View {
-    let departure: Departure
+struct NextDepartureCellView: View {
+    let departure: NextDeparture
     let isTomorow: Bool
     
     var body: some View {
@@ -62,11 +67,11 @@ struct nextDepartureCellView: View {
             }
             .font(Font.headline.weight(.bold))
             .foregroundColor(.white)
-            .frame(maxWidth: 100, minHeight: 50)
+            .frame(maxWidth: 100, minHeight: 50, maxHeight: .infinity)
             .background(Color("MainColor"))
             .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
             
-            Text(departure.boardName ?? "")
+            Text(departure.boardName)
             
             Spacer()
             
