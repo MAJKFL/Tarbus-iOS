@@ -20,7 +20,23 @@ struct LineListView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack {
+                VStack(spacing: 15) {
+                    HStack {
+                        Image("michalus")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 50, height: 50)
+                        
+                        Text("Michalus")
+                            .font(.largeTitle)
+                        
+                        Spacer()
+                    }
+                    .padding(2)
+                    .background(Color("lightGray"))
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .shadow(radius: 5, x: 5, y: 5)
+                    
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(busLines) { line in
                             NavigationLink(destination: RouteListView(busLine: line), label: {
@@ -44,7 +60,7 @@ struct LineListView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Linie Autobusowe")
+            .navigationTitle("Linie")
         }
         .onAppear {
             busLines = dataBaseHelper.getBusLines()

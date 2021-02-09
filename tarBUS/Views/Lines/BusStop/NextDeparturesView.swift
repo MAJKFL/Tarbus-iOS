@@ -54,7 +54,7 @@ struct NextDeparturesView: View {
     }
 }
 
-struct NextDepartureCellView: View {
+fileprivate struct NextDepartureCellView: View {
     let departure: NextDeparture
     let isTomorow: Bool
     

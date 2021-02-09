@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "logoVertical-1.png",
+      "filename" : "michalus.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "logoVertical.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "logoVertical-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

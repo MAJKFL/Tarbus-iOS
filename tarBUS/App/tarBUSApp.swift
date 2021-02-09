@@ -14,7 +14,7 @@ struct tarBUSApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                WelcomeView()
+                StartView()
                     .tabItem {
                         Label("Start", systemImage: "house.fill")
                     }

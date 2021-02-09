@@ -11,4 +11,5 @@ struct Route: Identifiable {
     let id: Int
     let destinationName: String
     let busLineId: Int
+    let description: String
 }

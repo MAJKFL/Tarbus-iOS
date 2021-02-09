@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BusLine: Identifiable {
+struct BusLine: Identifiable, Codable {
     let id: Int
     let name: String
 }

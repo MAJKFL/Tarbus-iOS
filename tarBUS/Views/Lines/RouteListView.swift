@@ -31,7 +31,7 @@ struct RouteListView: View {
     }
 }
 
-struct RouteView: View {
+fileprivate struct RouteView: View {
     @StateObject var dataBaseHelper = DataBaseHelper()
     @State private var isShowingRoute = false
     @State private var busStops = [BusStop]()
@@ -48,7 +48,7 @@ struct RouteView: View {
                     Text(route.destinationName)
                         .fontWeight(.bold)
                     
-                    Text("\(busStops.first?.name ?? "") -> \(busStops.last?.name ?? "")")
+                    Text(route.description)
                         .font(.footnote)
                         .foregroundColor(.secondary)
                         .lineLimit(1)
@@ -78,7 +78,7 @@ struct RouteView: View {
     }
 }
 
-struct BusStopListView: View {
+fileprivate struct BusStopListView: View {
     let busStops: [BusStop]
     
     var body: some View {

@@ -92,7 +92,7 @@ struct PlanView: View {
     
 }
 
-struct RouteCellView: View {
+fileprivate struct RouteCellView: View {
     @StateObject var dataBaseHelper = DataBaseHelper()
     @State private var showHours = false
     @State private var departures = [BoardDeparture]()

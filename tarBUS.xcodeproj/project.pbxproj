@@ -22,19 +22,20 @@
 		AA78CDD925B9EDB20052455A /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78CDD825B9EDB20052455A /* BusLine.swift */; };
 		AA849FD725CED7EE00831982 /* SearchPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA849FD625CED7EE00831982 /* SearchPickerView.swift */; };
 		AA849FDC25CEE33600831982 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA849FDB25CEE33600831982 /* SearchBarView.swift */; };
+		AAA279CC25D2F00900E1FB45 /* tarbus2-1-1.db in Resources */ = {isa = PBXBuildFile; fileRef = AAA279CB25D2F00900E1FB45 /* tarbus2-1-1.db */; };
+		AAA279CF25D2F5DC00E1FB45 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */; };
+		AAA279DA25D30D7A00E1FB45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */; };
 		AAB4673C25B3354B00B46614 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB4673B25B3354B00B46614 /* MailView.swift */; };
+		AAC652D625D200F800BDF840 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC652D525D200F800BDF840 /* SettingsView.swift */; };
 		AAC692A025D1D23000477314 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6929F25D1D23000477314 /* Array+extensions.swift */; };
 		AAC692AC25D1D84100477314 /* SearchBusLinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC692AB25D1D84100477314 /* SearchBusLinesView.swift */; };
 		AAC692AF25D1D86E00477314 /* SearchBusStopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC692AE25D1D86E00477314 /* SearchBusStopsView.swift */; };
-		AAC82EC325AEF03600236F31 /* WelcomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EC225AEF03600236F31 /* WelcomeViewModel.swift */; };
 		AAC82EC625AEF07700236F31 /* LastUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EC525AEF07700236F31 /* LastUpdate.swift */; };
-		AAC82EC925AEF10300236F31 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EC825AEF10300236F31 /* Message.swift */; };
-		AAC82ECF25AEFCBE00236F31 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82ECE25AEFCBE00236F31 /* InfoView.swift */; };
+		AAC82ECF25AEFCBE00236F31 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82ECE25AEFCBE00236F31 /* AboutView.swift */; };
 		AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EDD25AF2DFC00236F31 /* LineListView.swift */; };
 		AAD6248A25C05A3E0038C8CE /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248925C05A3E0038C8CE /* Route.swift */; };
-		AAE022A125CC850B006ECBEA /* tarbus2-1-1.db in Resources */ = {isa = PBXBuildFile; fileRef = AAE022A025CC850B006ECBEA /* tarbus2-1-1.db */; };
 		AAE9B11B25AE7FA200D90F32 /* tarBUSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */; };
-		AAE9B11D25AE7FA200D90F32 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11C25AE7FA200D90F32 /* WelcomeView.swift */; };
+		AAE9B11D25AE7FA200D90F32 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11C25AE7FA200D90F32 /* StartView.swift */; };
 		AAE9B11F25AE7FA400D90F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE9B11E25AE7FA400D90F32 /* Assets.xcassets */; };
 		AAE9B12225AE7FA400D90F32 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE9B12125AE7FA400D90F32 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -54,20 +55,21 @@
 		AA78CDD825B9EDB20052455A /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
 		AA849FD625CED7EE00831982 /* SearchPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPickerView.swift; sourceTree = "<group>"; };
 		AA849FDB25CEE33600831982 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		AAA279CB25D2F00900E1FB45 /* tarbus2-1-1.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tarbus2-1-1.db"; sourceTree = "<group>"; };
+		AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAB4673B25B3354B00B46614 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
+		AAC652D525D200F800BDF840 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AAC6929F25D1D23000477314 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
 		AAC692AB25D1D84100477314 /* SearchBusLinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBusLinesView.swift; sourceTree = "<group>"; };
 		AAC692AE25D1D86E00477314 /* SearchBusStopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBusStopsView.swift; sourceTree = "<group>"; };
-		AAC82EC225AEF03600236F31 /* WelcomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewModel.swift; sourceTree = "<group>"; };
 		AAC82EC525AEF07700236F31 /* LastUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUpdate.swift; sourceTree = "<group>"; };
-		AAC82EC825AEF10300236F31 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		AAC82ECE25AEFCBE00236F31 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		AAC82ECE25AEFCBE00236F31 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		AAC82EDD25AF2DFC00236F31 /* LineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineListView.swift; sourceTree = "<group>"; };
 		AAD6248925C05A3E0038C8CE /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
-		AAE022A025CC850B006ECBEA /* tarbus2-1-1.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tarbus2-1-1.db"; sourceTree = "<group>"; };
 		AAE9B11725AE7FA200D90F32 /* tarBUS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tarBUS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tarBUSApp.swift; sourceTree = "<group>"; };
-		AAE9B11C25AE7FA200D90F32 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		AAE9B11C25AE7FA200D90F32 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		AAE9B11E25AE7FA400D90F32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAE9B12125AE7FA400D90F32 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AAE9B12325AE7FA400D90F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,8 +90,10 @@
 		AAC6929225D1CF9400477314 /* Start */ = {
 			isa = PBXGroup;
 			children = (
-				AAE9B11C25AE7FA200D90F32 /* WelcomeView.swift */,
-				AAC82ECE25AEFCBE00236F31 /* InfoView.swift */,
+				AAE9B11C25AE7FA200D90F32 /* StartView.swift */,
+				AAC82ECE25AEFCBE00236F31 /* AboutView.swift */,
+				AAC652D525D200F800BDF840 /* SettingsView.swift */,
+				AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -146,8 +150,8 @@
 		AAC6929D25D1D16000477314 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				AAE022A025CC850B006ECBEA /* tarbus2-1-1.db */,
 				AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */,
+				AAA279CB25D2F00900E1FB45 /* tarbus2-1-1.db */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -175,10 +179,10 @@
 				AAC6929D25D1D16000477314 /* Database */,
 				AAC6929C25D1D0FA00477314 /* Extensions */,
 				AAE9B12C25AE7FFD00D90F32 /* Models */,
-				AAE9B12B25AE7FF600D90F32 /* ViewModels */,
 				AAE9B12A25AE7FEF00D90F32 /* Views */,
 				AAE9B11E25AE7FA400D90F32 /* Assets.xcassets */,
 				AAE9B12325AE7FA400D90F32 /* Info.plist */,
+				AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */,
 				AAE9B12025AE7FA400D90F32 /* Preview Content */,
 			);
 			path = tarBUS;
@@ -203,19 +207,10 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		AAE9B12B25AE7FF600D90F32 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				AAC82EC225AEF03600236F31 /* WelcomeViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		AAE9B12C25AE7FFD00D90F32 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				AAC82EC525AEF07700236F31 /* LastUpdate.swift */,
-				AAC82EC825AEF10300236F31 /* Message.swift */,
 				AA78CDD825B9EDB20052455A /* BusLine.swift */,
 				AA75086625BC7B5D0045FFD5 /* BusStop.swift */,
 				AAD6248925C05A3E0038C8CE /* Route.swift */,
@@ -298,8 +293,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAA279CC25D2F00900E1FB45 /* tarbus2-1-1.db in Resources */,
+				AAA279DA25D30D7A00E1FB45 /* LaunchScreen.storyboard in Resources */,
 				AAE9B12225AE7FA400D90F32 /* Preview Assets.xcassets in Resources */,
-				AAE022A125CC850B006ECBEA /* tarbus2-1-1.db in Resources */,
 				AAE9B11F25AE7FA400D90F32 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -313,14 +309,14 @@
 			files = (
 				AA849FD725CED7EE00831982 /* SearchPickerView.swift in Sources */,
 				AA09E84425C1BD7800FA4A70 /* RouteListView.swift in Sources */,
-				AAE9B11D25AE7FA200D90F32 /* WelcomeView.swift in Sources */,
+				AAE9B11D25AE7FA200D90F32 /* StartView.swift in Sources */,
 				AA75086325BC5F000045FFD5 /* DatabaseHelper.swift in Sources */,
 				AA78CDD925B9EDB20052455A /* BusLine.swift in Sources */,
 				AA6D11D925D1C060005F6F87 /* NextDeparture.swift in Sources */,
-				AAC82EC325AEF03600236F31 /* WelcomeViewModel.swift in Sources */,
 				AA63EC0F25C85783000360E0 /* NextDeparturesView.swift in Sources */,
 				AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */,
 				AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */,
+				AAA279CF25D2F5DC00E1FB45 /* PrivacyPolicyView.swift in Sources */,
 				AA6D11DD25D1C28D005F6F87 /* BoardDeparture.swift in Sources */,
 				AAC692A025D1D23000477314 /* Array+extensions.swift in Sources */,
 				AAC82EC625AEF07700236F31 /* LastUpdate.swift in Sources */,
@@ -330,8 +326,8 @@
 				AA1151A125C4A75D00A2F299 /* BusStopView.swift in Sources */,
 				AA3C459825C5C4A100148F1E /* date+extensions.swift in Sources */,
 				AA691F5F25D0814D006CE292 /* DepartureListView.swift in Sources */,
-				AAC82ECF25AEFCBE00236F31 /* InfoView.swift in Sources */,
-				AAC82EC925AEF10300236F31 /* Message.swift in Sources */,
+				AAC82ECF25AEFCBE00236F31 /* AboutView.swift in Sources */,
+				AAC652D625D200F800BDF840 /* SettingsView.swift in Sources */,
 				AAB4673C25B3354B00B46614 /* MailView.swift in Sources */,
 				AAD6248A25C05A3E0038C8CE /* Route.swift in Sources */,
 				AA6D11E125D1C74D005F6F87 /* ListDeparture.swift in Sources */,

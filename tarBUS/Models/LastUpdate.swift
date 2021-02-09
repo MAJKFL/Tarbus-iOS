@@ -15,6 +15,6 @@ struct LastUpdate: Codable {
     let min: Int
     
     var formatted: String {
-        return "\(day)-\(month)-\(year) \(hour):\(min)"
+        return "\(day < 10 ? "0\(day)" : "\(day)").\(month < 10 ? "0\(month)" : "\(month)").\(year) \(hour):\(min)"
     }
 }

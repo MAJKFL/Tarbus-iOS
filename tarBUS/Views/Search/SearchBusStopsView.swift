@@ -30,16 +30,18 @@ struct SearchBusStopsView: View {
                 List {
                     ForEach(busStops) { busStop in
                         NavigationLink(destination: BusStopView(busStop: busStop), label: {
-                            HStack {
-                                Image("busStop")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .blending(color: Color("MainColor"))
-                                    .frame(width: 25)
-                                
+                            VStack(alignment: .leading) {
                                 Text(busStop.name)
                                     .font(.headline)
                                     .lineLimit(1)
+                                
+                                HStack {
+                                    Image(systemName: "arrow.right")
+                                    
+                                    Text(busStop.destination)
+                                }
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
                             }
                         })
                         .buttonStyle(PlainButtonStyle())

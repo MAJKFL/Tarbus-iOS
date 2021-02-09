@@ -30,14 +30,14 @@ struct SearchBusLinesView: View {
                 List {
                     ForEach(busLines) { busLine in
                         NavigationLink(destination: RouteListView(busLine: busLine), label: {
-                            HStack {
-                                Image(systemName: "bus.fill")
-                                    .foregroundColor(Color("MainColor"))
-                                    .font(Font.body.weight(.black))
-                                
+                            VStack(alignment: .leading) {
                                 Text(busLine.name)
                                     .font(.headline)
                                     .lineLimit(1)
+                                
+                                Text("Michalus")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
                             }
                         })
                         .buttonStyle(PlainButtonStyle())

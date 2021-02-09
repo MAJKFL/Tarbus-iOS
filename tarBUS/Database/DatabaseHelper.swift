@@ -80,42 +80,42 @@ class DataBaseHelper: ObservableObject {
     }
     
     func copyDatabaseIfNeeded() {
-            // Move database file from bundle to documents folder
-            
-            let fileManager = FileManager.default
-            
-            let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-            
-            guard documentsUrl.count != 0 else {
-                return // Could not find documents URL
-            }
-            
-            let finalDatabaseURL = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        // Move database file from bundle to documents folder
         
-            if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false){
-                print("DB does not exist in documents folder")
-                
-                let fileURLs = try? FileManager.default.contentsOfDirectory(at: documentsUrl.first!, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-                
-                for fileURL in fileURLs ?? [] {
-                    if fileURL.pathExtension == "db" {
-                        try? FileManager.default.removeItem(at: fileURL)
-                    }
-                }
-                
-                let documentsURL = Bundle.main.resourceURL?.appendingPathComponent(Self.databaseFileName)
-                
-                do {
-                      try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
-                      } catch let error as NSError {
-                        print("Couldn't copy file to final location! Error:\(error.description)")
-                }
-
-            } else {
-                print("Database file found at path: \(finalDatabaseURL.path)")
-            }
+        let fileManager = FileManager.default
         
+        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+        
+        guard documentsUrl.count != 0 else {
+            return // Could not find documents URL
         }
+        
+        let finalDatabaseURL = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+    
+        if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false){
+            print("DB does not exist in documents folder")
+            
+            let fileURLs = try? FileManager.default.contentsOfDirectory(at: documentsUrl.first!, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+            
+            for fileURL in fileURLs ?? [] {
+                if fileURL.pathExtension == "db" {
+                    try? FileManager.default.removeItem(at: fileURL)
+                }
+            }
+            
+            let documentsURL = Bundle.main.resourceURL?.appendingPathComponent(Self.databaseFileName)
+            
+            do {
+                  try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
+                  } catch let error as NSError {
+                    print("Couldn't copy file to final location! Error:\(error.description)")
+            }
+
+        } else {
+            print("Database file found at path: \(finalDatabaseURL.path)")
+        }
+    
+    }
     
     func getBusLines() -> [BusLine] {
         var busLines = [BusLine]()
@@ -152,7 +152,8 @@ class DataBaseHelper: ObservableObject {
                 let id: Int64 = Optional(row[0]) as! Int64
                 let name: String = Optional(row[1]) as! String
                 let busLineId = Optional(row[2]) as! Int64
-                let newRoute = Route(id: Int(id), destinationName: name, busLineId: Int(busLineId))
+                let description = Optional(row[3]) as! String
+                let newRoute = Route(id: Int(id), destinationName: name, busLineId: Int(busLineId), description: description)
                 routes.append(newRoute)
             }
         } catch {
@@ -223,7 +224,7 @@ class DataBaseHelper: ObservableObject {
                 let trackId = Optional(row[2]) as! String
                 let timeString = Optional(row[6]) as! String
                 let busLineName = Optional(row[20]) as! String
-                let boardName = Optional(row[27]) as! String
+                let boardName = Optional(row[28]) as! String
                 
                 let newDeparture = NextDeparture(id: Int(id), trackId: trackId, timeString: timeString, busLineName: busLineName, boardName: boardName)
                 departures.append(newDeparture)
@@ -259,7 +260,7 @@ class DataBaseHelper: ObservableObject {
                 let id = Optional(row[0]) as! Int64
                 let timeString = Optional(row[6]) as! String
                 let symbols = Optional(row[7]) as! String
-                let legend = Optional(row[28]) as! String
+                let legend = Optional(row[29]) as! String
                 let newDeparture = BoardDeparture(id: Int(id), legend: legend, symbols: symbols, timeString: timeString)
                 departures.append(newDeparture)
             }
@@ -268,25 +269,6 @@ class DataBaseHelper: ObservableObject {
         }
         
         return departures
-    }
-    
-    func getCurrentDayType(currentDateString: String) -> String {
-        var string = ""
-        
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
-        
-        do {
-            for row in try db.prepare("SELECT c_day_types FROM Calendar WHERE c_date = '\(currentDateString)'") {
-                string = row[0] as! String
-            }
-        } catch {
-            print(error)
-        }
-        
-        return string
     }
     
     func getDestinations(busStopId: Int) -> [Route] {
@@ -302,7 +284,8 @@ class DataBaseHelper: ObservableObject {
                 let id = Optional(row[0]) as! Int64
                 let destinationName = Optional(row[1]) as! String
                 let busLineId = Optional(row[2]) as! Int64
-                let newRoute = Route(id: Int(id), destinationName: destinationName, busLineId: Int(busLineId))
+                let description = Optional(row[3]) as! String
+                let newRoute = Route(id: Int(id), destinationName: destinationName, busLineId: Int(busLineId), description: description)
                 routes.append(newRoute)
             }
         } catch {
@@ -444,5 +427,42 @@ class DataBaseHelper: ObservableObject {
         }
         
         return departures
+    }
+    
+    func getCurrentDayType(currentDateString: String) -> String {
+        var string = ""
+        
+        let fileManager = FileManager.default
+        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let db = try! Connection(url.absoluteString)
+        
+        do {
+            for row in try db.prepare("SELECT c_day_types FROM Calendar WHERE c_date = '\(currentDateString)'") {
+                string = row[0] as! String
+            }
+        } catch {
+            print(error)
+        }
+        
+        return string
+    }
+    
+    func saveLastUpdateToUserDefaults() {
+        let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-1/last-update.json")!
+        let request = URLRequest(url: url)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(LastUpdate.self, from: data) {
+                    let defaults = UserDefaults.standard
+                    DispatchQueue.main.async {
+                        defaults.set(decodedResponse.formatted, forKey: "LastUpdate")
+                    }
+                    return
+                }
+            }
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+        }.resume()
     }
 }
