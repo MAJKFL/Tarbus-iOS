@@ -23,11 +23,25 @@ struct SettingsView: View {
             }
             
             Section(header: Text("Baza danych")) {
-                Text("Ostatnia aktualizacja: \(lastUpdate)")
+                HStack {
+                    Text("Ostatnia aktualizacja")
+                    
+                    Spacer()
+                    
+                    Text(lastUpdate)
+                        .foregroundColor(.secondary)
+                }
             }
             
             Section(header: Text("Informacje o aplikacji tarBUS")) {
-                Text("Wersja 2.1.1")
+                HStack {
+                    Text("Wersja aplikacji")
+                    
+                    Spacer()
+                    
+                    Text("2.1.1")
+                        .foregroundColor(.secondary)
+                }
             }
         }
         .onAppear {

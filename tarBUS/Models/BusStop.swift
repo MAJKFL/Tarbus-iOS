@@ -7,11 +7,13 @@
 
 import Foundation
 
-struct BusStop: Identifiable {
+struct BusStop: Identifiable, Codable {
     let id: Int
     let name: String
     let searchName: String
     let longitude: Double
     let latitude: Double
     let destination: String
+    
+    var userName: String?
 }

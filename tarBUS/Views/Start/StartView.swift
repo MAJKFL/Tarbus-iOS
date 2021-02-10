@@ -17,18 +17,12 @@ struct StartView: View {
     var body: some View {
         NavigationView {
             List {
-                /*Section(header: Text("Witaj")) {
-                    Image("baner")
-                        .resizable()
-                        .scaledToFit()
-                }*/
-                
                 Section(header: Text("Ulubione linie autobusowe")) {
-                    Text("Lorem ipsum")
+                    FavouriteBusLinesListView()
                 }
                 
                 Section(header: Text("Ulubione przystanki")) {
-                    Text("Lorem ipsum")
+                    FavouriteBusStopsListView()
                 }
                 
                 Section(header: Text("Społeczność")) {
@@ -69,6 +63,9 @@ struct StartView: View {
                     NavigationLink("O aplikacji", destination: AboutView())
                     NavigationLink("Ustawienia", destination: SettingsView())
                 }
+            }
+            .toolbar {
+                EditButton()
             }
             .listStyle(GroupedListStyle())
             .navigationTitle("tarBUS")

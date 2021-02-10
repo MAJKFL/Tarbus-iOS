@@ -20,9 +20,9 @@ struct PrivacyPolicyView: View {
                     Text("1.1. Używanie aplikacji tarBUS jest bezpłatne")
                     
                     VStack(alignment: .leading, spacing: 0) {
-                        Text("1.2. Zabrania się wykorzystywanie aplikacji do celów komercyjnych bez wiedzy i pisemnej")
+                        Text("1.2. Zabrania się wykorzystywanie aplikacji do celów komercyjnych bez wiedzy i pisemnej zgody")
                         
-                        Button("zgody osoby zarządzającej projektem", action: {
+                        Button("osoby zarządzającej projektem", action: {
                             openURL(URL(string: "https://www.facebook.com/dpajak99")!)
                         })
                     }
@@ -30,7 +30,7 @@ struct PrivacyPolicyView: View {
                     VStack(alignment: .leading, spacing: 0) {
                         Text("1.3. Zabrania się wykorzystywania bazy danych oraz API aplikacji do celów innych niż wyświelanie jej zawartości w aplikacji tarBUS, bez wiedzy i pisemnej zgody")
                         
-                        Button("zgody osoby zarządzającej projektem", action: {
+                        Button("osoby zarządzającej projektem", action: {
                             openURL(URL(string: "https://www.facebook.com/dpajak99")!)
                         })
                     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SearchBusLinesView: View {
-    @ObservedObject var databaseHeplper = DataBaseHelper()
+    @ObservedObject var databaseHelper = DataBaseHelper()
     @State private var busLines = [BusLine]()
     @State private var searchText = ""
     
@@ -54,6 +54,6 @@ struct SearchBusLinesView: View {
     }
     
     func search() {
-        busLines = databaseHeplper.searchBusLines(text: searchText)
+        busLines = databaseHelper.searchBusLines(text: searchText)
     }
 }
