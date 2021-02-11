@@ -12,12 +12,12 @@ struct SearchPickerView: View {
         NavigationView {
             VStack {
                 List {
-                    NavigationLink(destination: SearchBusLinesView(), label: {
+                    NavigationLink(destination: SearchBusStopsView(), label: {
                         HStack {
                             Image(systemName: "magnifyingglass")
                             
                             VStack(alignment: .leading) {
-                                Text("Wyszukaj linie autobusowe")
+                                Text("Wyszukaj przystanki")
                                 
                                 Text("Kliknij aby wyszukać")
                                     .font(.footnote)
@@ -30,12 +30,12 @@ struct SearchPickerView: View {
                         .padding(.vertical, 5)
                     })
                     
-                    NavigationLink(destination: SearchBusStopsView(), label: {
+                    NavigationLink(destination: SearchBusLinesView(), label: {
                         HStack {
                             Image(systemName: "magnifyingglass")
                             
                             VStack(alignment: .leading) {
-                                Text("Wyszukaj przystanki")
+                                Text("Wyszukaj linie autobusowe")
                                 
                                 Text("Kliknij aby wyszukać")
                                     .font(.footnote)

@@ -34,6 +34,7 @@ struct NextDeparturesView: View {
                 }
             }
             .padding()
+            .padding(.bottom, 25)
         }
         .onAppear {
             if departures.isEmpty {

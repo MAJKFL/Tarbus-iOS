@@ -69,6 +69,17 @@ struct AboutView: View {
                                     .clipShape(RoundedRectangle(cornerRadius: 15))
                             })
                             .buttonStyle(PlainButtonStyle())
+                            .contextMenu {
+                                Button(action: {
+                                    if contact == "mail" {
+                                        UIPasteboard.general.string = Mail.developer.rawValue
+                                    } else {
+                                        UIPasteboard.general.string = Self.linksToDeveloper[contact]!
+                                    }
+                                }, label: {
+                                    Label("Skopiuj do schowka", systemImage: "doc.on.doc")
+                                })
+                            }
                             
                             Spacer()
                         }
@@ -101,6 +112,17 @@ struct AboutView: View {
                                     .clipShape(RoundedRectangle(cornerRadius: 15))
                             })
                             .buttonStyle(PlainButtonStyle())
+                            .contextMenu {
+                                Button(action: {
+                                    if contact == "mail" {
+                                        UIPasteboard.general.string = Mail.tarbus.rawValue
+                                    } else {
+                                        UIPasteboard.general.string = Self.linksToApp[contact]!
+                                    }
+                                }, label: {
+                                    Label("Skopiuj do schowka", systemImage: "doc.on.doc")
+                                })
+                            }
                             
                             Spacer()
                         }

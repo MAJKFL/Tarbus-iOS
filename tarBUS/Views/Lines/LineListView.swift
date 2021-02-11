@@ -37,7 +37,7 @@ struct LineListView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                     .shadow(radius: 5, x: 5, y: 5)
                     
-                    LazyVGrid(columns: columns, spacing: 20) {
+                    LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(busLines) { line in
                             NavigationLink(destination: RouteListView(busLine: line), label: {
                                 HStack {

@@ -13,20 +13,11 @@ struct tarBUSApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TabView {
-                StartView()
-                    .tabItem {
-                        Label("Start", systemImage: "house.fill")
-                    }
-                LineListView()
-                    .tabItem {
-                        Label("Linie", systemImage: "point.fill.topleft.down.curvedto.point.fill.bottomright.up")
-                    }
-                SearchPickerView()
-                    .tabItem {
-                        Label("Szukaj", systemImage: "magnifyingglass")
-                    }
-            }
+            UIKitTabView([
+                UIKitTabView.Tab(view: StartView(), barItem: UITabBarItem(title: "Start", image: UIImage(systemName: "house.fill"), selectedImage: UIImage(systemName: "house.fill"))),
+                UIKitTabView.Tab(view: LineListView(), barItem: UITabBarItem(title: "Linie", image: UIImage(systemName: "point.fill.topleft.down.curvedto.point.fill.bottomright.up"), selectedImage: UIImage(systemName: "point.fill.topleft.down.curvedto.point.fill.bottomright.up"))),
+                UIKitTabView.Tab(view: SearchPickerView(), barItem: UITabBarItem(title: "Szukaj", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass")))
+            ])
             .onAppear {
                 dataBaseHelper.copyDatabaseIfNeeded()
                 dataBaseHelper.fetchData()

@@ -8,10 +8,14 @@
 import Foundation
 
 class FavouriteBusLinesViewModel: ObservableObject {
-    @Published private(set) var busLines: [BusLine]
+    @Published private(set) var busLines = [BusLine]()
     static let saveKey = "favouriteBusLines"
 
     init() {
+        fetch()
+    }
+    
+    func fetch() {
         if let data = UserDefaults.standard.data(forKey: Self.saveKey) {
             if let decoded = try? JSONDecoder().decode([BusLine].self, from: data) {
                 self.busLines = decoded

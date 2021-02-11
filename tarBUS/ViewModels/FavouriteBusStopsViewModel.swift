@@ -8,10 +8,14 @@
 import Foundation
 
 class FavouriteBusStopsViewModel: ObservableObject {
-    @Published private(set) var busStops: [BusStop]
+    @Published private(set) var busStops = [BusStop]()
     static let saveKey = "favouriteBusStops"
 
     init() {
+        fetch()
+    }
+    
+    func fetch() {
         if let data = UserDefaults.standard.data(forKey: Self.saveKey) {
             if let decoded = try? JSONDecoder().decode([BusStop].self, from: data) {
                 self.busStops = decoded
@@ -23,6 +27,7 @@ class FavouriteBusStopsViewModel: ObservableObject {
     }
     
     func add(_ busStop: BusStop) {
+        busStops.removeAll(where: { $0.id == busStop.id })
         busStops.append(busStop)
         save()
     }
@@ -39,20 +44,6 @@ class FavouriteBusStopsViewModel: ObservableObject {
     
     func move(from source: IndexSet, to destination: Int) {
         busStops.move(fromOffsets: source, toOffset: destination)
-        save()
-    }
-    
-    func updateBusStopUserName(_ busStop: BusStop, with newName: String) {
-        var newBusStops = [BusStop]()
-        for bs in busStops {
-            if bs.id == busStop.id {
-                var newBusStop = bs
-                newBusStop.userName = newName
-                newBusStops.append(newBusStop)
-            }
-            newBusStops.append(bs)
-        }
-        busStops = newBusStops
         save()
     }
     

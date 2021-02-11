@@ -9,6 +9,8 @@ import SwiftUI
 
 struct BusStopView: View {
     let busStop: BusStop
+    @State private var isShowingAddView = false
+    @ObservedObject var favouriteBusStopsViewModel = FavouriteBusStopsViewModel()
     
     var body: some View {
         TabView {
@@ -18,20 +20,19 @@ struct BusStopView: View {
         }
         .tabViewStyle(PageTabViewStyle())
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-        .navigationBarItems(trailing:Menu(content: {
-            Button(action: {
-            }, label: {
-                Label("Dodaj do ulubionych", systemImage: "heart")
-            })
-            
-            Button(action: {
-            }, label: {
-                Label("Więcej informacji", systemImage: "info.circle")
-            })
+        .navigationBarItems(trailing: Button(action: {
+            if favouriteBusStopsViewModel.busStops.contains(where: { $0.id == busStop.id }) {
+                favouriteBusStopsViewModel.remove(id: busStop.id)
+            } else {
+                isShowingAddView = true
+            }
         }, label: {
-            Image(systemName: "ellipsis.circle")
+            Image(systemName: favouriteBusStopsViewModel.busStops.contains(where: { $0.id == busStop.id }) ? "heart.fill" : "heart")
         }))
         .navigationTitle(busStop.name)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $isShowingAddView, onDismiss: favouriteBusStopsViewModel.fetch, content: {
+            BusStopConfirmationView(busStop: busStop)
+        })
     }
 }

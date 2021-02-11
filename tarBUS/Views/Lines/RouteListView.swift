@@ -10,6 +10,7 @@ import SwiftUI
 struct RouteListView: View {
     @StateObject var dataBaseHelper = DataBaseHelper()
     @State private var routes = [Route]()
+    @ObservedObject var favouriteBusLinesViewModel = FavouriteBusLinesViewModel()
     
     let busLine: BusLine
     
@@ -25,6 +26,17 @@ struct RouteListView: View {
         }
         .navigationTitle("\(busLine.name) - Kierunki")
         .navigationBarTitleDisplayMode(.large)
+        .navigationBarItems(trailing: Button(action: {
+            if favouriteBusLinesViewModel.busLines.contains(where: { $0.id == busLine.id }) {
+                favouriteBusLinesViewModel.remove(id: busLine.id)
+            } else {
+                let generator = UINotificationFeedbackGenerator()
+                generator.notificationOccurred(.success)
+                favouriteBusLinesViewModel.add(busLine)
+            }
+        }, label: {
+            Image(systemName: favouriteBusLinesViewModel.busLines.contains(where: { $0.id == busLine.id }) ? "heart.fill" : "heart")
+        }))
         .onAppear {
             routes = dataBaseHelper.getRoutes(busLineId: busLine.id)
         }

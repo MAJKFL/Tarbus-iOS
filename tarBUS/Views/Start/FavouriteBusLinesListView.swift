@@ -46,6 +46,9 @@ struct FavouriteBusLinesListView: View {
         .sheet(isPresented: $isShowingAddView, content: {
             BusLineAddView()
         })
+        .onAppear {
+            favouriteBusLinesViewModel.fetch()
+        }
     }
 }
 
@@ -78,6 +81,8 @@ struct BusLineAddView: View {
                                 if favouriteBusLinesViewModel.busLines.contains(where: { $0.id == busLine.id }) {
                                     favouriteBusLinesViewModel.remove(id: busLine.id)
                                 } else {
+                                    let generator = UINotificationFeedbackGenerator()
+                                    generator.notificationOccurred(.success)
                                     favouriteBusLinesViewModel.add(busLine)
                                 }
                             }, label: {

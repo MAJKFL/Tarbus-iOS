@@ -29,6 +29,7 @@
 		AAA279CC25D2F00900E1FB45 /* tarbus2-1-1.db in Resources */ = {isa = PBXBuildFile; fileRef = AAA279CB25D2F00900E1FB45 /* tarbus2-1-1.db */; };
 		AAA279CF25D2F5DC00E1FB45 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */; };
 		AAA279DA25D30D7A00E1FB45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */; };
+		AAA32C2F25D5B37500DC9ABB /* UIKitTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA32C2E25D5B37500DC9ABB /* UIKitTabBar.swift */; };
 		AAB4673C25B3354B00B46614 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB4673B25B3354B00B46614 /* MailView.swift */; };
 		AAC652D625D200F800BDF840 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC652D525D200F800BDF840 /* SettingsView.swift */; };
 		AAC692A025D1D23000477314 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6929F25D1D23000477314 /* Array+extensions.swift */; };
@@ -66,6 +67,7 @@
 		AAA279CB25D2F00900E1FB45 /* tarbus2-1-1.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tarbus2-1-1.db"; sourceTree = "<group>"; };
 		AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AAA32C2E25D5B37500DC9ABB /* UIKitTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitTabBar.swift; sourceTree = "<group>"; };
 		AAB4673B25B3354B00B46614 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		AAC652D525D200F800BDF840 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AAC6929F25D1D23000477314 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			children = (
 				AAB4673B25B3354B00B46614 /* MailView.swift */,
 				AA849FDB25CEE33600831982 /* SearchBarView.swift */,
+				AAA32C2E25D5B37500DC9ABB /* UIKitTabBar.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 				AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */,
 				AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */,
 				AAA279CF25D2F5DC00E1FB45 /* PrivacyPolicyView.swift in Sources */,
+				AAA32C2F25D5B37500DC9ABB /* UIKitTabBar.swift in Sources */,
 				AA6D11DD25D1C28D005F6F87 /* BoardDeparture.swift in Sources */,
 				AAC692A025D1D23000477314 /* Array+extensions.swift in Sources */,
 				AA3B97DD25D47C670027D2DD /* FavouriteBusStopsView.swift in Sources */,

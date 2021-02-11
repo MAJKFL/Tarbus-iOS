@@ -10,6 +10,7 @@ import Combine
 
 struct FavouriteBusStopsListView: View {
     @ObservedObject var favouriteBusStopsViewModel = FavouriteBusStopsViewModel()
+    @State private var pickedBusStop: BusStop?
     @State private var isShowingAddView = false
     
     var body: some View {
@@ -33,6 +34,16 @@ struct FavouriteBusStopsListView: View {
                     .padding(5)
                 })
                 .buttonStyle(PlainButtonStyle())
+                .contextMenu {
+                    Button(action: {
+                        pickedBusStop = busStop
+                    }, label: {
+                        Label("Edytuj", systemImage: "pencil")
+                    })
+                }
+                .sheet(item: $pickedBusStop, content: { item in
+                    BusStopConfirmationView(busStop: item)
+                })
         }
         .onDelete(perform: favouriteBusStopsViewModel.remove)
         .onMove(perform: favouriteBusStopsViewModel.move)
@@ -49,6 +60,9 @@ struct FavouriteBusStopsListView: View {
         .sheet(isPresented: $isShowingAddView, content: {
             BusStopAddView()
         })
+        .onAppear {
+            favouriteBusStopsViewModel.fetch()
+        }
     }
 }
 
@@ -149,7 +163,7 @@ struct BusStopConfirmationView: View {
                 
                 Text("Lokalizacja: \(busStop.longitude), \(busStop.latitude)")
                 
-                TextField("Twoja nazwa dla przystanku", text: $userName, onCommit: addNewBusStop)
+                TextField(busStop.userName ?? "Twoja nazwa dla przystanku", text: $userName, onCommit: addNewBusStop)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 if userName.count >= 20 {
@@ -168,7 +182,7 @@ struct BusStopConfirmationView: View {
             .onReceive(Just(userName)) { _ in limitText(20) }
             .navigationTitle("Dodaj nazwę")
             .navigationBarTitleDisplayMode(.large)
-            .navigationBarItems(trailing: Button("Zapisz", action: addNewBusStop))
+            .navigationBarItems(leading: Button("Anuluj", action: { presentationMode.wrappedValue.dismiss() }), trailing: Button("Zapisz", action: addNewBusStop))
         }
     }
     
@@ -180,6 +194,9 @@ struct BusStopConfirmationView: View {
             newBusStop.userName = userName
         }
         favouriteBusStopsViewModel.add(newBusStop)
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+        
         presentationMode.wrappedValue.dismiss()
     }
     
