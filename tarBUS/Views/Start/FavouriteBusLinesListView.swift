@@ -18,6 +18,7 @@ struct FavouriteBusLinesListView: View {
                 label: {
                     HStack {
                         Image(systemName: "bus.fill")
+                            .font(Font.body.bold())
                         
                         VStack(alignment: .leading) {
                             Text(busLine.name)
@@ -27,6 +28,7 @@ struct FavouriteBusLinesListView: View {
                                 .foregroundColor(.secondary)
                         }
                     }
+                    .lineLimit(1)
                     .padding(5)
                 })
                 .buttonStyle(PlainButtonStyle())

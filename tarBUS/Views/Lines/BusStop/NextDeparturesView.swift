@@ -27,12 +27,12 @@ struct NextDeparturesView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 10) {
+            LazyVStack(spacing: 10) {
                 if let filteredBusLine = filteredBusLine {
                     HStack {
                         Image(systemName: "line.horizontal.3.decrease")
                         
-                        Text("Filtruj: \(filteredBusLine.name)")
+                        Text("Filtruję: \(filteredBusLine.name)")
                     }
                     .font(Font.title.weight(.bold))
                     .foregroundColor(.white)

@@ -20,6 +20,7 @@ struct FavouriteBusStopsListView: View {
                 label: {
                     HStack {
                         Image("busStop")
+                            .renderingMode(.template)
                         
                         VStack(alignment: .leading) {
                             Text(busStop.userName ?? busStop.name)
@@ -31,6 +32,7 @@ struct FavouriteBusStopsListView: View {
                             }
                         }
                     }
+                    .lineLimit(1)
                     .padding(5)
                 })
                 .buttonStyle(PlainButtonStyle())
@@ -133,7 +135,7 @@ struct BusStopAddView: View {
             }))
         }
         .ignoresSafeArea(edges: .all)
-        .sheet(item: $pickedBusStop) { item in
+        .sheet(item: $pickedBusStop, onDismiss: favouriteBusStopsViewModel.fetch) { item in
             BusStopConfirmationView(busStop: item)
         }
         .onChange(of: searchText) { newValue in
@@ -167,7 +169,7 @@ struct BusStopConfirmationView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 if userName.count >= 20 {
-                    HStack(spacing: 0) {
+                    HStack(spacing: 5) {
                         Image(systemName: "exclamationmark.circle")
                         
                         Text("Osiągnąłeś limit znaków")

@@ -14,6 +14,11 @@ struct PrivacyPolicyView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 20) {
                 VStack(alignment: .leading, spacing: 10) {
+                    Image("logoHorizontal")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 75)
+                    
                     Text("1. Licencja")
                         .font(.title)
                     

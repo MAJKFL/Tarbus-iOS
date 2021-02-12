@@ -19,13 +19,17 @@ struct LineListView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(spacing: 15) {
                     HStack {
                         Image("michalus")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50)
+                            .padding(3)
+                            .background(Color.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            .shadow(radius: 5)
                         
                         Text("Michalus")
                             .font(.largeTitle)
@@ -35,7 +39,7 @@ struct LineListView: View {
                     .padding(2)
                     .background(Color("lightGray"))
                     .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                    .shadow(radius: 5, x: 5, y: 5)
+                    .shadow(radius: 3, x: 3, y: 3)
                     
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(busLines) { line in

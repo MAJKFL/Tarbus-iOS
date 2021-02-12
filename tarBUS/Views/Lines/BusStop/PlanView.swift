@@ -50,9 +50,7 @@ struct PlanView: View {
                             RouteCellView(route: route, busStop: busStop, dayType: dayType)
                         }
                     }
-                    
-                    Color.clear
-                        .frame(minHeight: 30)
+                    .padding(.bottom, 25)
                 }
                 .transition(.slide)
             case .saturdays:
@@ -62,9 +60,7 @@ struct PlanView: View {
                             RouteCellView(route: route, busStop: busStop, dayType: dayType)
                         }
                     }
-                    
-                    Color.clear
-                        .frame(minHeight: 30)
+                    .padding(.bottom, 25)
                 }
                 .transition(.slide)
             default:
@@ -74,9 +70,7 @@ struct PlanView: View {
                             RouteCellView(route: route, busStop: busStop, dayType: dayType)
                         }
                     }
-                    
-                    Color.clear
-                        .frame(minHeight: 30)
+                    .padding(.bottom, 25)
                 }
                 .transition(.slide)
             }

@@ -16,8 +16,14 @@ struct BusStopView: View {
     var body: some View {
         TabView {
             NextDeparturesView(busStop: busStop, filteredBusLine: filteredBusLine)
+            .tabItem {
+                Image(systemName: "bus.fill")
+            }
             
             PlanView(busStop: busStop)
+            .tabItem {
+                Image(systemName: "note.text")
+            }
         }
         .tabViewStyle(PageTabViewStyle())
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
