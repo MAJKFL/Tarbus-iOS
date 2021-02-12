@@ -18,7 +18,7 @@ struct RouteListView: View {
         ScrollView {
             VStack(spacing: 10) {
                 ForEach(routes) { route in
-                    RouteView(route: route)
+                    RouteView(route: route, busLine: busLine)
                 }
                 
                 Spacer()
@@ -49,6 +49,7 @@ fileprivate struct RouteView: View {
     @State private var busStops = [BusStop]()
     
     let route: Route
+    let busLine: BusLine
     
     var body: some View {
         VStack {
@@ -74,7 +75,7 @@ fileprivate struct RouteView: View {
             .padding()
                 
             if isShowingRoute {
-                BusStopListView(busStops: busStops)
+                BusStopListView(busStops: busStops, busLine: busLine)
             }
         }
         .background(Color("lightGray"))
@@ -92,11 +93,12 @@ fileprivate struct RouteView: View {
 
 fileprivate struct BusStopListView: View {
     let busStops: [BusStop]
+    let busLine: BusLine
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             ForEach(busStops.indices) { index in
-                NavigationLink(destination: BusStopView(busStop: busStops[index])) {
+                NavigationLink(destination: BusStopView(busStop: busStops[index], filteredBusLine: busLine)) {
                     HStack {
                         switch(index) {
                         case 0:

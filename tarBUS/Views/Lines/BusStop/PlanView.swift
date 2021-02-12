@@ -7,24 +7,24 @@
 
 import SwiftUI
 
-struct PlanView: View {
-    enum dayTypes: String, CaseIterable {
-        case workingDays = "Dni robocze"
-        case saturdays = "Soboty"
-        case holidays = "Święta"
-        
-        var databaseQuery: String {
-            switch self {
-            case .holidays:
-                return "instr(Track.t_day_types, \'SW\')"
-            case .saturdays:
-                return "instr(Track.t_day_types, \'WS\')"
-            default:
-                return "instr(Track.t_day_types, \'RO\') OR instr(Track.t_day_types, \'SC\')"
-            }
+enum dayTypes: String, CaseIterable {
+    case workingDays = "Dni robocze"
+    case saturdays = "Soboty"
+    case holidays = "Święta"
+    
+    var databaseQuery: String {
+        switch self {
+        case .holidays:
+            return "instr(Track.t_day_types, \'SW\')"
+        case .saturdays:
+            return "instr(Track.t_day_types, \'WS\')"
+        default:
+            return "instr(Track.t_day_types, \'RO\') OR instr(Track.t_day_types, \'SC\')"
         }
     }
-    
+}
+
+struct PlanView: View {
     @ObservedObject var dataBaseHelper = DataBaseHelper()
     @State private var dayType: dayTypes = .workingDays
     @State private var routes = [Route]()
@@ -47,7 +47,7 @@ struct PlanView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(routes) { route in
-                            RouteCellView(route: route, busStop: busStop, dayTypeQuery: dayType.databaseQuery)
+                            RouteCellView(route: route, busStop: busStop, dayType: dayType)
                         }
                     }
                     
@@ -59,7 +59,7 @@ struct PlanView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(routes) { route in
-                            RouteCellView(route: route, busStop: busStop, dayTypeQuery: dayType.databaseQuery)
+                            RouteCellView(route: route, busStop: busStop, dayType: dayType)
                         }
                     }
                     
@@ -71,7 +71,7 @@ struct PlanView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(routes) { route in
-                            RouteCellView(route: route, busStop: busStop, dayTypeQuery: dayType.databaseQuery)
+                            RouteCellView(route: route, busStop: busStop, dayType: dayType)
                         }
                     }
                     
@@ -100,7 +100,7 @@ fileprivate struct RouteCellView: View {
     
     let route: Route
     let busStop: BusStop
-    let dayTypeQuery: String
+    let dayType: dayTypes
     
     var legend: [String] {
         var legendArray = [String]()
@@ -124,10 +124,15 @@ fileprivate struct RouteCellView: View {
     var body: some View {
         VStack {
             HStack {
-                HStack {
-                    Image(systemName: "note.text")
+                VStack {
+                    HStack {
+                        Image(systemName: "note.text")
+                        
+                        Text(busLineName)
+                    }
                     
-                    Text(busLineName)
+                    Text(dayType.rawValue)
+                        .font(.footnote)
                 }
                 .font(Font.headline.weight(.bold))
                 .foregroundColor(.white)
@@ -192,6 +197,6 @@ fileprivate struct RouteCellView: View {
     }
     
     func getDepartures() {
-        withAnimation(.spring()) { departures = dataBaseHelper.getDeparturesByRouteAndDay(dayTypesQuery: dayTypeQuery, routeId: route.id, busStopId: busStop.id) }
+        withAnimation(.spring()) { departures = dataBaseHelper.getDeparturesByRouteAndDay(dayTypesQuery: dayType.databaseQuery, routeId: route.id, busStopId: busStop.id) }
     }
 }

@@ -29,7 +29,7 @@ struct SearchBusStopsView: View {
             } else {
                 List {
                     ForEach(busStops) { busStop in
-                        NavigationLink(destination: BusStopView(busStop: busStop), label: {
+                        NavigationLink(destination: BusStopView(busStop: busStop, filteredBusLine: nil), label: {
                             VStack(alignment: .leading) {
                                 Text(busStop.name)
                                     .font(.headline)

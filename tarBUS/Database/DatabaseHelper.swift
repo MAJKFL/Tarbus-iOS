@@ -223,10 +223,11 @@ class DataBaseHelper: ObservableObject {
                 let id = Optional(row[0]) as! Int64
                 let trackId = Optional(row[2]) as! String
                 let timeString = Optional(row[6]) as! String
+                let busLineId = Optional(row[19]) as! Int64
                 let busLineName = Optional(row[20]) as! String
                 let boardName = Optional(row[28]) as! String
                 
-                let newDeparture = NextDeparture(id: Int(id), trackId: trackId, timeString: timeString, busLineName: busLineName, boardName: boardName)
+                let newDeparture = NextDeparture(id: Int(id), trackId: trackId, timeString: timeString, busLineId: Int(busLineId), busLineName: busLineName, boardName: boardName)
                 departures.append(newDeparture)
             }
         } catch {
