@@ -10,9 +10,18 @@ import SwiftUI
 struct FavouriteBusLinesListView: View {
     @ObservedObject var favouriteBusLinesViewModel = FavouriteBusLinesViewModel()
     @State private var isShowingAddView = false
+    @State private var isShowingAll = false
+    
+    var busLines: [BusLine] {
+        if isShowingAll {
+            return favouriteBusLinesViewModel.busLines
+        } else {
+            return Array(favouriteBusLinesViewModel.busLines.prefix(3))
+        }
+    }
     
     var body: some View {
-        ForEach(favouriteBusLinesViewModel.busLines) { busLine in
+        ForEach(busLines) { busLine in
             NavigationLink(
                 destination: RouteListView(busLine: busLine),
                 label: {
@@ -36,14 +45,21 @@ struct FavouriteBusLinesListView: View {
         .onDelete(perform: favouriteBusLinesViewModel.remove)
         .onMove(perform: favouriteBusLinesViewModel.move)
         
+        if favouriteBusLinesViewModel.busLines.count > 3 {
+            Button(action: {
+                withAnimation {
+                    isShowingAll.toggle()
+                }
+            }, label: {
+                Label(isShowingAll ? "Pokaż mniej" : "Pokaż więcej", systemImage: "ellipsis.circle")
+            })
+            .animation(.none)
+        }
+        
         Button(action: {
             isShowingAddView.toggle()
         }, label: {
-            HStack {
-                Image(systemName: "plus")
-                
-                Text("Dodaj")
-            }
+            Label("Dodaj", systemImage: "plus")
         })
         .sheet(isPresented: $isShowingAddView, content: {
             BusLineAddView()

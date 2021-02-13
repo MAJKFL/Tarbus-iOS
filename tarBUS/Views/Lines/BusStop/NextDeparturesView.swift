@@ -50,6 +50,7 @@ struct NextDeparturesView: View {
                         NextDepartureCellView(departure: departure, isTomorow: false)
                     })
                     .buttonStyle(PlainButtonStyle())
+                    .id("\(departure.id)-today")
                 }
                 
                 Divider()
@@ -59,6 +60,7 @@ struct NextDeparturesView: View {
                         NextDepartureCellView(departure: departure, isTomorow: true)
                     })
                     .buttonStyle(PlainButtonStyle())
+                    .id("\(departure.id)-yesterday")
                 }
             }
             .padding()

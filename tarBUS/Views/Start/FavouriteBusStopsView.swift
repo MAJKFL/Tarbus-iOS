@@ -12,9 +12,18 @@ struct FavouriteBusStopsListView: View {
     @ObservedObject var favouriteBusStopsViewModel = FavouriteBusStopsViewModel()
     @State private var pickedBusStop: BusStop?
     @State private var isShowingAddView = false
+    @State private var isShowingAll = false
+    
+    var busStops: [BusStop] {
+        if isShowingAll {
+            return favouriteBusStopsViewModel.busStops
+        } else {
+            return Array(favouriteBusStopsViewModel.busStops.prefix(3))
+        }
+    }
     
     var body: some View {
-        ForEach(favouriteBusStopsViewModel.busStops) { busStop in
+        ForEach(busStops) { busStop in
             NavigationLink(
                 destination: BusStopView(busStop: busStop, filteredBusLine: nil),
                 label: {
@@ -50,14 +59,21 @@ struct FavouriteBusStopsListView: View {
         .onDelete(perform: favouriteBusStopsViewModel.remove)
         .onMove(perform: favouriteBusStopsViewModel.move)
         
+        if favouriteBusStopsViewModel.busStops.count > 3 {
+            Button(action: {
+                withAnimation {
+                    isShowingAll.toggle()
+                }
+            }, label: {
+                Label(isShowingAll ? "Pokaż mniej" : "Pokaż więcej", systemImage: "ellipsis.circle")
+            })
+            .animation(.none)
+        }
+        
         Button(action: {
             isShowingAddView.toggle()
         }, label: {
-            HStack {
-                Image(systemName: "plus")
-                
-                Text("Dodaj")
-            }
+            Label("Dodaj", systemImage: "plus")
         })
         .sheet(isPresented: $isShowingAddView, content: {
             BusStopAddView()
