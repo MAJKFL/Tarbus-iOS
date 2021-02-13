@@ -25,9 +25,10 @@ struct FavouriteBusLinesListView: View {
             NavigationLink(
                 destination: RouteListView(busLine: busLine),
                 label: {
-                    HStack {
+                    HStack(spacing: 15) {
                         Image(systemName: "bus.fill")
                             .font(Font.body.bold())
+                            .foregroundColor(Color("MainColor"))
                         
                         VStack(alignment: .leading) {
                             Text(busLine.name)
@@ -38,7 +39,7 @@ struct FavouriteBusLinesListView: View {
                         }
                     }
                     .lineLimit(1)
-                    .padding(5)
+                    .padding(2.5)
                 })
                 .buttonStyle(PlainButtonStyle())
         }
@@ -59,7 +60,7 @@ struct FavouriteBusLinesListView: View {
         Button(action: {
             isShowingAddView.toggle()
         }, label: {
-            Label("Dodaj", systemImage: "plus")
+            Label("Dodaj", systemImage: "plus.circle")
         })
         .sheet(isPresented: $isShowingAddView, content: {
             BusLineAddView()
@@ -118,6 +119,7 @@ struct BusLineAddView: View {
                                     Spacer()
                                     
                                     Image(systemName: favouriteBusLinesViewModel.busLines.contains(where: { $0.id == busLine.id }) ? "heart.fill" : "heart")
+                                        .foregroundColor(.accentColor)
                                 }
                             })
                             .buttonStyle(PlainButtonStyle())

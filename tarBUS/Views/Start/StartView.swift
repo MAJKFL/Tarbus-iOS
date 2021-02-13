@@ -64,12 +64,12 @@ struct StartView: View {
                     NavigationLink("Ustawienia", destination: SettingsView())
                 }
             }
-            .toolbar {
-                EditButton()
-            }
             .listStyle(GroupedListStyle())
             .navigationTitle("tarBUS")
             .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                EditButton()
+            }
         }
     }
 }

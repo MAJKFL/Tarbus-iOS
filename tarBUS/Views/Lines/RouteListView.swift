@@ -96,20 +96,24 @@ fileprivate struct BusStopListView: View {
     let busLine: BusLine
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        LazyVStack(alignment: .leading, spacing: 0) {
             ForEach(busStops.indices) { index in
                 NavigationLink(destination: BusStopView(busStop: busStops[index], filteredBusLine: busLine)) {
                     HStack {
                         switch(index) {
                         case 0:
                             Image("firstBusStop")
+                                .busStopLabel()
                         case busStops.count - 1:
                             Image("lastBusStop")
+                                .busStopLabel()
                         default:
                             Image("nextBusStop")
+                                .busStopLabel()
                         }
                         
                         Text(busStops[index].name)
+                            .lineLimit(2)
                         
                         Spacer()
                     }
@@ -119,5 +123,14 @@ fileprivate struct BusStopListView: View {
                 .buttonStyle(PlainButtonStyle())
             }
         }
+    }
+}
+
+extension Image {
+    func busStopLabel() -> some View {
+        self
+            .resizable()
+            .scaledToFit()
+            .frame(width: 15)
     }
 }

@@ -27,9 +27,10 @@ struct FavouriteBusStopsListView: View {
             NavigationLink(
                 destination: BusStopView(busStop: busStop, filteredBusLine: nil),
                 label: {
-                    HStack {
+                    HStack(spacing: 15) {
                         Image("busStop")
                             .renderingMode(.template)
+                            .foregroundColor(Color("MainColor"))
                         
                         VStack(alignment: .leading) {
                             Text(busStop.userName ?? busStop.name)
@@ -42,7 +43,7 @@ struct FavouriteBusStopsListView: View {
                         }
                     }
                     .lineLimit(1)
-                    .padding(5)
+                    .padding(2.5)
                 })
                 .buttonStyle(PlainButtonStyle())
                 .contextMenu {
@@ -73,7 +74,7 @@ struct FavouriteBusStopsListView: View {
         Button(action: {
             isShowingAddView.toggle()
         }, label: {
-            Label("Dodaj", systemImage: "plus")
+            Label("Dodaj", systemImage: "plus.circle")
         })
         .sheet(isPresented: $isShowingAddView, content: {
             BusStopAddView()
@@ -135,6 +136,7 @@ struct BusStopAddView: View {
                                     Spacer()
                                     
                                     Image(systemName: favouriteBusStopsViewModel.busStops.contains(where: { $0.id == busStop.id }) ? "heart.fill" : "heart")
+                                        .foregroundColor(.accentColor)
                                 }
                             })
                             .buttonStyle(PlainButtonStyle())

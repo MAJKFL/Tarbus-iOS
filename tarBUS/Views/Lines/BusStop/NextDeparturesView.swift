@@ -47,7 +47,7 @@ struct NextDeparturesView: View {
                 
                 ForEach(filteredDepartures) { departure in
                     NavigationLink(destination: DepartureListView(mainDeparture: departure), label: {
-                        NextDepartureCellView(departure: departure, isTomorow: false)
+                        NextDepartureCellView(departure: departure, isTomorrow: false)
                     })
                     .buttonStyle(PlainButtonStyle())
                     .id("\(departure.id)-today")
@@ -57,7 +57,7 @@ struct NextDeparturesView: View {
                 
                 ForEach(filteredDeparturesForNextDay) { departure in
                     NavigationLink(destination: DepartureListView(mainDeparture: departure), label: {
-                        NextDepartureCellView(departure: departure, isTomorow: true)
+                        NextDepartureCellView(departure: departure, isTomorrow: true)
                     })
                     .buttonStyle(PlainButtonStyle())
                     .id("\(departure.id)-yesterday")
@@ -87,7 +87,7 @@ struct NextDeparturesView: View {
 
 fileprivate struct NextDepartureCellView: View {
     let departure: NextDeparture
-    let isTomorow: Bool
+    let isTomorrow: Bool
     
     var body: some View {
         HStack {
@@ -111,7 +111,7 @@ fileprivate struct NextDepartureCellView: View {
                     .fontWeight(.bold)
                     .padding(.trailing)
                 
-                if isTomorow {
+                if isTomorrow {
                     Text("Jutro")
                         .font(.footnote)
                         .foregroundColor(Color("MainColor"))

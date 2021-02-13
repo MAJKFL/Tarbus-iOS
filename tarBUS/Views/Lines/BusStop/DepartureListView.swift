@@ -21,14 +21,18 @@ struct DepartureListView: View {
                             switch(index) {
                             case 0:
                                 Image("firstBusStop\(departures[index].id == mainDeparture.id ? "" : "G")")
+                                    .busStopLabel()
                             case departures.count - 1:
                                 Image("lastBusStop\(departures[index].id == mainDeparture.id ? "" : "G")")
+                                    .busStopLabel()
                             default:
                                 Image("nextBusStop\(departures[index].id == mainDeparture.id ? "" : "G")")
+                                    .busStopLabel()
                             }
                             
                             Text(departures[index].busStopName)
                                 .font(departures[index].id == mainDeparture.id ? .headline : .subheadline)
+                                .lineLimit(2)
                             
                             Spacer()
                             
