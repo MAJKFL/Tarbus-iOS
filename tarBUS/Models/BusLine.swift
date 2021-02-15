@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct BusLine: Identifiable, Codable {
+struct BusLine: Identifiable, Codable, Equatable {
     let id: Int
     let name: String
+    
+    static func ==(lhs: BusLine, rhs: BusLine) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

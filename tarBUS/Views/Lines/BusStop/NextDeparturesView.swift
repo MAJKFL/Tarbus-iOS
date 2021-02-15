@@ -10,40 +10,25 @@ import SwiftUI
 struct NextDeparturesView: View {
     @ObservedObject var databaseHelper = DataBaseHelper()
     let busStop: BusStop
-    @State var filteredBusLine: BusLine?
+    @State var filteredBusLines: [BusLine]
     
     @State private var departures = [NextDeparture]()
     @State private var departuresForNextDay = [NextDeparture]()
     
     var filteredDepartures: [NextDeparture] {
-        guard let filteredBusLine = filteredBusLine else { return departures }
-        return departures.filter({ $0.busLineId == filteredBusLine.id })
+        if filteredBusLines.isEmpty { return departures }
+        return departures.filter({ filteredBusLines.contains($0.busLine) })
     }
     
     var filteredDeparturesForNextDay: [NextDeparture] {
-        guard let filteredBusLine = filteredBusLine else { return departuresForNextDay }
-        return departuresForNextDay.filter({ $0.busLineId == filteredBusLine.id })
+        if filteredBusLines.isEmpty { return departuresForNextDay }
+        return departuresForNextDay.filter({ filteredBusLines.contains($0.busLine) })
     }
     
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 10) {
-                if let filteredBusLine = filteredBusLine {
-                    HStack {
-                        Image(systemName: "line.horizontal.3.decrease")
-                        
-                        Text("Filtruję: \(filteredBusLine.name)")
-                    }
-                    .font(Font.title.weight(.bold))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, minHeight: 50, maxHeight: .infinity)
-                    .background(Color.orange)
-                    .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-                    .shadow(radius: 5, x: 5, y: 5)
-                    .onTapGesture {
-                        withAnimation { self.filteredBusLine = nil }
-                    }
-                }
+                FilterView(filteredBusLines: $filteredBusLines, allDepartures: departures + departuresForNextDay)
                 
                 ForEach(filteredDepartures) { departure in
                     NavigationLink(destination: DepartureListView(mainDeparture: departure), label: {
@@ -94,7 +79,7 @@ fileprivate struct NextDepartureCellView: View {
             HStack {
                 Image(systemName: "bus.fill")
                 
-                Text(departure.busLineName)
+                Text(departure.busLine.name)
             }
             .font(Font.headline.weight(.bold))
             .foregroundColor(.white)
@@ -121,5 +106,101 @@ fileprivate struct NextDepartureCellView: View {
         .background(Color("lightGray"))
         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
         .shadow(radius: 5, x: 5, y: 5)
+    }
+}
+
+fileprivate struct FilterView: View {
+    @Binding var filteredBusLines: [BusLine]
+    let allDepartures: [NextDeparture]
+    
+    @State private var showPicker = false
+    
+    @Namespace private var animation
+    
+    var busLines: [BusLine] {
+        let allBusLines = allDepartures.map { departure in
+            departure.busLine
+        }
+        
+        return allBusLines.removeDuplicates().sorted(by: { $0.id < $1.id })
+    }
+    
+    var isDisabled: Bool {
+        busLines.count <= 1
+    }
+    
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
+    var body: some View {
+        VStack {
+            Button(action: {
+                withAnimation(Animation.easeOut.speed(2)) { showPicker.toggle() }
+            }, label: {
+                HStack {
+                    Text("Filtruj")
+                    
+                    Image(systemName: "line.horizontal.3.decrease")
+                }
+                .font(.body)
+            })
+            .disabled(isDisabled)
+            
+            if !isDisabled {
+                LazyVGrid(columns: columns) {
+                    ForEach(filteredBusLines) { busLine in
+                        HStack {
+                            Text(busLine.name)
+                            
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(minWidth: 0)
+                        .padding(10)
+                        .background(Color("lightGray"))
+                        .clipShape(Capsule())
+                        .matchedGeometryEffect(id: busLine.id, in: animation)
+                        .onTapGesture {
+                            withAnimation(Animation.easeOut.speed(2)) { filteredBusLines.removeAll(where: { $0 == busLine }) }
+                        }
+                    }
+                }
+            }
+            
+            if showPicker {
+                Divider()
+                
+                LazyVGrid(columns: columns) {
+                    ForEach(busLines) { busLine in
+                        if !filteredBusLines.contains(busLine) {
+                            HStack {
+                                Text(busLine.name)
+                                
+                                Image(systemName: "plus.circle.fill")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(minWidth: 0)
+                            .padding(10)
+                            .background(Color("lightGray"))
+                            .clipShape(Capsule())
+                            .matchedGeometryEffect(id: busLine.id, in: animation)
+                            .onTapGesture {
+                                if !filteredBusLines.contains(busLine) {
+                                    withAnimation(Animation.easeOut.speed(2)) {
+                                        filteredBusLines.append(busLine)
+                                        filteredBusLines.sort(by: { $0.id < $1.id })
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .font(.footnote)
     }
 }

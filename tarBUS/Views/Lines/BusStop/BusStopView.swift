@@ -9,13 +9,13 @@ import SwiftUI
 
 struct BusStopView: View {
     let busStop: BusStop
-    let filteredBusLine: BusLine?
+    let filteredBusLines: [BusLine]
     @State private var isShowingAddView = false
     @ObservedObject var favouriteBusStopsViewModel = FavouriteBusStopsViewModel()
     
     var body: some View {
         TabView {
-            NextDeparturesView(busStop: busStop, filteredBusLine: filteredBusLine)
+            NextDeparturesView(busStop: busStop, filteredBusLines: filteredBusLines)
             .tabItem {
                 Image(systemName: "bus.fill")
             }

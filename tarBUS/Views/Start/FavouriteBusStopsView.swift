@@ -25,7 +25,7 @@ struct FavouriteBusStopsListView: View {
     var body: some View {
         ForEach(busStops) { busStop in
             NavigationLink(
-                destination: BusStopView(busStop: busStop, filteredBusLine: nil),
+                destination: BusStopView(busStop: busStop, filteredBusLines: []),
                 label: {
                     HStack(spacing: 15) {
                         Image("busStop")

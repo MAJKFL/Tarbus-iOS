@@ -98,7 +98,7 @@ fileprivate struct BusStopListView: View {
     var body: some View {
         LazyVStack(alignment: .leading, spacing: 0) {
             ForEach(busStops.indices) { index in
-                NavigationLink(destination: BusStopView(busStop: busStops[index], filteredBusLine: busLine)) {
+                NavigationLink(destination: BusStopView(busStop: busStops[index], filteredBusLines: [busLine])) {
                     HStack {
                         switch(index) {
                         case 0:

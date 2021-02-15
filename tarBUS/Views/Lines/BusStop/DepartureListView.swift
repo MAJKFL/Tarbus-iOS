@@ -53,7 +53,7 @@ struct DepartureListView: View {
                     }
                 }
             }
-            .navigationTitle("Trasa \(mainDeparture.busLineName)")
+            .navigationTitle("Trasa \(mainDeparture.busLine.name)")
             .navigationBarTitleDisplayMode(.large)
         }
     }

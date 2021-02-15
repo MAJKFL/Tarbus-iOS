@@ -11,7 +11,7 @@ struct NextDeparture: Identifiable {
     let id: Int
     let trackId: String
     let timeString: String
-    let busLineId: Int
-    let busLineName: String
     let boardName: String
+    
+    let busLine: BusLine
 }
