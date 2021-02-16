@@ -44,9 +44,6 @@ struct SettingsView: View {
                 }
             }
         }
-        .onAppear {
-            databaseHelper.saveLastUpdateToUserDefaults()
-        }
         .listStyle(GroupedListStyle())
         .navigationTitle("Ustawienia")
     }

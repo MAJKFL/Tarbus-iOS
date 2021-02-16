@@ -8,6 +8,10 @@
 import SQLite
 import Foundation
 
+enum InternetConnectivityError: Error {
+    case noInternetConnection
+}
+
 class DataBaseHelper: ObservableObject {
     static let tableNames = ["BusStop", "Departure", "BusLine", "Calendar", "Destinations", "Track", "AlertHistory", "RouteConnections", "LastUpdated", "BusStopConnection", "LastUpdated", "Route"]
     static let databaseFileName = "tarbus2-1-1.db"
@@ -15,6 +19,7 @@ class DataBaseHelper: ObservableObject {
     func fetchData() {
         let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-1/database.json")!
         let request = URLRequest(url: url)
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 self.deleteAllData()
@@ -53,6 +58,7 @@ class DataBaseHelper: ObservableObject {
                                 sqlStatement += ";"
                                 let statement = try! db.prepare(sqlStatement)
                                 let _ = try? statement.run()
+                                return
                             }
                         }
                     }

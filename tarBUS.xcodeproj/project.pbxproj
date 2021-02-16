@@ -24,6 +24,7 @@
 		AA75086325BC5F000045FFD5 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */; };
 		AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086625BC7B5D0045FFD5 /* BusStop.swift */; };
 		AA78CDD925B9EDB20052455A /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78CDD825B9EDB20052455A /* BusLine.swift */; };
+		AA79FD1925DC8CB2004F5723 /* ReachabilityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */; };
 		AA849FD725CED7EE00831982 /* SearchPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA849FD625CED7EE00831982 /* SearchPickerView.swift */; };
 		AA849FDC25CEE33600831982 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA849FDB25CEE33600831982 /* SearchBarView.swift */; };
 		AAA279CC25D2F00900E1FB45 /* tarbus2-1-1.db in Resources */ = {isa = PBXBuildFile; fileRef = AAA279CB25D2F00900E1FB45 /* tarbus2-1-1.db */; };
@@ -62,6 +63,7 @@
 		AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		AA75086625BC7B5D0045FFD5 /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		AA78CDD825B9EDB20052455A /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
+		AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityTest.swift; sourceTree = "<group>"; };
 		AA849FD625CED7EE00831982 /* SearchPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPickerView.swift; sourceTree = "<group>"; };
 		AA849FDB25CEE33600831982 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		AAA279CB25D2F00900E1FB45 /* tarbus2-1-1.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = "tarbus2-1-1.db"; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */,
+				AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */,
 				AAA279CB25D2F00900E1FB45 /* tarbus2-1-1.db */,
 			);
 			path = Database;
@@ -360,6 +363,7 @@
 				AAD6248A25C05A3E0038C8CE /* Route.swift in Sources */,
 				AA6D11E125D1C74D005F6F87 /* ListDeparture.swift in Sources */,
 				AA3C459B25C5D2B500148F1E /* PlanView.swift in Sources */,
+				AA79FD1925DC8CB2004F5723 /* ReachabilityTest.swift in Sources */,
 				AAC692AF25D1D86E00477314 /* SearchBusStopsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
