@@ -26,10 +26,7 @@ struct LineListView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50)
-                            .padding(3)
-                            .background(Color.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            .shadow(radius: 5)
+                            .padding(.leading, 3)
                         
                         Text("Michalus")
                             .font(.largeTitle)
@@ -64,6 +61,7 @@ struct LineListView: View {
                 }
                 .padding()
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .navigationTitle("Linie")
         }
         .onAppear {

@@ -58,7 +58,6 @@ class DataBaseHelper: ObservableObject {
                                 sqlStatement += ";"
                                 let statement = try! db.prepare(sqlStatement)
                                 let _ = try? statement.run()
-                                return
                             }
                         }
                     }

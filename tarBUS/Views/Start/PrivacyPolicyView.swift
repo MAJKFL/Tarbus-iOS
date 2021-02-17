@@ -52,7 +52,7 @@ struct PrivacyPolicyView: View {
                     Text("2.1.  Aplikacja korzysta z usług stron trzecich, które mogą zbierać  informacje używane do identyfikacji użytkownika. \nLinki do polityki prywatności dostawców usług zewnętrznych  używanych przez aplikację:")
                     
                     Button(" - Usługi App Store", action: {
-                        openURL(URL(string: "https://www.apple.com/pl/")!)
+                        openURL(URL(string: "https://www.apple.com/legal/privacy/pl/")!)
                     })
                 }
             }
