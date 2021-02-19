@@ -61,7 +61,6 @@ struct LineListView: View {
                 }
                 .padding()
             }
-            .navigationViewStyle(StackNavigationViewStyle())
             .navigationTitle("Linie")
         }
         .onAppear {
