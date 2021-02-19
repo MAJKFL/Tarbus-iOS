@@ -136,6 +136,7 @@ fileprivate struct RouteCellView: View {
                 
                 Text("\(route.destinationName)")
                     .font(.title)
+                    .lineLimit(1)
                 
                 Spacer()
                 

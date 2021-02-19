@@ -22,8 +22,8 @@ struct AboutView: View {
     @State private var mail: Mail?
     @State var result: Result<MFMailComposeResult, Error>? = nil
     
-    static let contactsToDeveloper = ["facebook", "twitter", "mail", "github"]
-    static let linksToDeveloper = ["twitter": "https://twitter.com/MAJKFL", "github": "https://github.com/MAJKFL", "facebook": "https://www.facebook.com/jakub.florek.98"]
+    static let contactsToDeveloper = ["facebook", "linkedin", "mail", "github"]
+    static let linksToDeveloper = ["linkedin": "https://www.linkedin.com/in/jakub-florek-ba9378207/", "github": "https://github.com/MAJKFL", "facebook": "https://www.facebook.com/jakub.florek.98"]
     
     static let contactsToApp = ["facebook", "mail", "github"]
     static let linksToApp = ["github": "https://github.com/MAJKFL/Tarbus-iOS", "facebook": "https://www.facebook.com/tarbus2021"]
