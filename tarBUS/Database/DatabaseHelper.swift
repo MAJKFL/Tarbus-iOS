@@ -15,6 +15,7 @@ enum InternetConnectivityError: Error {
 class DataBaseHelper: ObservableObject {
     static let tableNames = ["BusStop", "Departure", "BusLine", "Calendar", "Destinations", "Track", "AlertHistory", "RouteConnections", "LastUpdated", "BusStopConnection", "LastUpdated", "Route"]
     static let databaseFileName = "tarbus2-1-1.db"
+    static let groupName = "group.florekjakub.tarBUSapp"
     
     func fetchData() {
         let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-1/database.json")!
@@ -26,8 +27,8 @@ class DataBaseHelper: ObservableObject {
                 do {
                     if let anyObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as? [AnyObject] {
                         let fileManager = FileManager.default
-                        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-                        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+                        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+                        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
                         let db = try! Connection(url.absoluteString)
                         for object in anyObject {
                             if (object["type"] as? String) ?? "" == "table" {
@@ -70,8 +71,8 @@ class DataBaseHelper: ObservableObject {
     
     func deleteAllData() {
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         for tableName in Self.tableNames {
@@ -89,18 +90,14 @@ class DataBaseHelper: ObservableObject {
         
         let fileManager = FileManager.default
         
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
         
-        guard documentsUrl.count != 0 else {
-            return // Could not find documents URL
-        }
-        
-        let finalDatabaseURL = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let finalDatabaseURL = documentsUrl.appendingPathComponent(Self.databaseFileName)
     
         if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false){
             print("DB does not exist in documents folder")
             
-            let fileURLs = try? FileManager.default.contentsOfDirectory(at: documentsUrl.first!, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+            let fileURLs = try? FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
             
             for fileURL in fileURLs ?? [] {
                 if fileURL.pathExtension == "db" {
@@ -126,8 +123,8 @@ class DataBaseHelper: ObservableObject {
         var busLines = [BusLine]()
         
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -148,8 +145,8 @@ class DataBaseHelper: ObservableObject {
         var routes = [Route]()
         
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -172,8 +169,8 @@ class DataBaseHelper: ObservableObject {
         var busStops = [BusStop]()
         
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -198,8 +195,8 @@ class DataBaseHelper: ObservableObject {
         var departures = [NextDeparture]()
         
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         let strArray = dayTypes.components(separatedBy: " ")
@@ -248,8 +245,8 @@ class DataBaseHelper: ObservableObject {
         var departures = [BoardDeparture]()
         
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -283,8 +280,8 @@ class DataBaseHelper: ObservableObject {
         var routes = [Route]()
         
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -307,8 +304,8 @@ class DataBaseHelper: ObservableObject {
         var busLines = [BusLine]()
         
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -329,8 +326,8 @@ class DataBaseHelper: ObservableObject {
         var busStops = [BusStop]()
         
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         let searchText = text.lowercased().folding(options: .diacriticInsensitive, locale: .current).replacingOccurrences(of: "ł", with: "l")
@@ -373,8 +370,8 @@ class DataBaseHelper: ObservableObject {
         var busLines = [BusLine]()
         
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         let searchText = text.lowercased().folding(options: .diacriticInsensitive, locale: .current).replacingOccurrences(of: "ł", with: "l")
@@ -413,8 +410,8 @@ class DataBaseHelper: ObservableObject {
         var departures = [ListDeparture]()
         
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {
@@ -441,8 +438,8 @@ class DataBaseHelper: ObservableObject {
         var string = ""
         
         let fileManager = FileManager.default
-        let documentsUrl = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = documentsUrl.first!.appendingPathComponent(Self.databaseFileName)
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
         let db = try! Connection(url.absoluteString)
         
         do {

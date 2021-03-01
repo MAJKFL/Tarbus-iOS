@@ -14,4 +14,6 @@ struct NextDeparture: Identifiable {
     let boardName: String
     
     let busLine: BusLine
+    
+    var symbols = ""
 }
