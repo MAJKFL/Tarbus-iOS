@@ -225,13 +225,14 @@ class DataBaseHelper: ObservableObject {
                 let id = Optional(row[0]) as! Int64
                 let trackId = Optional(row[2]) as! String
                 let timeString = Optional(row[6]) as! String
+                let timeInt = Optional(row[5]) as! Int64
                 let busLineId = Optional(row[19]) as! Int64
                 let busLineName = Optional(row[20]) as! String
                 let boardName = Optional(row[28]) as! String
                 
                 let newBusLine = BusLine(id: Int(busLineId), name: busLineName)
                 
-                let newDeparture = NextDeparture(id: Int(id), trackId: trackId, timeString: timeString, boardName: boardName, busLine: newBusLine)
+                let newDeparture = NextDeparture(id: Int(id), trackId: trackId, timeString: timeString, timeInt: Int(timeInt), boardName: boardName, busLine: newBusLine)
                 departures.append(newDeparture)
             }
         } catch {

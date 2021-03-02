@@ -175,7 +175,6 @@
 				AA05BCDC25ED77BB00009711 /* tarBUSWidget.intentdefinition */,
 				AA05BCDD25ED77C000009711 /* Assets.xcassets */,
 				AA05BCDF25ED77C000009711 /* Info.plist */,
-				AA96904B25EAA5B80093D3D2 /* tarBUS.entitlements */,
 			);
 			path = tarBUSWidget;
 			sourceTree = "<group>";
@@ -294,6 +293,7 @@
 				AAE9B11E25AE7FA400D90F32 /* Assets.xcassets */,
 				AAE9B12325AE7FA400D90F32 /* Info.plist */,
 				AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */,
+				AA96904B25EAA5B80093D3D2 /* tarBUS.entitlements */,
 				AAE9B12025AE7FA400D90F32 /* Preview Content */,
 			);
 			path = tarBUS;

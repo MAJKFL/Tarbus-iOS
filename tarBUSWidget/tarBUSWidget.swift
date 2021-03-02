@@ -15,7 +15,7 @@ struct WidgetModel: TimelineEntry {
     var departures: [NextDeparture]
     
     static var placeholder: WidgetModel {
-        WidgetModel(date: Date(), busStopName: "Radlna - Budynek Wielofunkcyjny 08", busStopId: 0, departures: [NextDeparture(id: 0, trackId: "", timeString: "12:00", boardName: "", busLine: BusLine(id: 0, name: "T10"))])
+        WidgetModel(date: Date(), busStopName: "Radlna - Budynek Wielofunkcyjny 08", busStopId: 0, departures: [NextDeparture(id: 0, trackId: "", timeString: "12:00", timeInt: 0, boardName: "", busLine: BusLine(id: 0, name: "T10"))])
     }
 }
 
@@ -26,23 +26,24 @@ struct dataProvider: TimelineProvider {
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<WidgetModel>) -> Void) {
         let databaseHelper = DataBaseHelper()
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
-        
         let date = Date()
+        let departuresToday = databaseHelper.getNextDepartures(busStopId: 404, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date)), startFromTime: Date().minutesSinceMidnight)
+        let departuresForNextDay = databaseHelper.getNextDepartures(busStopId: 404, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date.addingTimeInterval(86400))), startFromTime: 0)
+        let departures = Array((departuresToday + departuresForNextDay).prefix(4))
+        let entryData = WidgetModel(date: Date(), busStopName: "Tarnów, Krakowska 02 - Planty", busStopId: 404, departures: departures)
         
-        let departuresToday = databaseHelper.getNextDepartures(busStopId: 255, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date)), startFromTime: Date().minutesSinceMidnight)
-
-        let departuresForNextDay = databaseHelper.getNextDepartures(busStopId: 255, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date.addingTimeInterval(86400))), startFromTime: 0)
+        var timelineDate = Date()
         
-        let departures = Array((departuresToday + departuresForNextDay).prefix(3))
+        switch departures.count {
+        case 0...1:
+            timelineDate = Date().addingTimeInterval(TimeInterval(864001 - Date().minutesSinceMidnight * 60))
+        default:
+            timelineDate = Date().midnight.addingTimeInterval(TimeInterval(departures[1].timeInt * 60))
+        }
         
-        print(departures)
-        
-        let entryData = WidgetModel(date: Date(), busStopName: "Radlna - Budynek Wielofunkcyjny 08", busStopId: 255, departures: departures)
-        
-        let timeLine = Timeline(entries: [entryData], policy: .never)
+        let timeLine = Timeline(entries: [entryData], policy: .after(timelineDate))
         
         completion(timeLine)
     }
@@ -55,15 +56,15 @@ struct dataProvider: TimelineProvider {
         
         let date = Date()
         
-        let departuresToday = databaseHelper.getNextDepartures(busStopId: 255, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date)), startFromTime: Date().minutesSinceMidnight)
+        let departuresToday = databaseHelper.getNextDepartures(busStopId: 404, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date)), startFromTime: Date().minutesSinceMidnight)
 
-        let departuresForNextDay = databaseHelper.getNextDepartures(busStopId: 255, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date.addingTimeInterval(86400))), startFromTime: 0)
+        let departuresForNextDay = databaseHelper.getNextDepartures(busStopId: 404, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date.addingTimeInterval(86400))), startFromTime: 0)
         
-        let departures = Array((departuresToday + departuresForNextDay).prefix(3))
+        let departures = Array((departuresToday + departuresForNextDay).prefix(4))
         
         print(departures)
         
-        let entryData = WidgetModel(date: Date(), busStopName: "Radlna - Budynek Wielofunkcyjny 08", busStopId: 255, departures: departures)
+        let entryData = WidgetModel(date: Date(), busStopName: "Tarnów, Krakowska 02 - Planty", busStopId: 404, departures: departures)
         
         completion(entryData)
     }
@@ -71,12 +72,43 @@ struct dataProvider: TimelineProvider {
 
 struct WidgetView: View {
     var data: dataProvider.Entry
+    let textGradient = LinearGradient(gradient: Gradient(colors: [.clear, .clear, .clear, Color("GradientColor")]), startPoint: .top, endPoint: .bottom)
+    let badgeGradient = LinearGradient(gradient: Gradient(colors: [Color("MainColor"), Color("MainColorGradient")]), startPoint: .topLeading, endPoint: .bottomTrailing)
     
     var body: some View {
-        VStack {
-            ForEach(data.departures) { departure in
-                Text(departure.busLine.name)
+        VStack(alignment: .leading) {
+            Text(data.busStopName)
+                .font(Font.footnote.bold())
+                .lineLimit(2)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding([.horizontal, .top], 10)
+                .padding(.bottom, 5)
+                .background(badgeGradient)
+            
+            Spacer(minLength: 5)
+            
+            VStack(spacing: 0) {
+                ForEach(data.departures) { departure in
+                    HStack(spacing: 0) {
+                        Text(departure.busLine.name)
+                            .font(.headline)
+                            .foregroundColor(Color("MainColor"))
+                        
+                        Spacer()
+                        
+                        Text(departure.timeString)
+                            .font(.subheadline)
+                    }
+                    .lineLimit(1)
+                    .padding(.horizontal, 10)
+                    
+                    Divider()
+                }
+                
+                Spacer()
             }
+            .overlay(textGradient)
         }
     }
 }
