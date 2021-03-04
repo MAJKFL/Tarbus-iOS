@@ -25,30 +25,24 @@ struct dataProvider: TimelineProvider {
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<WidgetModel>) -> Void) {
-        let databaseHelper = DataBaseHelper()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy"
-        let date = Date()
-        let departuresToday = databaseHelper.getNextDepartures(busStopId: 404, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date)), startFromTime: Date().minutesSinceMidnight)
-        let departuresForNextDay = databaseHelper.getNextDepartures(busStopId: 404, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date.addingTimeInterval(86400))), startFromTime: 0)
-        let departures = Array((departuresToday + departuresForNextDay).prefix(4))
+        let departures = getDepartures()
+        let date = getRefreshDate(departures: departures)
+        
         let entryData = WidgetModel(date: Date(), busStopName: "Tarnów, Krakowska 02 - Planty", busStopId: 404, departures: departures)
-        
-        var timelineDate = Date()
-        
-        switch departures.count {
-        case 0...1:
-            timelineDate = Date().addingTimeInterval(TimeInterval(864001 - Date().minutesSinceMidnight * 60))
-        default:
-            timelineDate = Date().midnight.addingTimeInterval(TimeInterval(departures[1].timeInt * 60))
-        }
-        
-        let timeLine = Timeline(entries: [entryData], policy: .after(timelineDate))
+        let timeLine = Timeline(entries: [entryData], policy: .after(date))
         
         completion(timeLine)
     }
     
     func getSnapshot(in context: Context, completion: @escaping (WidgetModel) -> Void) {
+        let departures = getDepartures()
+        
+        let entryData = WidgetModel(date: Date(), busStopName: "Tarnów, Krakowska 02 - Planty", busStopId: 404, departures: departures)
+        
+        completion(entryData)
+    }
+    
+    func getDepartures() -> [NextDeparture] {
         let databaseHelper = DataBaseHelper()
         
         let formatter = DateFormatter()
@@ -60,13 +54,23 @@ struct dataProvider: TimelineProvider {
 
         let departuresForNextDay = databaseHelper.getNextDepartures(busStopId: 404, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date.addingTimeInterval(86400))), startFromTime: 0)
         
-        let departures = Array((departuresToday + departuresForNextDay).prefix(4))
+        let tomorrowDepartures = departuresForNextDay.map { departure in
+            departure.forTomorrow
+        }
         
-        print(departures)
-        
-        let entryData = WidgetModel(date: Date(), busStopName: "Tarnów, Krakowska 02 - Planty", busStopId: 404, departures: departures)
-        
-        completion(entryData)
+        return Array((departuresToday + tomorrowDepartures).prefix(4))
+    }
+    
+    func getRefreshDate(departures: [NextDeparture]) -> Date {
+        if departures.isEmpty {
+            return Date().midnight.addingTimeInterval(86400)
+        } else {
+            if departures[0].isTomorrow {
+                return Date().addingTimeInterval(86400).midnight.addingTimeInterval(TimeInterval(departures[0].timeInt * 60))
+            } else {
+                return Date().midnight.addingTimeInterval(TimeInterval(departures[0].timeInt * 60))
+            }
+        }
     }
 }
 
@@ -99,6 +103,13 @@ struct WidgetView: View {
                         
                         Text(departure.timeString)
                             .font(.subheadline)
+                        
+                        if departure.isTomorrow {
+                            Image(systemName: "calendar.badge.clock")
+                                .font(.footnote)
+                                .foregroundColor(.secondary)
+                                .padding(.leading, 2)
+                        }
                     }
                     .lineLimit(1)
                     .padding(.horizontal, 10)

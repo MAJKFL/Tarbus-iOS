@@ -15,4 +15,12 @@ struct NextDeparture: Identifiable {
     let boardName: String
     
     let busLine: BusLine
+    
+    var isTomorrow = false
+    
+    var forTomorrow: NextDeparture {
+        var tomorrowDeparture = self
+        tomorrowDeparture.isTomorrow = true
+        return tomorrowDeparture
+    }
 }

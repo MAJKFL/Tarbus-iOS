@@ -7,6 +7,7 @@
 
 import SQLite
 import Foundation
+import WidgetKit
 
 enum InternetConnectivityError: Error {
     case noInternetConnection
@@ -59,6 +60,7 @@ class DataBaseHelper: ObservableObject {
                                 sqlStatement += ";"
                                 let statement = try! db.prepare(sqlStatement)
                                 let _ = try? statement.run()
+                                WidgetCenter.shared.reloadAllTimelines()
                             }
                         }
                     }
