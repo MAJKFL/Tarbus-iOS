@@ -456,6 +456,32 @@ class DataBaseHelper: ObservableObject {
         return string
     }
     
+    func getAllBusStops() -> [BusStop] {
+        var busStops = [BusStop]()
+        
+        let fileManager = FileManager.default
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
+        let db = try! Connection(url.absoluteString)
+        
+        do {
+            for row in try db.prepare("SELECT * FROM BusStop") {
+                let id = Optional(row[0]) as! Int64
+                let searchName = Optional(row[1]) as! String
+                let name = Optional(row[2]) as! String
+                let longitude = Optional(row[3]) as! Double
+                let latitutde = Optional(row[4]) as! Double
+                let destinations = Optional(row[5]) as! String
+                let newBusStop = BusStop(id: Int(id), name: name, searchName: searchName, longitude: longitude, latitude: latitutde, destination: destinations)
+                busStops.append(newBusStop)
+            }
+        } catch {
+            print(error)
+        }
+        
+        return busStops
+    }
+    
     func saveLastUpdateToUserDefaults() {
         let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-1/last-update.json")!
         let request = URLRequest(url: url)

@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA053AC125F3B74C00E1E2AE /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA053AC025F3B74C00E1E2AE /* Intents.framework */; };
+		AA053AC425F3B74C00E1E2AE /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA053AC325F3B74C00E1E2AE /* IntentHandler.swift */; };
+		AA053AC825F3B74C00E1E2AE /* tarBusIntentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA053AD625F3B78800E1E2AE /* BoardDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D11DC25D1C28D005F6F87 /* BoardDeparture.swift */; };
+		AA053AD725F3B78800E1E2AE /* ListDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D11E025D1C74D005F6F87 /* ListDeparture.swift */; };
+		AA053AD825F3B78800E1E2AE /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086625BC7B5D0045FFD5 /* BusStop.swift */; };
+		AA053AD925F3B78800E1E2AE /* NextDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D11D825D1C060005F6F87 /* NextDeparture.swift */; };
+		AA053ADA25F3B78800E1E2AE /* LastUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EC525AEF07700236F31 /* LastUpdate.swift */; };
+		AA053ADB25F3B78800E1E2AE /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78CDD825B9EDB20052455A /* BusLine.swift */; };
+		AA053ADC25F3B78800E1E2AE /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248925C05A3E0038C8CE /* Route.swift */; };
 		AA05BCD625ED77BB00009711 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA05BCD525ED77BB00009711 /* WidgetKit.framework */; };
 		AA05BCD825ED77BB00009711 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA05BCD725ED77BB00009711 /* SwiftUI.framework */; };
-		AA05BCDB25ED77BB00009711 /* tarBUSWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA05BCDA25ED77BB00009711 /* tarBUSWidget.swift */; };
+		AA05BCDB25ED77BB00009711 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA05BCDA25ED77BB00009711 /* WidgetView.swift */; };
 		AA05BCDE25ED77C000009711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA05BCDD25ED77C000009711 /* Assets.xcassets */; };
-		AA05BCE025ED77C000009711 /* tarBUSWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AA05BCDC25ED77BB00009711 /* tarBUSWidget.intentdefinition */; };
-		AA05BCE125ED77C000009711 /* tarBUSWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AA05BCDC25ED77BB00009711 /* tarBUSWidget.intentdefinition */; };
 		AA05BCE425ED77C000009711 /* tarBUSWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA05BCD325ED77BB00009711 /* tarBUSWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA05BCF425ED7AD800009711 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */; };
 		AA05BCF725ED7B9700009711 /* date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C459725C5C4A100148F1E /* date+extensions.swift */; };
@@ -34,6 +42,9 @@
 		AA3C459B25C5D2B500148F1E /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C459A25C5D2B500148F1E /* PlanView.swift */; };
 		AA63EC0F25C85783000360E0 /* NextDeparturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA63EC0E25C85783000360E0 /* NextDeparturesView.swift */; };
 		AA691F5F25D0814D006CE292 /* DepartureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA691F5E25D0814D006CE292 /* DepartureListView.swift */; };
+		AA6CA29025F3CF58007F088C /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CA28F25F3CF58007F088C /* DataProvider.swift */; };
+		AA6CA29525F3CF9D007F088C /* WidgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CA29425F3CF9D007F088C /* WidgetModel.swift */; };
+		AA6CA2A025F3CFD6007F088C /* WidgetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CA29F25F3CFD6007F088C /* WidgetConfiguration.swift */; };
 		AA6D11D925D1C060005F6F87 /* NextDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D11D825D1C060005F6F87 /* NextDeparture.swift */; };
 		AA6D11DD25D1C28D005F6F87 /* BoardDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D11DC25D1C28D005F6F87 /* BoardDeparture.swift */; };
 		AA6D11E125D1C74D005F6F87 /* ListDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D11E025D1C74D005F6F87 /* ListDeparture.swift */; };
@@ -56,6 +67,10 @@
 		AAC82EC625AEF07700236F31 /* LastUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EC525AEF07700236F31 /* LastUpdate.swift */; };
 		AAC82ECF25AEFCBE00236F31 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82ECE25AEFCBE00236F31 /* AboutView.swift */; };
 		AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EDD25AF2DFC00236F31 /* LineListView.swift */; };
+		AACB90FB25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AACB90FA25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition */; };
+		AACB90FC25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AACB90FA25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition */; };
+		AACB910725F3BC7C00DB80D1 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = AACB910625F3BC7C00DB80D1 /* SQLite */; };
+		AACB910E25F3BD4100DB80D1 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */; };
 		AAD6248A25C05A3E0038C8CE /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248925C05A3E0038C8CE /* Route.swift */; };
 		AAE9B11B25AE7FA200D90F32 /* tarBUSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */; };
 		AAE9B11D25AE7FA200D90F32 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11C25AE7FA200D90F32 /* StartView.swift */; };
@@ -64,6 +79,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		AA053AC625F3B74C00E1E2AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AAE9B10F25AE7FA100D90F32 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA053ABE25F3B74C00E1E2AE;
+			remoteInfo = tarBusIntentExtension;
+		};
 		AA05BCE225ED77C000009711 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AAE9B10F25AE7FA100D90F32 /* Project object */;
@@ -81,6 +103,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				AA05BCE425ED77C000009711 /* tarBUSWidgetExtension.appex in Embed App Extensions */,
+				AA053AC825F3B74C00E1E2AE /* tarBusIntentExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,11 +111,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = tarBusIntentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA053AC025F3B74C00E1E2AE /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		AA053AC325F3B74C00E1E2AE /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		AA053AC525F3B74C00E1E2AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA05BCD325ED77BB00009711 /* tarBUSWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = tarBUSWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA05BCD525ED77BB00009711 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		AA05BCD725ED77BB00009711 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		AA05BCDA25ED77BB00009711 /* tarBUSWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tarBUSWidget.swift; sourceTree = "<group>"; };
-		AA05BCDC25ED77BB00009711 /* tarBUSWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = tarBUSWidget.intentdefinition; sourceTree = "<group>"; };
+		AA05BCDA25ED77BB00009711 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
 		AA05BCDD25ED77C000009711 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA05BCDF25ED77C000009711 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA05BCEB25ED784500009711 /* tarBUSWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tarBUSWidgetExtension.entitlements; sourceTree = "<group>"; };
@@ -106,6 +132,9 @@
 		AA3C459A25C5D2B500148F1E /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		AA63EC0E25C85783000360E0 /* NextDeparturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextDeparturesView.swift; sourceTree = "<group>"; };
 		AA691F5E25D0814D006CE292 /* DepartureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureListView.swift; sourceTree = "<group>"; };
+		AA6CA28F25F3CF58007F088C /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		AA6CA29425F3CF9D007F088C /* WidgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetModel.swift; sourceTree = "<group>"; };
+		AA6CA29F25F3CFD6007F088C /* WidgetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConfiguration.swift; sourceTree = "<group>"; };
 		AA6D11D825D1C060005F6F87 /* NextDeparture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextDeparture.swift; sourceTree = "<group>"; };
 		AA6D11DC25D1C28D005F6F87 /* BoardDeparture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDeparture.swift; sourceTree = "<group>"; };
 		AA6D11E025D1C74D005F6F87 /* ListDeparture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDeparture.swift; sourceTree = "<group>"; };
@@ -128,6 +157,8 @@
 		AAC82EC525AEF07700236F31 /* LastUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastUpdate.swift; sourceTree = "<group>"; };
 		AAC82ECE25AEFCBE00236F31 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		AAC82EDD25AF2DFC00236F31 /* LineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineListView.swift; sourceTree = "<group>"; };
+		AACB90FA25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WidgetIntent.intentdefinition; sourceTree = "<group>"; };
+		AACB911225F3C08400DB80D1 /* tarBusIntentExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tarBusIntentExtension.entitlements; sourceTree = "<group>"; };
 		AAD6248925C05A3E0038C8CE /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		AAE9B11725AE7FA200D90F32 /* tarBUS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tarBUS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tarBUSApp.swift; sourceTree = "<group>"; };
@@ -138,6 +169,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AA053ABC25F3B74C00E1E2AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AACB910725F3BC7C00DB80D1 /* SQLite in Frameworks */,
+				AA053AC125F3B74C00E1E2AE /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA05BCD025ED77BB00009711 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -159,11 +199,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA053AC225F3B74C00E1E2AE /* tarBusIntentExtension */ = {
+			isa = PBXGroup;
+			children = (
+				AACB911225F3C08400DB80D1 /* tarBusIntentExtension.entitlements */,
+				AA053AC325F3B74C00E1E2AE /* IntentHandler.swift */,
+				AA053AC525F3B74C00E1E2AE /* Info.plist */,
+			);
+			path = tarBusIntentExtension;
+			sourceTree = "<group>";
+		};
 		AA05BCD425ED77BB00009711 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				AA05BCD525ED77BB00009711 /* WidgetKit.framework */,
 				AA05BCD725ED77BB00009711 /* SwiftUI.framework */,
+				AA053AC025F3B74C00E1E2AE /* Intents.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -171,10 +222,13 @@
 		AA05BCD925ED77BB00009711 /* tarBUSWidget */ = {
 			isa = PBXGroup;
 			children = (
-				AA05BCDA25ED77BB00009711 /* tarBUSWidget.swift */,
-				AA05BCDC25ED77BB00009711 /* tarBUSWidget.intentdefinition */,
+				AA6CA29F25F3CFD6007F088C /* WidgetConfiguration.swift */,
+				AA05BCDA25ED77BB00009711 /* WidgetView.swift */,
+				AA6CA28F25F3CF58007F088C /* DataProvider.swift */,
+				AA6CA29425F3CF9D007F088C /* WidgetModel.swift */,
 				AA05BCDD25ED77C000009711 /* Assets.xcassets */,
 				AA05BCDF25ED77C000009711 /* Info.plist */,
+				AACB90FA25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition */,
 			);
 			path = tarBUSWidget;
 			sourceTree = "<group>";
@@ -265,9 +319,9 @@
 			isa = PBXGroup;
 			children = (
 				AA05BCEB25ED784500009711 /* tarBUSWidgetExtension.entitlements */,
-				AAE9B12D25AE800300D90F32 /* App */,
 				AAE9B11925AE7FA200D90F32 /* tarBUS */,
 				AA05BCD925ED77BB00009711 /* tarBUSWidget */,
+				AA053AC225F3B74C00E1E2AE /* tarBusIntentExtension */,
 				AA05BCD425ED77BB00009711 /* Frameworks */,
 				AAE9B11825AE7FA200D90F32 /* Products */,
 			);
@@ -278,6 +332,7 @@
 			children = (
 				AAE9B11725AE7FA200D90F32 /* tarBUS.app */,
 				AA05BCD325ED77BB00009711 /* tarBUSWidgetExtension.appex */,
+				AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,6 +340,7 @@
 		AAE9B11925AE7FA200D90F32 /* tarBUS */ = {
 			isa = PBXGroup;
 			children = (
+				AAE9B12D25AE800300D90F32 /* App */,
 				AAC6929D25D1D16000477314 /* Database */,
 				AAC6929C25D1D0FA00477314 /* Extensions */,
 				AAE9B12C25AE7FFD00D90F32 /* Models */,
@@ -343,6 +399,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AA053ABE25F3B74C00E1E2AE /* tarBusIntentExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA053AC925F3B74C00E1E2AE /* Build configuration list for PBXNativeTarget "tarBusIntentExtension" */;
+			buildPhases = (
+				AA053ABB25F3B74C00E1E2AE /* Sources */,
+				AA053ABC25F3B74C00E1E2AE /* Frameworks */,
+				AA053ABD25F3B74C00E1E2AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tarBusIntentExtension;
+			packageProductDependencies = (
+				AACB910625F3BC7C00DB80D1 /* SQLite */,
+			);
+			productName = tarBusIntentExtension;
+			productReference = AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		AA05BCD225ED77BB00009711 /* tarBUSWidgetExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA05BCE825ED77C000009711 /* Build configuration list for PBXNativeTarget "tarBUSWidgetExtension" */;
@@ -376,6 +452,7 @@
 			);
 			dependencies = (
 				AA05BCE325ED77C000009711 /* PBXTargetDependency */,
+				AA053AC725F3B74C00E1E2AE /* PBXTargetDependency */,
 			);
 			name = tarBUS;
 			packageProductDependencies = (
@@ -394,6 +471,9 @@
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					AA053ABE25F3B74C00E1E2AE = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					AA05BCD225ED77BB00009711 = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -421,11 +501,19 @@
 			targets = (
 				AAE9B11625AE7FA100D90F32 /* tarBUS */,
 				AA05BCD225ED77BB00009711 /* tarBUSWidgetExtension */,
+				AA053ABE25F3B74C00E1E2AE /* tarBusIntentExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AA053ABD25F3B74C00E1E2AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA05BCD125ED77BB00009711 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -448,20 +536,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		AA053ABB25F3B74C00E1E2AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA053ADC25F3B78800E1E2AE /* Route.swift in Sources */,
+				AA053ADA25F3B78800E1E2AE /* LastUpdate.swift in Sources */,
+				AA053AD825F3B78800E1E2AE /* BusStop.swift in Sources */,
+				AACB910E25F3BD4100DB80D1 /* DatabaseHelper.swift in Sources */,
+				AA053ADB25F3B78800E1E2AE /* BusLine.swift in Sources */,
+				AA053AC425F3B74C00E1E2AE /* IntentHandler.swift in Sources */,
+				AACB90FC25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition in Sources */,
+				AA053AD625F3B78800E1E2AE /* BoardDeparture.swift in Sources */,
+				AA053AD925F3B78800E1E2AE /* NextDeparture.swift in Sources */,
+				AA053AD725F3B78800E1E2AE /* ListDeparture.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA05BCCF25ED77BB00009711 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA6CA29525F3CF9D007F088C /* WidgetModel.swift in Sources */,
 				AA05BD1125ED7FAA00009711 /* BusStop.swift in Sources */,
 				AA05BD0D25ED7FAA00009711 /* LastUpdate.swift in Sources */,
 				AA05BD0E25ED7FAA00009711 /* ListDeparture.swift in Sources */,
 				AA05BD0F25ED7FAA00009711 /* BusLine.swift in Sources */,
+				AACB90FB25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition in Sources */,
+				AA6CA2A025F3CFD6007F088C /* WidgetConfiguration.swift in Sources */,
 				AA05BCF425ED7AD800009711 /* DatabaseHelper.swift in Sources */,
+				AA6CA29025F3CF58007F088C /* DataProvider.swift in Sources */,
 				AA05BD1025ED7FAA00009711 /* BoardDeparture.swift in Sources */,
-				AA05BCDB25ED77BB00009711 /* tarBUSWidget.swift in Sources */,
+				AA05BCDB25ED77BB00009711 /* WidgetView.swift in Sources */,
 				AA05BCF725ED7B9700009711 /* date+extensions.swift in Sources */,
 				AA05BD0C25ED7FAA00009711 /* Route.swift in Sources */,
-				AA05BCE025ED77C000009711 /* tarBUSWidget.intentdefinition in Sources */,
 				AA05BD1225ED7FAA00009711 /* NextDeparture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,7 +578,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA05BCE125ED77C000009711 /* tarBUSWidget.intentdefinition in Sources */,
 				AA849FD725CED7EE00831982 /* SearchPickerView.swift in Sources */,
 				AA09E84425C1BD7800FA4A70 /* RouteListView.swift in Sources */,
 				AAE9B11D25AE7FA200D90F32 /* StartView.swift in Sources */,
@@ -509,6 +616,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		AA053AC725F3B74C00E1E2AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA053ABE25F3B74C00E1E2AE /* tarBusIntentExtension */;
+			targetProxy = AA053AC625F3B74C00E1E2AE /* PBXContainerItemProxy */;
+		};
 		AA05BCE325ED77C000009711 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AA05BCD225ED77BB00009711 /* tarBUSWidgetExtension */;
@@ -517,6 +629,50 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		AA053ACA25F3B74C00E1E2AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = tarBusIntentExtension/tarBusIntentExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9RS6NWG958;
+				INFOPLIST_FILE = tarBusIntentExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp.tarBusIntentExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA053ACB25F3B74C00E1E2AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = tarBusIntentExtension/tarBusIntentExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9RS6NWG958;
+				INFOPLIST_FILE = tarBusIntentExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 2.1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp.tarBusIntentExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		AA05BCE625ED77C000009711 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -736,6 +892,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AA053AC925F3B74C00E1E2AE /* Build configuration list for PBXNativeTarget "tarBusIntentExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA053ACA25F3B74C00E1E2AE /* Debug */,
+				AA053ACB25F3B74C00E1E2AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AA05BCE825ED77C000009711 /* Build configuration list for PBXNativeTarget "tarBUSWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -783,6 +948,11 @@
 			productName = SQLite;
 		};
 		AA75085F25BC5E5F0045FFD5 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA75085E25BC5E5F0045FFD5 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+		AACB910625F3BC7C00DB80D1 /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA75085E25BC5E5F0045FFD5 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
 			productName = SQLite;
