@@ -9,18 +9,24 @@ import WidgetKit
 import SwiftUI
 
 struct WidgetView: View {
+    @Environment(\.widgetFamily) var family
     var data: DataProvider.Entry
     let textGradient = LinearGradient(gradient: Gradient(colors: [.clear, .clear, .clear, Color("GradientColor")]), startPoint: .top, endPoint: .bottom)
     let badgeGradient = LinearGradient(gradient: Gradient(colors: [Color("MainColor"), Color("MainColorGradient")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+    var url: URL? {
+        guard let busStopId = data.busStopId else { return nil }
+        return URL(string: "tarbus://widget.com?busStopId=\(busStopId)")
+    }
     
     var body: some View {
-        if data.busStopId != nil {
-            VStack(alignment: .leading) {
+        GeometryReader { geo in
+            VStack(alignment: .center) {
                 Text(data.busStopName)
                     .font(Font.footnote.bold())
+                    .multilineTextAlignment(.center)
                     .lineLimit(2)
                     .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, minHeight: geo.size.height / 4)
                     .padding([.horizontal, .top], 10)
                     .padding(.bottom, 5)
                     .background(badgeGradient)
@@ -34,10 +40,15 @@ struct WidgetView: View {
                                 .font(.headline)
                                 .foregroundColor(Color("MainColor"))
                             
+                            if family == .systemMedium {
+                                Text(departure.boardName)
+                                    .padding(.leading, 5)
+                            }
+                            
                             Spacer()
                             
                             Text(departure.timeString)
-                                .font(.subheadline)
+                                .font(.headline)
                             
                             if departure.isTomorrow {
                                 Image(systemName: "calendar.badge.clock")
@@ -48,25 +59,24 @@ struct WidgetView: View {
                         }
                         .lineLimit(1)
                         .padding(.horizontal, 10)
-                        
-                        Divider()
+                    }
+                    
+                    if data.busStopId == nil {
+                        VStack {
+                            Text("🚏")
+                            
+                            Text("Wybierz\nprzystanek")
+                                .font(.subheadline)
+                                .multilineTextAlignment(.center)
+                        }
+                        .padding(.top)
                     }
                     
                     Spacer()
                 }
                 .overlay(textGradient)
             }
-        } else {
-            VStack {
-                Image("icon")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50)
-                    .clipShape(ContainerRelativeShape())
-                
-                Text("Wybierz przystanek")
-                    .multilineTextAlignment(.center)
-            }
+            .widgetURL(url)
         }
     }
 }

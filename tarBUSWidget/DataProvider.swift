@@ -17,11 +17,15 @@ struct DataProvider: IntentTimelineProvider {
     }
     
     func getSnapshot(for configuration: SelectBusStopIntent, in context: Context, completion: @escaping (WidgetModel) -> Void) {
-        let departures = getDepartures(nil)
-        
-        let entryData = WidgetModel(date: Date(), busStopName: configuration.busStop?.name ?? "", busStopId: configuration.busStop?.number as? Int, departures: departures)
-        
-        completion(entryData)
+        if context.isPreview {
+            completion(.snapshotPlaceholder)
+        } else {
+            let departures = getDepartures(configuration.busStop?.number as? Int)
+            
+            let entryData = WidgetModel(date: Date(), busStopName: configuration.busStop?.name ?? "", busStopId: configuration.busStop?.number as? Int, departures: departures)
+            
+            completion(entryData)
+        }
     }
     
     func getTimeline(for configuration: SelectBusStopIntent, in context: Context, completion: @escaping (Timeline<WidgetModel>) -> Void) {

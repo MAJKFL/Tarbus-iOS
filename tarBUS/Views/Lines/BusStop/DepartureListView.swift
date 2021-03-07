@@ -39,6 +39,7 @@ struct DepartureListView: View {
                             Text(departures[index].timeString)
                                 .font(.headline)
                         }
+                        .frame(maxHeight: 50)
                         .padding(.horizontal)
                         .id(departures[index].id)
                     }

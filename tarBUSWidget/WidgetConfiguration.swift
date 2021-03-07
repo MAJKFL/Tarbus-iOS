@@ -14,7 +14,7 @@ struct Config: Widget {
         IntentConfiguration(kind: "TarBUSWidget", intent: SelectBusStopIntent.self, provider: DataProvider()) {
             WidgetView(data: $0)
         }
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .systemMedium])
         .description(Text("Wyświetla następne odjazdy dla wybranego przystanku"))
         .configurationDisplayName(Text("Następne odjazdy"))
     }

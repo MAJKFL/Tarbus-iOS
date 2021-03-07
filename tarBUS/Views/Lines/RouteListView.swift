@@ -117,6 +117,7 @@ fileprivate struct BusStopListView: View {
                         
                         Spacer()
                     }
+                    .frame(maxHeight: 50)
                     .font(.headline)
                     .padding(.horizontal)
                 }
@@ -131,6 +132,6 @@ extension Image {
         self
             .resizable()
             .scaledToFit()
-            .frame(width: 15)
+            .frame(minWidth: 15)
     }
 }

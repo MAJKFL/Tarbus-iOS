@@ -40,6 +40,7 @@
 		AA3B97DD25D47C670027D2DD /* FavouriteBusStopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3B97DC25D47C670027D2DD /* FavouriteBusStopsView.swift */; };
 		AA3C459825C5C4A100148F1E /* date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C459725C5C4A100148F1E /* date+extensions.swift */; };
 		AA3C459B25C5D2B500148F1E /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C459A25C5D2B500148F1E /* PlanView.swift */; };
+		AA42E81425F4DB5800E79DA9 /* Url+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42E81325F4DB5800E79DA9 /* Url+Extensions.swift */; };
 		AA63EC0F25C85783000360E0 /* NextDeparturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA63EC0E25C85783000360E0 /* NextDeparturesView.swift */; };
 		AA691F5F25D0814D006CE292 /* DepartureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA691F5E25D0814D006CE292 /* DepartureListView.swift */; };
 		AA6CA29025F3CF58007F088C /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CA28F25F3CF58007F088C /* DataProvider.swift */; };
@@ -130,6 +131,7 @@
 		AA3B97DC25D47C670027D2DD /* FavouriteBusStopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteBusStopsView.swift; sourceTree = "<group>"; };
 		AA3C459725C5C4A100148F1E /* date+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "date+extensions.swift"; sourceTree = "<group>"; };
 		AA3C459A25C5D2B500148F1E /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
+		AA42E81325F4DB5800E79DA9 /* Url+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Url+Extensions.swift"; sourceTree = "<group>"; };
 		AA63EC0E25C85783000360E0 /* NextDeparturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextDeparturesView.swift; sourceTree = "<group>"; };
 		AA691F5E25D0814D006CE292 /* DepartureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureListView.swift; sourceTree = "<group>"; };
 		AA6CA28F25F3CF58007F088C /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			children = (
 				AA3C459725C5C4A100148F1E /* date+extensions.swift */,
 				AAC6929F25D1D23000477314 /* Array+extensions.swift */,
+				AA42E81325F4DB5800E79DA9 /* Url+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				AA6D11D925D1C060005F6F87 /* NextDeparture.swift in Sources */,
 				AA63EC0F25C85783000360E0 /* NextDeparturesView.swift in Sources */,
 				AA3B97D625D46DA80027D2DD /* FavouriteBusLinesListView.swift in Sources */,
+				AA42E81425F4DB5800E79DA9 /* Url+Extensions.swift in Sources */,
 				AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */,
 				AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */,
 				AAA279CF25D2F5DC00E1FB45 /* PrivacyPolicyView.swift in Sources */,

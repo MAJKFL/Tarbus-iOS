@@ -482,6 +482,10 @@ class DataBaseHelper: ObservableObject {
         return busStops
     }
     
+    func getBusStopBy(id: Int) -> BusStop? {
+        getAllBusStops().first(where: { $0.id == id })
+    }
+    
     func saveLastUpdateToUserDefaults() {
         let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-1/last-update.json")!
         let request = URLRequest(url: url)
