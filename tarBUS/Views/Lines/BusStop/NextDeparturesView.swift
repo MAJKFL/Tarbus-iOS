@@ -31,7 +31,7 @@ struct NextDeparturesView: View {
                 FilterView(filteredBusLines: $filteredBusLines, allDepartures: departures + departuresForNextDay)
                 
                 ForEach(filteredDepartures) { departure in
-                    NavigationLink(destination: DepartureListView(mainDeparture: departure), label: {
+                    NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
                         NextDepartureCellView(departure: departure, isTomorrow: false)
                     })
                     .buttonStyle(PlainButtonStyle())
@@ -41,7 +41,7 @@ struct NextDeparturesView: View {
                 Divider()
                 
                 ForEach(filteredDeparturesForNextDay) { departure in
-                    NavigationLink(destination: DepartureListView(mainDeparture: departure), label: {
+                    NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
                         NextDepartureCellView(departure: departure, isTomorrow: true)
                     })
                     .buttonStyle(PlainButtonStyle())

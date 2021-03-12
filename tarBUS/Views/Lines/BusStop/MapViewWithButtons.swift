@@ -11,8 +11,7 @@ import MapKit
 struct MapViewWithButtons: View {
     let connections: [BusStopConnection]
     let busStops: [BusStop]
-    
-    @State private var selectedBusStop: BusStop?
+    let busStop: BusStop
     
     var coordinates: [CLLocationCoordinate2D] {
         var coordinates = [CLLocationCoordinate2D]()
@@ -30,12 +29,9 @@ struct MapViewWithButtons: View {
     
     var body: some View {
         ZStack {
-            MapView(coordinates: coordinates, annotations: annotations, selectedBusStop: $selectedBusStop)
+            MapView(coordinates: coordinates, annotations: annotations, busStopCoordinate: busStop.location)
         }
         .ignoresSafeArea(.all)
-        .sheet(item: $selectedBusStop) { busStop in
-            Text(busStop.name)
-        }
     }
 }
 

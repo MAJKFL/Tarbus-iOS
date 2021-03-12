@@ -12,11 +12,10 @@ import SwiftUI
 struct MapView: UIViewRepresentable {
     var coordinates: [CLLocationCoordinate2D]
     var annotations: [BusStopPointAnnotation]
-    
-    @Binding var selectedBusStop: BusStop?
+    var busStopCoordinate: CLLocationCoordinate2D
     
     func makeUIView(context: Context) -> MKMapView {
-        let camera = MKMapCamera(lookingAtCenter: CLLocationCoordinate2D(latitude: 50.012461, longitude: 20.988400), fromDistance: 50000, pitch: 0, heading: 0)
+        let camera = MKMapCamera(lookingAtCenter: busStopCoordinate, fromDistance: 10000, pitch: 0, heading: 0)
         
         let mapView = MKMapView()
         let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
@@ -47,6 +46,8 @@ struct MapView: UIViewRepresentable {
 
             // attempt to find a cell we can recycle
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            
+            let busStopAnnotation = annotation as? BusStopPointAnnotation
 
             if annotationView == nil {
                 // we didn't find one; make a new one
@@ -55,11 +56,17 @@ struct MapView: UIViewRepresentable {
                 // allow this to show pop up information
                 annotationView?.canShowCallout = true
                 
-                annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-                
                 annotationView?.centerOffset = CGPoint(x: 0, y: 0)
                 
                 annotationView?.image = UIImage(named: "mapPoint")
+                
+                if let busStopAnnotation = busStopAnnotation {
+                    let controller = StackViewGridController()
+                    
+                    controller.busStop = busStopAnnotation.busStop
+                    
+                    annotationView?.detailCalloutAccessoryView = controller.view
+                }
             } else {
                 // we have a view to reuse, so give it the new annotation
                 annotationView?.annotation = annotation
@@ -79,12 +86,6 @@ struct MapView: UIViewRepresentable {
             }
 
             return MKOverlayRenderer()
-        }
-        
-        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-            guard let busStopAnnotation = view.annotation as? BusStopPointAnnotation else { return }
-            
-            parent.selectedBusStop = busStopAnnotation.busStop
         }
     }
 }

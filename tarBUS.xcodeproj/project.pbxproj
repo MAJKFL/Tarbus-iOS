@@ -34,6 +34,7 @@
 		AA05BD1225ED7FAA00009711 /* NextDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D11D825D1C060005F6F87 /* NextDeparture.swift */; };
 		AA09E84425C1BD7800FA4A70 /* RouteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA09E84325C1BD7800FA4A70 /* RouteListView.swift */; };
 		AA1151A125C4A75D00A2F299 /* BusStopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1151A025C4A75D00A2F299 /* BusStopView.swift */; };
+		AA13B73E25FC094A0090F823 /* StackViewGridController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA13B73D25FC094A0090F823 /* StackViewGridController.swift */; };
 		AA3B97D125D46AAD0027D2DD /* FavouriteBusLinesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3B97D025D46AAD0027D2DD /* FavouriteBusLinesViewModel.swift */; };
 		AA3B97D625D46DA80027D2DD /* FavouriteBusLinesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3B97D525D46DA80027D2DD /* FavouriteBusLinesListView.swift */; };
 		AA3B97DA25D478270027D2DD /* FavouriteBusStopsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3B97D925D478270027D2DD /* FavouriteBusStopsViewModel.swift */; };
@@ -130,6 +131,7 @@
 		AA05BCEB25ED784500009711 /* tarBUSWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tarBUSWidgetExtension.entitlements; sourceTree = "<group>"; };
 		AA09E84325C1BD7800FA4A70 /* RouteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListView.swift; sourceTree = "<group>"; };
 		AA1151A025C4A75D00A2F299 /* BusStopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopView.swift; sourceTree = "<group>"; };
+		AA13B73D25FC094A0090F823 /* StackViewGridController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewGridController.swift; sourceTree = "<group>"; };
 		AA3B97D025D46AAD0027D2DD /* FavouriteBusLinesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteBusLinesViewModel.swift; sourceTree = "<group>"; };
 		AA3B97D525D46DA80027D2DD /* FavouriteBusLinesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteBusLinesListView.swift; sourceTree = "<group>"; };
 		AA3B97D925D478270027D2DD /* FavouriteBusStopsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteBusStopsViewModel.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				AAB4673B25B3354B00B46614 /* MailView.swift */,
 				AA849FDB25CEE33600831982 /* SearchBarView.swift */,
 				AAA32C2E25D5B37500DC9ABB /* UIKitTabBar.swift */,
+				AA13B73D25FC094A0090F823 /* StackViewGridController.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				AA713EE225FA7BBF00D47C80 /* BusStopConnection.swift in Sources */,
 				AA6D11DD25D1C28D005F6F87 /* BoardDeparture.swift in Sources */,
 				AAC692A025D1D23000477314 /* Array+extensions.swift in Sources */,
+				AA13B73E25FC094A0090F823 /* StackViewGridController.swift in Sources */,
 				AA3B97DD25D47C670027D2DD /* FavouriteBusStopsView.swift in Sources */,
 				AAC82EC625AEF07700236F31 /* LastUpdate.swift in Sources */,
 				AAC692AC25D1D84100477314 /* SearchBusLinesView.swift in Sources */,
