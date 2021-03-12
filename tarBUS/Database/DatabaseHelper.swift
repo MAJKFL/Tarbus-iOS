@@ -15,11 +15,11 @@ enum InternetConnectivityError: Error {
 
 class DataBaseHelper: ObservableObject {
     static let tableNames = ["BusStop", "Departure", "BusLine", "Calendar", "Destinations", "Track", "AlertHistory", "RouteConnections", "LastUpdated", "BusStopConnection", "LastUpdated", "Route"]
-    static let databaseFileName = "tarbus2-1-1.db"
+    static let databaseFileName = "tarbus2-1-3.db"
     static let groupName = "group.florekjakub.tarBUSapp"
     
     func fetchData() {
-        let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-1/database.json")!
+        let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-3/database.json")!
         let request = URLRequest(url: url)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -58,8 +58,12 @@ class DataBaseHelper: ObservableObject {
                                 }
                                 sqlStatement.removeLast()
                                 sqlStatement += ";"
-                                let statement = try! db.prepare(sqlStatement)
-                                let _ = try? statement.run()
+                                do {
+                                    let statement = try db.prepare(sqlStatement)
+                                    let _ = try statement.run()
+                                } catch {
+                                    print(error.localizedDescription)
+                                }
                                 WidgetCenter.shared.reloadAllTimelines()
                             }
                         }
@@ -426,8 +430,14 @@ class DataBaseHelper: ObservableObject {
                 """) {
                 let id = Optional(row[0]) as! Int64
                 let timeString = Optional(row[6]) as! String
-                let busStopName = Optional(row[10]) as! String
-                let newDeparture = ListDeparture(id: Int(id), timeString: timeString, busStopName: busStopName)
+                
+                let busStopid = Optional(row[8]) as! Int64
+                let searchName = Optional(row[9]) as! String
+                let name = Optional(row[10]) as! String
+                let longitude = Optional(row[11]) as! Double
+                let latitutde = Optional(row[12]) as! Double
+                let destinations = Optional(row[13]) as! String
+                let newDeparture = ListDeparture(id: Int(id), timeString: timeString, busStop: BusStop(id: Int(busStopid), name: name, searchName: searchName, longitude: longitude, latitude: latitutde, destination: destinations))
                 departures.append(newDeparture)
             }
         } catch {
@@ -480,6 +490,30 @@ class DataBaseHelper: ObservableObject {
         }
         
         return busStops
+    }
+    
+    func getBusStopConnections(fromId: Int, toId: Int) -> [BusStopConnection] {
+        var busStopConnections = [BusStopConnection]()
+        
+        let fileManager = FileManager.default
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
+        let db = try! Connection(url.absoluteString)
+        
+        do {
+            for row in try db.prepare("SELECT * FROM BusStopConnection WHERE bsc_from_bus_stop_id = \(fromId) AND bsc_to_bus_stop_id = \(toId)") {
+                let fromBusStopId = Optional(row[0]) as! Int64
+                let toBusStopId = Optional(row[1]) as! Int64
+                let distance = Optional(row[2]) as! String
+                let coordsList = Optional(row[3]) as! String
+                let newBusStopConnection = BusStopConnection(fromBusStopId: Int(fromBusStopId), toBusStopId: Int(toBusStopId), distance: distance, coordsList: coordsList)
+                busStopConnections.append(newBusStopConnection)
+            }
+        } catch {
+            print(error)
+        }
+        
+        return busStopConnections
     }
     
     func getBusStopBy(id: Int) -> BusStop? {

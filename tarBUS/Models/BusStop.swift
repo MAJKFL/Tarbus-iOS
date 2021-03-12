@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MapKit
 
 struct BusStop: Identifiable, Codable {
     let id: Int
@@ -16,4 +17,17 @@ struct BusStop: Identifiable, Codable {
     let destination: String
     
     var userName: String?
+    
+    var annotation: BusStopPointAnnotation {
+        let newAnnotation = BusStopPointAnnotation()
+        newAnnotation.title = name
+        newAnnotation.coordinate.latitude = latitude
+        newAnnotation.coordinate.longitude = longitude
+        newAnnotation.busStop = self
+        return newAnnotation
+    }
+}
+
+class BusStopPointAnnotation: MKPointAnnotation {
+    var busStop: BusStop?
 }

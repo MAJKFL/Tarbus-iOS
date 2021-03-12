@@ -10,5 +10,6 @@ import Foundation
 struct ListDeparture: Identifiable {
     let id: Int
     let timeString: String
-    let busStopName: String
+    
+    let busStop: BusStop
 }

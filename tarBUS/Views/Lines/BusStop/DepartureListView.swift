@@ -12,6 +12,20 @@ struct DepartureListView: View {
     @State private var departures = [ListDeparture]()
     let mainDeparture: NextDeparture
     
+    var connections: [BusStopConnection] {
+        var connections = [BusStopConnection]()
+        for index in departures.indices {
+            if index + 1 != departures.count {
+                connections += databaseHelper.getBusStopConnections(fromId: departures[index].busStop.id, toId: departures[index + 1].busStop.id)
+            }
+        }
+        return connections
+    }
+    
+    var busStops: [BusStop] {
+        departures.map { $0.busStop }
+    }
+    
     var body: some View {
         ScrollView {
             ScrollViewReader { reader in
@@ -30,7 +44,7 @@ struct DepartureListView: View {
                                     .busStopLabel()
                             }
                             
-                            Text(departures[index].busStopName)
+                            Text(departures[index].busStop.name)
                                 .font(departures[index].id == mainDeparture.id ? .headline : .subheadline)
                                 .lineLimit(2)
                             
@@ -56,6 +70,7 @@ struct DepartureListView: View {
             }
             .navigationTitle("Trasa \(mainDeparture.busLine.name)")
             .navigationBarTitleDisplayMode(.large)
+            .navigationBarItems(trailing: NavigationLink(destination: MapViewWithButtons(connections: connections, busStops: busStops), label: { Image(systemName: "map") }))
         }
     }
 }
