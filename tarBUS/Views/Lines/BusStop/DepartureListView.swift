@@ -71,7 +71,7 @@ struct DepartureListView: View {
             }
             .navigationTitle("Trasa \(mainDeparture.busLine.name)")
             .navigationBarTitleDisplayMode(.large)
-            .navigationBarItems(trailing: NavigationLink(destination: MapViewWithButtons(connections: connections, busStops: busStops, busStop: busStop), label: { Image(systemName: "map") }))
+            .navigationBarItems(trailing: NavigationLink(destination: TrackMapView(connections: connections, busStops: busStops, busStop: busStop), label: { Image(systemName: "map") }))
         }
     }
 }

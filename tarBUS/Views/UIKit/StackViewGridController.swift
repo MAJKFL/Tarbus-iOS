@@ -19,7 +19,7 @@ class StackViewGridController: UIViewController {
     var rows: Int {
         let length = Double(departures.count)
         
-        let divided = length / 4
+        let divided = length / 3
         
         let number = Int(divided.rounded(.up))
         
@@ -28,7 +28,7 @@ class StackViewGridController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        stackedGrid(rows: rows, columns: 4, departures: departures, rootView: view)
+        stackedGrid(rows: rows, columns: 3, departures: departures, rootView: view)
     }
 
     func stackedGrid(rows: Int, columns: Int, departures: [NextDeparture], rootView: UIView){

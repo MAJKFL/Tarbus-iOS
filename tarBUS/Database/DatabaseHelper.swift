@@ -15,7 +15,7 @@ enum InternetConnectivityError: Error {
 
 class DataBaseHelper: ObservableObject {
     static let tableNames = ["BusStop", "Departure", "BusLine", "Calendar", "Destinations", "Track", "AlertHistory", "RouteConnections", "LastUpdated", "BusStopConnection", "LastUpdated", "Route"]
-    static let databaseFileName = "tarbus2-1-3.db"
+    static let databaseFileName = "tarbus.db"
     static let groupName = "group.florekjakub.tarBUSapp"
     
     func fetchData() {
@@ -106,8 +106,11 @@ class DataBaseHelper: ObservableObject {
             let fileURLs = try? FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
             
             for fileURL in fileURLs ?? [] {
-                if fileURL.pathExtension == "db" {
-                    try? FileManager.default.removeItem(at: fileURL)
+                let stringPath = Bundle.main.path(forResource: "tarbus", ofType: "db")!
+                if fileManager.contentsEqual(atPath: fileURL.absoluteString, andPath: stringPath) {
+                    return
+                } else {
+                    try? fileManager.removeItem(atPath: fileURL.absoluteString)
                 }
             }
             

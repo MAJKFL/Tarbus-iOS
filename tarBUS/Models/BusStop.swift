@@ -31,6 +31,10 @@ struct BusStop: Identifiable, Codable {
     var location: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
+    
+    static var placeholder: BusStop {
+        BusStop(id: 0, name: "", searchName: "", longitude: 0, latitude: 0, destination: "")
+    }
 }
 
 class BusStopPointAnnotation: MKPointAnnotation {

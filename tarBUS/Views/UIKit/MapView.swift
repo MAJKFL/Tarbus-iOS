@@ -10,23 +10,44 @@ import MapKit
 import SwiftUI
 
 struct MapView: UIViewRepresentable {
-    var coordinates: [CLLocationCoordinate2D]
+    var coordinates: [CLLocationCoordinate2D]?
     var annotations: [BusStopPointAnnotation]
-    var busStopCoordinate: CLLocationCoordinate2D
+    var busStopCoordinate: CLLocationCoordinate2D?
+    
+    var mapType: MKMapType
+    
+    @Binding var selectedBusStop: BusStop?
+    @Binding var isActive: Bool
     
     func makeUIView(context: Context) -> MKMapView {
-        let camera = MKMapCamera(lookingAtCenter: busStopCoordinate, fromDistance: 10000, pitch: 0, heading: 0)
-        
         let mapView = MKMapView()
-        let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
-        mapView.addOverlay(polyline)
+        
+        var camera: MKMapCamera
+        if let busStopCoordinate = busStopCoordinate {
+            camera = MKMapCamera(lookingAtCenter: busStopCoordinate, fromDistance: 10000, pitch: 0, heading: 0)
+        } else {
+            camera = MKMapCamera(lookingAtCenter: CLLocationCoordinate2D(latitude: 50.012416, longitude: 20.988384), fromDistance: 50000, pitch: 0, heading: 0)
+        }
+        
+        if let coordinates = coordinates {
+            let polyline = MKPolyline(coordinates: coordinates, count: coordinates.count)
+            mapView.addOverlay(polyline)
+        }
+        
         mapView.setCamera(camera, animated: true)
         mapView.addAnnotations(annotations)
+        mapView.mapType = mapType
+        mapView.showsCompass = false
         mapView.delegate = context.coordinator
         return mapView
     }
 
     func updateUIView(_ view: MKMapView, context: Context) {
+        view.mapType = mapType
+        if annotations.count != view.annotations.count {
+            view.removeAnnotations(view.annotations)
+            view.addAnnotations(annotations)
+        }
     }
 
     func makeCoordinator() -> Coordinator {
@@ -50,15 +71,11 @@ struct MapView: UIViewRepresentable {
             let busStopAnnotation = annotation as? BusStopPointAnnotation
 
             if annotationView == nil {
-                // we didn't find one; make a new one
-                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
 
-                // allow this to show pop up information
                 annotationView?.canShowCallout = true
                 
-                annotationView?.centerOffset = CGPoint(x: 0, y: 0)
-                
-                annotationView?.image = UIImage(named: "mapPoint")
+                annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
                 
                 if let busStopAnnotation = busStopAnnotation {
                     let controller = StackViewGridController()
@@ -67,12 +84,15 @@ struct MapView: UIViewRepresentable {
                     
                     annotationView?.detailCalloutAccessoryView = controller.view
                 }
+                
+                annotationView?.centerOffset = CGPoint(x: 0, y: 0)
+                
+                annotationView?.image = UIImage(named: "mapPoint")
             } else {
-                // we have a view to reuse, so give it the new annotation
                 annotationView?.annotation = annotation
             }
             
-            // whether it's a new view or a recycled one, send it back
+            
             return annotationView
         }
         
@@ -86,6 +106,13 @@ struct MapView: UIViewRepresentable {
             }
 
             return MKOverlayRenderer()
+        }
+        
+        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+            guard let annotation = view.annotation as? BusStopPointAnnotation else { return }
+            
+            parent.selectedBusStop = annotation.busStop
+            parent.isActive = true
         }
     }
 }
