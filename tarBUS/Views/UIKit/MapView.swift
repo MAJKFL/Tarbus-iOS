@@ -8,6 +8,7 @@
 
 import MapKit
 import SwiftUI
+import CoreLocation
 
 struct MapView: UIViewRepresentable {
     var coordinates: [CLLocationCoordinate2D]?
@@ -18,6 +19,9 @@ struct MapView: UIViewRepresentable {
     
     @Binding var selectedBusStop: BusStop?
     @Binding var isActive: Bool
+    var isTrackingUser: Bool
+    
+    let locationManager = CLLocationManager()
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
@@ -34,19 +38,38 @@ struct MapView: UIViewRepresentable {
             mapView.addOverlay(polyline)
         }
         
+        mapView.showsUserLocation = true
         mapView.setCamera(camera, animated: true)
         mapView.addAnnotations(annotations)
         mapView.mapType = mapType
         mapView.showsCompass = false
+        
+        if locationManager.authorizationStatus == .authorizedAlways || locationManager.authorizationStatus == .authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+            locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+        }
+        
         mapView.delegate = context.coordinator
         return mapView
     }
 
     func updateUIView(_ view: MKMapView, context: Context) {
         view.mapType = mapType
+        
+        if isTrackingUser {
+            view.userTrackingMode = .follow
+        } else {
+            view.userTrackingMode = .none
+        }
+        
         if annotations.count != view.annotations.count {
             view.removeAnnotations(view.annotations)
             view.addAnnotations(annotations)
+        }
+        
+        if locationManager.authorizationStatus == .authorizedAlways || locationManager.authorizationStatus == .authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+            locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         }
     }
 
@@ -62,36 +85,31 @@ struct MapView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-            // this is our unique identifier for view reuse
-            let identifier = "Placemark"
-
-            // attempt to find a cell we can recycle
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            guard let busStopAnnotation = annotation as? BusStopPointAnnotation else { return nil }
             
-            let busStopAnnotation = annotation as? BusStopPointAnnotation
+            let identifier = "Placemark-\(busStopAnnotation.busStop?.id ?? 0)"
+
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
 
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-
+                
                 annotationView?.canShowCallout = true
                 
                 annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
                 
-                if let busStopAnnotation = busStopAnnotation {
-                    let controller = StackViewGridController()
-                    
-                    controller.busStop = busStopAnnotation.busStop
-                    
-                    annotationView?.detailCalloutAccessoryView = controller.view
-                }
-                
                 annotationView?.centerOffset = CGPoint(x: 0, y: 0)
                 
                 annotationView?.image = UIImage(named: "mapPoint")
+                
+                let controller = StackViewGridController()
+                
+                controller.busStop = busStopAnnotation.busStop
+                
+                annotationView?.detailCalloutAccessoryView = controller.view
             } else {
                 annotationView?.annotation = annotation
             }
-            
             
             return annotationView
         }

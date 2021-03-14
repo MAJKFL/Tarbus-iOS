@@ -10,6 +10,7 @@ import SwiftUI
 struct DepartureListView: View {
     @StateObject var databaseHelper = DataBaseHelper()
     @State private var departures = [ListDeparture]()
+    @State private var isActive = false
     let mainDeparture: NextDeparture
     let busStop: BusStop
     
@@ -58,6 +59,8 @@ struct DepartureListView: View {
                         .padding(.horizontal)
                         .id(departures[index].id)
                     }
+                    
+                    NavigationLink("", destination: TrackMapView(connections: connections, busStops: busStops, busStop: busStop), isActive: $isActive).hidden()
                 }
                 .onAppear {
                     departures = databaseHelper.getDeparturesFromTrack(trackId: mainDeparture.trackId)
@@ -71,7 +74,11 @@ struct DepartureListView: View {
             }
             .navigationTitle("Trasa \(mainDeparture.busLine.name)")
             .navigationBarTitleDisplayMode(.large)
-            .navigationBarItems(trailing: NavigationLink(destination: TrackMapView(connections: connections, busStops: busStops, busStop: busStop), label: { Image(systemName: "map") }))
+            .navigationBarItems(trailing: Button(action: {
+                isActive.toggle()
+            }, label: {
+                Image(systemName: "map")
+            }))
         }
     }
 }

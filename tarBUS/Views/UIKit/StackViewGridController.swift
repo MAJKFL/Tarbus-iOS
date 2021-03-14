@@ -74,7 +74,7 @@ class StackViewGridController: UIViewController {
                     iconAndText.addArrangedSubview(secondSpacer)
                     
                     let hour = UILabel()
-                    hour.text = departures[row * columns + col].timeString
+                    hour.text = "\(departures[row * columns + col].timeString)\(departures[row * columns + col].isTomorrow ? "*" : "")"
                     
                     let textAndLabel = UIStackView()
                     textAndLabel.axis = .vertical
@@ -114,7 +114,11 @@ class StackViewGridController: UIViewController {
 
         let departuresForNextDay = databaseHelper.getNextDepartures(busStopId: busStop.id, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date.addingTimeInterval(86400))), startFromTime: 0)
         
-        let allDepartures = todayDepartures + departuresForNextDay
+        let departuresForTomorrow = departuresForNextDay.map { departure in
+            departure.forTomorrow
+        }
+        
+        let allDepartures = todayDepartures + departuresForTomorrow
         
         let busLines = allDepartures.map { departure in
             departure.busLine.id

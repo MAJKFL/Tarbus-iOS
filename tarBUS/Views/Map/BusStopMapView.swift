@@ -7,15 +7,19 @@
 
 import SwiftUI
 import MapKit
+import CoreLocation
 
 struct BusStopMapView: View {
     @ObservedObject var databaseHelper = DataBaseHelper()
     @State private var selectedBusStop: BusStop?
     @State private var isActive = false
+    @State private var isTrackingUser = false
     
     @State private var mapType = MKMapType.standard
     
     @State private var busStops = [BusStop]()
+    
+    let locationManager = CLLocationManager()
     
     var annotations: [BusStopPointAnnotation] {
         busStops.map({ $0.annotation })
@@ -26,16 +30,63 @@ struct BusStopMapView: View {
             ZStack {
                 NavigationLink("", destination: BusStopView(busStop: selectedBusStop ?? .placeholder, filteredBusLines: []), isActive: $isActive).hidden()
                 
-                MapView(annotations: databaseHelper.getAllBusStops().map({ $0.annotation }), mapType: mapType, selectedBusStop: $selectedBusStop, isActive: $isActive)
+                MapView(annotations: annotations, mapType: mapType, selectedBusStop: $selectedBusStop, isActive: $isActive, isTrackingUser: isTrackingUser)
+                    .ignoresSafeArea(.all)
+                
+                HStack {
+                    Spacer()
+                    
+                    VStack(alignment: .trailing, spacing: 0) {
+                        Spacer()
+                        
+                        Button(action: {
+                            if mapType == .hybrid {
+                                mapType = .standard
+                            } else {
+                                mapType = .hybrid
+                            }
+                        }, label: {
+                            Image(systemName: "map")
+                            .padding(10)
+                            .background(VisualEffectView(effect: UIBlurEffect(style: .regular)))
+                            .clipShape(Circle())
+                        })
+                        .padding([.horizontal, .bottom])
+                        
+                        if locationManager.authorizationStatus == .authorizedAlways || locationManager.authorizationStatus == .authorizedWhenInUse {
+                            Button(action: {
+                                isTrackingUser.toggle()
+                            }, label: {
+                                Image(systemName: isTrackingUser ? "location.fill" : "location")
+                                    .font(.title)
+                                    .padding()
+                                    .background(VisualEffectView(effect: UIBlurEffect(style: .regular)))
+                                    .clipShape(Circle())
+                            })
+                            .padding([.horizontal, .bottom])
+                        }
+                    }
+                    .padding(.bottom)
+                }
             }
-            .ignoresSafeArea(.all)
-            .navigationBarItems(trailing: Picker(selection: $mapType, label: Image(systemName: "map").padding(10).background(VisualEffectView(effect: UIBlurEffect(style: .regular)).clipShape(Circle())), content: {
-                Text("Mapa").tag(MKMapType.standard)
-                Text("Satelitarna").tag(MKMapType.hybrid)
-            }).pickerStyle(MenuPickerStyle()))
         }
+        .animation(.easeOut)
         .onAppear {
-            busStops = databaseHelper.getAllBusStops()
+            if locationManager.authorizationStatus == .notDetermined {
+                locationManager.requestWhenInUseAuthorization()
+            }
+            
+            let allBusStops = databaseHelper.getAllBusStops()
+            if busStops.isEmpty {
+                print("\(busStops.count) - \(allBusStops.count)")
+                busStops.removeAll()
+                
+                for index in allBusStops.indices {
+                    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + Double(index / 1000)) {
+                        busStops.append(allBusStops[index])
+                    }
+                }
+            }
         }
     }
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import CoreLocation
 
 struct TrackMapView: View {
     let connections: [BusStopConnection]
@@ -16,6 +17,9 @@ struct TrackMapView: View {
     @State private var selectedBusStop: BusStop?
     @State private var isActive = false
     @State private var mapType = MKMapType.standard
+    @State private var isTrackingUser = false
+    
+    let locationManager = CLLocationManager()
     
     var coordinates: [CLLocationCoordinate2D] {
         var coordinates = [CLLocationCoordinate2D]()
@@ -35,13 +39,51 @@ struct TrackMapView: View {
         ZStack {
             NavigationLink("", destination: BusStopView(busStop: selectedBusStop ?? .placeholder, filteredBusLines: []), isActive: $isActive).hidden()
             
-            MapView(coordinates: coordinates, annotations: annotations, busStopCoordinate: busStop.location, mapType: mapType, selectedBusStop: $selectedBusStop, isActive: $isActive)
+            MapView(coordinates: coordinates, annotations: annotations, busStopCoordinate: busStop.location, mapType: mapType, selectedBusStop: $selectedBusStop, isActive: $isActive, isTrackingUser: isTrackingUser)
+                .ignoresSafeArea(.all)
+            
+            HStack {
+                Spacer()
+                
+                VStack(alignment: .trailing, spacing: 0) {
+                    Spacer()
+                    
+                    Button(action: {
+                        if mapType == .hybrid {
+                            mapType = .standard
+                        } else {
+                            mapType = .hybrid
+                        }
+                    }, label: {
+                        Image(systemName: "map")
+                        .padding(10)
+                        .background(VisualEffectView(effect: UIBlurEffect(style: .regular)))
+                        .clipShape(Circle())
+                    })
+                    .padding([.horizontal, .bottom])
+                    
+                    if locationManager.authorizationStatus == .authorizedAlways || locationManager.authorizationStatus == .authorizedWhenInUse {
+                        Button(action: {
+                            isTrackingUser.toggle()
+                        }, label: {
+                            Image(systemName: isTrackingUser ? "location.fill" : "location")
+                                .font(.title)
+                                .padding()
+                                .background(VisualEffectView(effect: UIBlurEffect(style: .regular)))
+                                .clipShape(Circle())
+                        })
+                        .padding([.horizontal, .bottom])
+                    }
+                }
+                .padding(.bottom)
+            }
         }
-        .ignoresSafeArea(.all)
-        .navigationBarItems(trailing: Picker(selection: $mapType, label: Image(systemName: "map").padding(10).background(VisualEffectView(effect: UIBlurEffect(style: .regular)).clipShape(Circle())), content: {
-            Text("Mapa").tag(MKMapType.standard)
-            Text("Satelitarna").tag(MKMapType.hybrid)
-        }).pickerStyle(MenuPickerStyle()))
+        .animation(.easeOut)
+        .onAppear {
+            if locationManager.authorizationStatus == .notDetermined {
+                locationManager.requestWhenInUseAuthorization()
+            }
+        }
     }
 }
 

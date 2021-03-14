@@ -9,12 +9,6 @@ import SwiftUI
 
 struct StartView: View {
     @Environment(\.openURL) var openURL
-    /*@StateObject var favouriteBusStopsViewModel = FavouriteBusStopsViewModel()
-    @StateObject var favouriteBusLinesViewModel = FavouriteBusLinesViewModel()
-    
-    var showEditButton: Bool {
-        !favouriteBusStopsViewModel.busStops.isEmpty && !favouriteBusLinesViewModel.busLines.isEmpty
-    }*/
     
     init() {
         UITableView.appearance().showsVerticalScrollIndicator = false
