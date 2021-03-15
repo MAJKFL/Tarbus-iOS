@@ -76,15 +76,9 @@ struct BusStopMapView: View {
                 locationManager.requestWhenInUseAuthorization()
             }
             
-            let allBusStops = databaseHelper.getAllBusStops()
             if busStops.isEmpty {
-                print("\(busStops.count) - \(allBusStops.count)")
-                busStops.removeAll()
-                
-                for index in allBusStops.indices {
-                    DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + Double(index / 1000)) {
-                        busStops.append(allBusStops[index])
-                    }
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 0.1) {
+                    busStops = databaseHelper.getAllBusStops()
                 }
             }
         }

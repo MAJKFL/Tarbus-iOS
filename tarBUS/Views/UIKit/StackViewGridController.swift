@@ -110,29 +110,14 @@ class StackViewGridController: UIViewController {
         
         let date = Date()
         
-        let todayDepartures = databaseHelper.getNextDepartures(busStopId: busStop.id, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date)), startFromTime: Date().minutesSinceMidnight)
+        let departuresToday = databaseHelper.getNextDepartures(busStopId: busStop.id, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date)), startFromTime: Date().minutesSinceMidnight)
 
         let departuresForNextDay = databaseHelper.getNextDepartures(busStopId: busStop.id, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date.addingTimeInterval(86400))), startFromTime: 0)
         
-        let departuresForTomorrow = departuresForNextDay.map { departure in
+        let tomorrowDepartures = departuresForNextDay.map { departure in
             departure.forTomorrow
         }
-        
-        let allDepartures = todayDepartures + departuresForTomorrow
-        
-        let busLines = allDepartures.map { departure in
-            departure.busLine.id
-        }
-        
-        let busLinesWithoutDuplicates = busLines.removeDuplicates()
-        
-        var departures = [NextDeparture]()
-        
-        for id in busLinesWithoutDuplicates {
-            departures.append(allDepartures.first(where: { $0.busLine.id == id })!)
-        }
-        
-        return departures
+        return Array((departuresToday + tomorrowDepartures).prefix(6))
     }
 }
 
