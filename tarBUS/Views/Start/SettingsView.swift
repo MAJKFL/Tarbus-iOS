@@ -11,6 +11,8 @@ struct SettingsView: View {
     @ObservedObject var databaseHelper = DataBaseHelper()
     @AppStorage("LastUpdate") var lastUpdate = ""
     
+    let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    
     var body: some View {
         List {
             Section(header: Text("Polityka prywatności")) {
@@ -39,7 +41,7 @@ struct SettingsView: View {
                     
                     Spacer()
                     
-                    Text("2.1.1")
+                    Text(appVersionString)
                         .foregroundColor(.secondary)
                 }
             }

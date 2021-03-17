@@ -95,26 +95,30 @@ class DataBaseHelper: ObservableObject {
         // Move database file from bundle to documents folder
         
         let fileManager = FileManager.default
-        
         let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        
         let finalDatabaseURL = documentsUrl.appendingPathComponent(Self.databaseFileName)
-    
-        if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false){
-            print("DB does not exist in documents folder")
-            
-            let fileURLs = try? FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-            
-            for fileURL in fileURLs ?? [] {
+        let fileURLs = try? fileManager.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+        let documentsURL = Bundle.main.resourceURL?.appendingPathComponent(Self.databaseFileName)
+        
+        for fileURL in fileURLs ?? [] {
+            if (fileURL.absoluteString as NSString).lastPathComponent == Self.databaseFileName {
                 let stringPath = Bundle.main.path(forResource: "tarbus", ofType: "db")!
                 if fileManager.contentsEqual(atPath: fileURL.absoluteString, andPath: stringPath) {
                     return
                 } else {
-                    try? fileManager.removeItem(atPath: fileURL.absoluteString)
+                    print(fileURL)
+                    do {
+                        try fileManager.removeItem(at: fileURL)
+                        try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
                 }
             }
-            
-            let documentsURL = Bundle.main.resourceURL?.appendingPathComponent(Self.databaseFileName)
+        }
+    
+        if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false){
+            print("DB does not exist in documents folder")
             
             do {
                   try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
