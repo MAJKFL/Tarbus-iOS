@@ -32,9 +32,9 @@
      showgrid="true"
      units="px"
      inkscape:window-width="1444"
-     inkscape:window-height="943"
-     inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-height="777"
+     inkscape:window-x="229"
+     inkscape:window-y="1105"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -76,5 +76,11 @@
        height="5.8208337"
        x="1.5874999"
        y="1.7763568e-15" />
+    <circle
+       style="fill:#ffffff;stroke-width:0.264583"
+       id="path73"
+       cx="2.6458333"
+       cy="7.9375"
+       r="1.3229166" />
   </g>
 </svg>

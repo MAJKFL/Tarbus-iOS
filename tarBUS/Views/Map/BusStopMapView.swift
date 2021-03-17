@@ -22,7 +22,12 @@ struct BusStopMapView: View {
     let locationManager = CLLocationManager()
     
     var annotations: [BusStopPointAnnotation] {
-        busStops.map({ $0.annotation })
+        let busStopAnnotations = busStops.map { $0.annotation }
+        
+        for annotation in busStopAnnotations {
+            annotation.image = UIImage(named: "nextMapPoint")
+        }
+        return busStopAnnotations
     }
     
     var body: some View {

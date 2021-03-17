@@ -39,4 +39,5 @@ struct BusStop: Identifiable, Codable {
 
 class BusStopPointAnnotation: MKPointAnnotation {
     var busStop: BusStop?
+    var image: UIImage?
 }

@@ -32,7 +32,20 @@ struct TrackMapView: View {
     }
     
     var annotations: [BusStopPointAnnotation] {
-        busStops.map { $0.annotation }
+        let busStopAnnotations = busStops.map { $0.annotation }
+        
+        for index in busStopAnnotations.indices {
+            let annotation = busStopAnnotations[index]
+            switch index {
+            case 0:
+                annotation.image = UIImage(named: "firstMapPoint")
+            case busStopAnnotations.count - 1:
+                annotation.image = UIImage(named: "lastMapPoint")
+            default:
+                annotation.image = UIImage(named: "nextMapPoint")
+            }
+        }
+        return busStopAnnotations
     }
     
     var body: some View {

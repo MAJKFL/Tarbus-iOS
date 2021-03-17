@@ -100,7 +100,7 @@ struct MapView: UIViewRepresentable {
                 
                 annotationView?.centerOffset = CGPoint(x: 0, y: 0)
                 
-                annotationView?.image = UIImage(named: "mapPoint")
+                annotationView?.image = busStopAnnotation.image
                 
                 let controller = StackViewGridController()
                 

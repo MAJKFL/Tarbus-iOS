@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "lastBusStopLightMode.svg",
+      "filename" : "firstMapPoint_LightMode.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "lastBusStop_DarkMode.svg",
+      "filename" : "firstMapPoint_DarkMode.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },

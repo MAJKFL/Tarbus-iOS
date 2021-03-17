@@ -8,12 +8,12 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="20"
-   height="60"
-   viewBox="0 0 5.2916665 15.875"
+   height="20"
+   viewBox="0 0 5.2916665 5.2916667"
    version="1.1"
    id="svg905"
-   inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
-   sodipodi:docname="nextBusStopG.svg">
+   sodipodi:docname="firstMapPoint_LightMode.svg"
+   inkscape:version="1.0.2 (e86c8708, 2021-01-15)">
   <defs
      id="defs899" />
   <sodipodi:namedview
@@ -23,18 +23,18 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="7.2261464"
-     inkscape:cx="-6.6807225"
-     inkscape:cy="18.099091"
+     inkscape:zoom="7.5666557"
+     inkscape:cx="-1.280024"
+     inkscape:cy="31.481508"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="true"
      units="px"
      inkscape:window-width="1444"
-     inkscape:window-height="943"
-     inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-height="777"
+     inkscape:window-x="233"
+     inkscape:window-y="1105"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -57,30 +57,16 @@
      inkscape:groupmode="layer"
      id="layer1">
     <circle
-       style="fill:#a6a6a6;stroke-width:0.264583;fill-opacity:1"
+       style="fill:#2d59a4;fill-opacity:1;stroke-width:0.264583"
        id="path917"
        cx="2.6458333"
-       cy="7.9375"
+       cy="2.6458333"
        r="2.6458333" />
-    <rect
-       style="fill:#a6a6a6;stroke-width:0.264583;fill-opacity:1"
-       id="rect923"
-       width="2.116667"
-       height="5.8208337"
-       x="1.5875"
-       y="10.054167" />
-    <rect
-       style="fill:#a6a6a6;stroke-width:0.264583;fill-opacity:1"
-       id="rect923-9"
-       width="2.116667"
-       height="5.8208337"
-       x="1.5874999"
-       y="1.7763568e-15" />
     <circle
-       style="fill:#ffffff;stroke-width:0.264583"
-       id="path19"
+       style="fill:#44aa00;fill-opacity:1;stroke-width:0.264583"
+       id="path1804"
        cx="2.6458333"
-       cy="7.9375"
+       cy="2.6458333"
        r="1.3229166" />
   </g>
 </svg>

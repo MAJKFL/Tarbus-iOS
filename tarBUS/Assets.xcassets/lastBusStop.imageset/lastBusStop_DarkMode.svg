@@ -12,7 +12,7 @@
    viewBox="0 0 5.2916665 15.875"
    version="1.1"
    id="svg905"
-   sodipodi:docname="lastBusStopG.svg"
+   sodipodi:docname="lastBusStop_DarkMode.svg"
    inkscape:version="1.0.2 (e86c8708, 2021-01-15)">
   <defs
      id="defs899" />
@@ -31,10 +31,10 @@
      inkscape:document-rotation="0"
      showgrid="true"
      units="px"
-     inkscape:window-width="1444"
-     inkscape:window-height="943"
-     inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-width="1440"
+     inkscape:window-height="775"
+     inkscape:window-x="229"
+     inkscape:window-y="1105"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -57,20 +57,20 @@
      inkscape:groupmode="layer"
      id="layer1">
     <circle
-       style="fill:#a6a6a6;stroke-width:0.264583;fill-opacity:1"
+       style="fill:#2d59a4;stroke-width:0.264583;fill-opacity:1"
        id="path917"
        cx="2.6458333"
        cy="7.9375"
        r="2.6458333" />
     <rect
-       style="fill:#a6a6a6;fill-opacity:1;stroke-width:0.264583"
+       style="fill:#2d59a4;fill-opacity:1;stroke-width:0.264583"
        id="rect923-4"
        width="2.116667"
        height="5.8208337"
        x="1.5875"
        y="-4.4134725e-07" />
     <circle
-       style="fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+       style="fill:#aa0000;fill-opacity:1;stroke-width:0.264583"
        id="path1746"
        cx="2.6458333"
        cy="7.9375"
