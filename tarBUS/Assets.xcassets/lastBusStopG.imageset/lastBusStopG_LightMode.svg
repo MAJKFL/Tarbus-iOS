@@ -33,8 +33,8 @@
      units="px"
      inkscape:window-width="1440"
      inkscape:window-height="775"
-     inkscape:window-x="233"
-     inkscape:window-y="1105"
+     inkscape:window-x="6"
+     inkscape:window-y="25"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -70,7 +70,7 @@
        x="1.5875"
        y="-4.4134725e-07" />
     <circle
-       style="fill:#ff0000;fill-opacity:1;stroke-width:0.264583"
+       style="fill:#ff5f5f;fill-opacity:1;stroke-width:0.264583"
        id="path1746"
        cx="2.6458333"
        cy="7.9375"

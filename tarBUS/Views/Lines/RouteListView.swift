@@ -102,10 +102,10 @@ fileprivate struct BusStopListView: View {
                     HStack {
                         switch(index) {
                         case 0:
-                            Image("firstBusStop")
+                            Image("firstBusStopWhite")
                                 .busStopLabel()
                         case busStops.count - 1:
-                            Image("lastBusStop")
+                            Image("lastBusStopWhite")
                                 .busStopLabel()
                         default:
                             Image("nextBusStop")

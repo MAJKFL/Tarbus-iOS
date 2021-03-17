@@ -12,7 +12,7 @@
    viewBox="0 0 5.2916665 5.2916667"
    version="1.1"
    id="svg905"
-   sodipodi:docname="firstMapPoint_DarkMode.svg"
+   sodipodi:docname="firstMapPoint_LightMode.svg"
    inkscape:version="1.0.2 (e86c8708, 2021-01-15)">
   <defs
      id="defs899" />
@@ -31,10 +31,10 @@
      inkscape:document-rotation="0"
      showgrid="true"
      units="px"
-     inkscape:window-width="1444"
-     inkscape:window-height="777"
-     inkscape:window-x="229"
-     inkscape:window-y="1105"
+     inkscape:window-width="1440"
+     inkscape:window-height="900"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -63,7 +63,7 @@
        cy="2.6458333"
        r="2.6458333" />
     <circle
-       style="fill:#66ff00;fill-opacity:1;stroke-width:0.264583"
+       style="fill:#a4f472;fill-opacity:1;stroke-width:0.264583"
        id="path1804"
        cx="2.6458333"
        cy="2.6458333"
