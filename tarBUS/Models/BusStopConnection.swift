@@ -18,9 +18,11 @@ struct BusStopConnection {
         var locationArray = [CLLocationCoordinate2D]()
         let stringArray = coordsList.components(separatedBy: ",")
         
-        for index in stringArray.indices {
-            if index % 2 == 0 {
-                locationArray.append(CLLocationCoordinate2D(latitude: Double(stringArray[index + 1]) ?? 0, longitude: Double(stringArray[index]) ?? 0))
+        if stringArray.count > 1 {
+            for index in stringArray.indices {
+                if index % 2 == 0 {
+                    locationArray.append(CLLocationCoordinate2D(latitude: Double(stringArray[index + 1]) ?? 0, longitude: Double(stringArray[index]) ?? 0))
+                }
             }
         }
         
