@@ -99,7 +99,7 @@ struct BusStopAddView: View {
                 SearchBar(text: $searchText, placeholder: "Szukaj", onCommit: search)
                     .padding(.horizontal, 5)
                 
-                if searchText.isEmpty {
+                if searchText.isEmpty || busStops.isEmpty {
                     VStack {
                         Image(systemName: "magnifyingglass")
                             .font(.largeTitle)

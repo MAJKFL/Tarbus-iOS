@@ -66,11 +66,11 @@
 		AA849FD725CED7EE00831982 /* SearchPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA849FD625CED7EE00831982 /* SearchPickerView.swift */; };
 		AA849FDC25CEE33600831982 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA849FDB25CEE33600831982 /* SearchBarView.swift */; };
 		AA9053B62657C86700342DF5 /* SocialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9053B52657C86700342DF5 /* SocialsView.swift */; };
+		AA9053B92657E78500342DF5 /* SettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9053B82657E78500342DF5 /* SettingsTabView.swift */; };
 		AAA279CF25D2F5DC00E1FB45 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */; };
 		AAA279DA25D30D7A00E1FB45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */; };
 		AAA32C2F25D5B37500DC9ABB /* UIKitTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA32C2E25D5B37500DC9ABB /* UIKitTabBar.swift */; };
 		AAB4673C25B3354B00B46614 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB4673B25B3354B00B46614 /* MailView.swift */; };
-		AAC652D625D200F800BDF840 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC652D525D200F800BDF840 /* SettingsView.swift */; };
 		AAC692A025D1D23000477314 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6929F25D1D23000477314 /* Array+extensions.swift */; };
 		AAC692AC25D1D84100477314 /* SearchBusLinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC692AB25D1D84100477314 /* SearchBusLinesView.swift */; };
 		AAC692AF25D1D86E00477314 /* SearchBusStopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC692AE25D1D86E00477314 /* SearchBusStopsView.swift */; };
@@ -163,12 +163,12 @@
 		AA849FD625CED7EE00831982 /* SearchPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPickerView.swift; sourceTree = "<group>"; };
 		AA849FDB25CEE33600831982 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		AA9053B52657C86700342DF5 /* SocialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialsView.swift; sourceTree = "<group>"; };
+		AA9053B82657E78500342DF5 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
 		AA96904B25EAA5B80093D3D2 /* tarBUS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tarBUS.entitlements; sourceTree = "<group>"; };
 		AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAA32C2E25D5B37500DC9ABB /* UIKitTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitTabBar.swift; sourceTree = "<group>"; };
 		AAB4673B25B3354B00B46614 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
-		AAC652D525D200F800BDF840 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AAC6929F25D1D23000477314 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
 		AAC692AB25D1D84100477314 /* SearchBusLinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBusLinesView.swift; sourceTree = "<group>"; };
 		AAC692AE25D1D86E00477314 /* SearchBusStopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBusStopsView.swift; sourceTree = "<group>"; };
@@ -268,13 +268,20 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		AA9053B72657E76E00342DF5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */,
+				AAC82ECE25AEFCBE00236F31 /* AboutView.swift */,
+				AA9053B82657E78500342DF5 /* SettingsTabView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		AAC6929225D1CF9400477314 /* Start */ = {
 			isa = PBXGroup;
 			children = (
 				AAE9B11C25AE7FA200D90F32 /* StartView.swift */,
-				AAC82ECE25AEFCBE00236F31 /* AboutView.swift */,
-				AAC652D525D200F800BDF840 /* SettingsView.swift */,
-				AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */,
 				AA3B97D525D46DA80027D2DD /* FavouriteBusLinesListView.swift */,
 				AA3B97DC25D47C670027D2DD /* FavouriteBusStopsView.swift */,
 				AA9053B52657C86700342DF5 /* SocialsView.swift */,
@@ -403,6 +410,7 @@
 				AAC6929425D1CFD300477314 /* Lines */,
 				AA578FC625FCE33400CB5FD5 /* Map */,
 				AAC6929925D1D03800477314 /* Search */,
+				AA9053B72657E76E00342DF5 /* Settings */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -619,6 +627,7 @@
 				AAE9B11D25AE7FA200D90F32 /* StartView.swift in Sources */,
 				AA713EF125FA99A200D47C80 /* TrackMapView.swift in Sources */,
 				AA75086325BC5F000045FFD5 /* DatabaseHelper.swift in Sources */,
+				AA9053B92657E78500342DF5 /* SettingsTabView.swift in Sources */,
 				AA78CDD925B9EDB20052455A /* BusLine.swift in Sources */,
 				AA578FC825FCE35B00CB5FD5 /* BusStopMapView.swift in Sources */,
 				AA6D11D925D1C060005F6F87 /* NextDeparture.swift in Sources */,
@@ -647,7 +656,6 @@
 				AA3B97D125D46AAD0027D2DD /* FavouriteBusLinesViewModel.swift in Sources */,
 				AAC82ECF25AEFCBE00236F31 /* AboutView.swift in Sources */,
 				AA3B97DA25D478270027D2DD /* FavouriteBusStopsViewModel.swift in Sources */,
-				AAC652D625D200F800BDF840 /* SettingsView.swift in Sources */,
 				AAB4673C25B3354B00B46614 /* MailView.swift in Sources */,
 				AAD6248A25C05A3E0038C8CE /* Route.swift in Sources */,
 				AA6D11E125D1C74D005F6F87 /* ListDeparture.swift in Sources */,

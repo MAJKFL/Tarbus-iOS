@@ -12,6 +12,7 @@ struct StartView: View {
     
     init() {
         UITableView.appearance().showsVerticalScrollIndicator = false
+        UITableView.appearance().backgroundColor = UIColor(named: "BackgroundBlue")
     }
     
     var body: some View {
@@ -29,10 +30,10 @@ struct StartView: View {
                     SocialsView()
                 }
                 
-                Section(header: Text("Inne")) {
-                    NavigationLink("O aplikacji", destination: AboutView())
-                    NavigationLink("Ustawienia", destination: SettingsView())
-                }
+//                Section(header: Text("Inne")) {
+//                    NavigationLink("O aplikacji", destination: AboutView())
+//                    NavigationLink("Ustawienia", destination: SettingsView())
+//                }
             }
             .listStyle(GroupedListStyle())
             .navigationTitle("tarBUS")
