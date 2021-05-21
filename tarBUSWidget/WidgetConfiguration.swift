@@ -15,7 +15,7 @@ struct Config: Widget {
             WidgetView(data: $0)
         }
         .supportedFamilies([.systemSmall, .systemMedium])
-        .description(Text("Wyświetla następne odjazdy dla wybranego przystanku"))
-        .configurationDisplayName(Text("Następne odjazdy"))
+        .description(Text("Wyświetla najbliższe odjazdy dla wybranego przystanku."))
+        .configurationDisplayName(Text("Najbliższe odjazdy"))
     }
 }

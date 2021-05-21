@@ -132,7 +132,7 @@ struct AboutView: View {
             }
             .padding(.horizontal)
             .sheet(item: $mail) { mail in
-                MailView(result: self.$result, mail: mail.rawValue)
+                MailView(result: self.$result, mail: mail.rawValue).ignoresSafeArea(.all)
             }
             .listStyle(PlainListStyle())
             .navigationTitle("O aplikacji")

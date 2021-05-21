@@ -183,7 +183,7 @@ fileprivate struct RouteCellView: View {
         .padding(.horizontal)
         .onAppear {
             if busLineName.isEmpty {
-                busLineName = dataBaseHelper.getBusLine(busLineId: route.busLineId).name
+                busLineName = dataBaseHelper.getBusLine(busLineId: route.busLineId)?.name ?? ""
             }
         }
         .onTapGesture {

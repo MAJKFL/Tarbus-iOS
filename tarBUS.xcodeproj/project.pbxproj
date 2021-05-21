@@ -176,7 +176,7 @@
 		AACB90FA25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WidgetIntent.intentdefinition; sourceTree = "<group>"; };
 		AACB911225F3C08400DB80D1 /* tarBusIntentExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tarBusIntentExtension.entitlements; sourceTree = "<group>"; };
 		AAD6248925C05A3E0038C8CE /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
-		AAE9B11725AE7FA200D90F32 /* tarBUS 2.1.4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "tarBUS 2.1.4.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAE9B11725AE7FA200D90F32 /* tarBUS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tarBUS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tarBUSApp.swift; sourceTree = "<group>"; };
 		AAE9B11C25AE7FA200D90F32 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		AAE9B11E25AE7FA400D90F32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -359,7 +359,7 @@
 		AAE9B11825AE7FA200D90F32 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AAE9B11725AE7FA200D90F32 /* tarBUS 2.1.4.app */,
+				AAE9B11725AE7FA200D90F32 /* tarBUS.app */,
 				AA05BCD325ED77BB00009711 /* tarBUSWidgetExtension.appex */,
 				AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */,
 			);
@@ -490,7 +490,7 @@
 				AA75085F25BC5E5F0045FFD5 /* SQLite */,
 			);
 			productName = tarBUS;
-			productReference = AAE9B11725AE7FA200D90F32 /* tarBUS 2.1.4.app */;
+			productReference = AAE9B11725AE7FA200D90F32 /* tarBUS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -684,7 +684,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp.dev.tarBusIntentExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp.tarBusIntentExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -732,7 +732,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp.dev.tarBUSWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp.tarBUSWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -841,8 +841,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.florekjakub.tarBUSapp$(BUNDLE_ID_SUFFIX)";
-				PRODUCT_NAME = "$(TARGET_NAME) $(MARKETING_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp;
+				PRODUCT_NAME = tarBUS;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -865,7 +865,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp.beta.tarBUSWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp.tarBUSWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -888,7 +888,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 2.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp.beta.tarBusIntentExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp.tarBusIntentExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1034,8 +1034,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.florekjakub.tarBUSapp$(BUNDLE_ID_SUFFIX)";
-				PRODUCT_NAME = "$(TARGET_NAME) $(MARKETING_VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp;
+				PRODUCT_NAME = tarBUS;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1062,7 +1062,7 @@
 				);
 				MARKETING_VERSION = 2.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.florekjakub.tarBUSapp$(BUNDLE_ID_SUFFIX)";
-				PRODUCT_NAME = "$(TARGET_NAME)$(BUNDLE_ID_SUFFIX)";
+				PRODUCT_NAME = tarBUS;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

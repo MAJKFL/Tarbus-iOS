@@ -314,7 +314,7 @@ class DataBaseHelper: ObservableObject {
         return routes
     }
     
-    func getBusLine(busLineId: Int) -> BusLine {
+    func getBusLine(busLineId: Int) -> BusLine? {
         var busLines = [BusLine]()
         
         let fileManager = FileManager.default
@@ -333,7 +333,11 @@ class DataBaseHelper: ObservableObject {
             print(error.localizedDescription)
         }
         
-        return busLines[0]
+        if busLines.isEmpty {
+            return nil
+        } else {
+            return busLines[0]
+        }
     }
     
     func searchBusStops(text: String) -> [BusStop] {

@@ -51,13 +51,13 @@ struct MainView: View {
             }
         }
         .onAppear(perform: databaseInit)
-        .onOpenURL(perform: { url in
-            handleDeepLink(url)
-        })
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
             guard let url = userActivity.webpageURL else { return }
             handleDeepLink(url)
         }
+        .onOpenURL(perform: { url in
+            handleDeepLink(url)
+        })
     }
     
     func databaseInit() {
@@ -65,7 +65,7 @@ struct MainView: View {
         if ReachabilityTest.isConnectedToNetwork() {
             dataBaseHelper.saveLastUpdateToUserDefaults()
             dataBaseHelper.fetchData()
-        } else{
+        } else {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(100)) {
                 showAlert = true
             }
