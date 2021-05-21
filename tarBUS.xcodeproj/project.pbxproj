@@ -65,6 +65,7 @@
 		AA7CB46625FD008C00D36172 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CB46525FD008B00D36172 /* VisualEffectView.swift */; };
 		AA849FD725CED7EE00831982 /* SearchPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA849FD625CED7EE00831982 /* SearchPickerView.swift */; };
 		AA849FDC25CEE33600831982 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA849FDB25CEE33600831982 /* SearchBarView.swift */; };
+		AA9053B62657C86700342DF5 /* SocialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9053B52657C86700342DF5 /* SocialsView.swift */; };
 		AAA279CF25D2F5DC00E1FB45 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */; };
 		AAA279DA25D30D7A00E1FB45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */; };
 		AAA32C2F25D5B37500DC9ABB /* UIKitTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA32C2E25D5B37500DC9ABB /* UIKitTabBar.swift */; };
@@ -161,6 +162,7 @@
 		AA7CB46525FD008B00D36172 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
 		AA849FD625CED7EE00831982 /* SearchPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPickerView.swift; sourceTree = "<group>"; };
 		AA849FDB25CEE33600831982 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		AA9053B52657C86700342DF5 /* SocialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialsView.swift; sourceTree = "<group>"; };
 		AA96904B25EAA5B80093D3D2 /* tarBUS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tarBUS.entitlements; sourceTree = "<group>"; };
 		AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */,
 				AA3B97D525D46DA80027D2DD /* FavouriteBusLinesListView.swift */,
 				AA3B97DC25D47C670027D2DD /* FavouriteBusStopsView.swift */,
+				AA9053B52657C86700342DF5 /* SocialsView.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				AA6D11DD25D1C28D005F6F87 /* BoardDeparture.swift in Sources */,
 				AAC692A025D1D23000477314 /* Array+extensions.swift in Sources */,
 				AA13B73E25FC094A0090F823 /* StackViewGridController.swift in Sources */,
+				AA9053B62657C86700342DF5 /* SocialsView.swift in Sources */,
 				AA3B97DD25D47C670027D2DD /* FavouriteBusStopsView.swift in Sources */,
 				AAC82EC625AEF07700236F31 /* LastUpdate.swift in Sources */,
 				AAC692AC25D1D84100477314 /* SearchBusLinesView.swift in Sources */,

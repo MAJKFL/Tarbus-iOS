@@ -26,37 +26,7 @@ struct StartView: View {
                 }
                 
                 Section(header: Text("Społeczność")) {
-                    HStack {
-                        Image("facebookCircle")
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(Circle())
-                            .frame(width: 50, height: 50)
-                        
-                        VStack(alignment: .leading) {
-                            Text("Jesteśmy na Facebooku")
-                                .font(.subheadline)
-                            
-                            Text("Dołącz do nas!")
-                                .font(.footnote)
-                                .foregroundColor(.secondary)
-                        }
-                        
-                        Spacer()
-                        
-                        Button(action: {
-                            openURL(URL(string: "https://www.facebook.com/tarbus2021")!)
-                        }, label: {
-                            Text("PRZEJDŹ")
-                                .foregroundColor(.white)
-                                .bold()
-                                .frame(width: 100, height: 40)
-                                .background(Color("MainColor"))
-                                .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-                        })
-                        .buttonStyle(PlainButtonStyle())
-                        .padding(.vertical, 5)
-                    }
+                    SocialsView()
                 }
                 
                 Section(header: Text("Inne")) {
