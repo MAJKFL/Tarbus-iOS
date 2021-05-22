@@ -53,11 +53,15 @@ struct MainView: View {
         }
         .onAppear(perform: databaseInit)
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
-            guard let url = userActivity.webpageURL else { return }
-            handleDeepLink(url)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
+                guard let url = userActivity.webpageURL else { return }
+                handleDeepLink(url)
+            }
         }
         .onOpenURL(perform: { url in
-            handleDeepLink(url)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
+                handleDeepLink(url)
+            }
         })
     }
     
