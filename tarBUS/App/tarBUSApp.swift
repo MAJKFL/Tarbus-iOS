@@ -33,6 +33,7 @@ struct MainView: View {
     @ObservedObject var dataBaseHelper = DataBaseHelper()
     @State private var showAlert = false
     @State private var deeplink: deeplinkModel?
+    @State private var hapticHelper = HapticHelper()
     
     var body: some View {
         UIKitTabView([
@@ -53,13 +54,19 @@ struct MainView: View {
         }
         .onAppear(perform: databaseInit)
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
+            hapticHelper.prepareHaptics()
+            hapticHelper.deeplinkStart()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
                 guard let url = userActivity.webpageURL else { return }
+                hapticHelper.deeplinkSucces()
                 handleDeepLink(url)
             }
         }
         .onOpenURL(perform: { url in
+            hapticHelper.prepareHaptics()
+            hapticHelper.deeplinkStart()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
+                hapticHelper.deeplinkSucces()
                 handleDeepLink(url)
             }
         })

@@ -42,6 +42,7 @@
 		AA3C459825C5C4A100148F1E /* date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C459725C5C4A100148F1E /* date+extensions.swift */; };
 		AA3C459B25C5D2B500148F1E /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C459A25C5D2B500148F1E /* PlanView.swift */; };
 		AA42E81425F4DB5800E79DA9 /* Url+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42E81325F4DB5800E79DA9 /* Url+Extensions.swift */; };
+		AA543C42265946590057CB33 /* HapticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA543C41265946590057CB33 /* HapticHelper.swift */; };
 		AA578FC825FCE35B00CB5FD5 /* BusStopMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA578FC725FCE35B00CB5FD5 /* BusStopMapView.swift */; };
 		AA63EC0F25C85783000360E0 /* NextDeparturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA63EC0E25C85783000360E0 /* NextDeparturesView.swift */; };
 		AA691F5F25D0814D006CE292 /* DepartureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA691F5E25D0814D006CE292 /* DepartureListView.swift */; };
@@ -142,6 +143,7 @@
 		AA3C459725C5C4A100148F1E /* date+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "date+extensions.swift"; sourceTree = "<group>"; };
 		AA3C459A25C5D2B500148F1E /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		AA42E81325F4DB5800E79DA9 /* Url+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Url+Extensions.swift"; sourceTree = "<group>"; };
+		AA543C41265946590057CB33 /* HapticHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticHelper.swift; sourceTree = "<group>"; };
 		AA578FC725FCE35B00CB5FD5 /* BusStopMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopMapView.swift; sourceTree = "<group>"; };
 		AA63EC0E25C85783000360E0 /* NextDeparturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextDeparturesView.swift; sourceTree = "<group>"; };
 		AA691F5E25D0814D006CE292 /* DepartureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureListView.swift; sourceTree = "<group>"; };
@@ -258,6 +260,14 @@
 				AA3B97D925D478270027D2DD /* FavouriteBusStopsViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AA543C43265946840057CB33 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				AA543C41265946590057CB33 /* HapticHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		AA578FC625FCE33400CB5FD5 /* Map */ = {
@@ -381,6 +391,7 @@
 			children = (
 				AAE9B12D25AE800300D90F32 /* App */,
 				AAC6929D25D1D16000477314 /* Database */,
+				AA543C43265946840057CB33 /* Helpers */,
 				AAC6929C25D1D0FA00477314 /* Extensions */,
 				AAE9B12C25AE7FFD00D90F32 /* Models */,
 				AA3B97CF25D46A5C0027D2DD /* ViewModels */,
@@ -632,6 +643,7 @@
 				AA578FC825FCE35B00CB5FD5 /* BusStopMapView.swift in Sources */,
 				AA6D11D925D1C060005F6F87 /* NextDeparture.swift in Sources */,
 				AA63EC0F25C85783000360E0 /* NextDeparturesView.swift in Sources */,
+				AA543C42265946590057CB33 /* HapticHelper.swift in Sources */,
 				AA3B97D625D46DA80027D2DD /* FavouriteBusLinesListView.swift in Sources */,
 				AA42E81425F4DB5800E79DA9 /* Url+Extensions.swift in Sources */,
 				AA7CB46625FD008C00D36172 /* VisualEffectView.swift in Sources */,
