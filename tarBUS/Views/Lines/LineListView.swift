@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LineListView: View {
+    @AppStorage("ButtonPressCounter") var buttonPressCounter = 0
     @ObservedObject var dataBaseHelper = DataBaseHelper()
     @State private var busLines = [BusLine]()
     
@@ -40,7 +41,7 @@ struct LineListView: View {
                     
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(busLines) { line in
-                            NavigationLink(destination: RouteListView(busLine: line), label: {
+                            NavigationLink(destination: RouteListView(busLine: line)) {
                                 HStack {
                                     Image(systemName: "bus.fill")
                                     
@@ -52,6 +53,9 @@ struct LineListView: View {
                                 .background(Color("MainColor"))
                                 .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                                 .shadow(radius: 3, x: 3, y: 3)
+                            }
+                            .simultaneousGesture(TapGesture().onEnded {
+                                buttonPressCounter += 1
                             })
                             .buttonStyle(PlainButtonStyle())
                         }

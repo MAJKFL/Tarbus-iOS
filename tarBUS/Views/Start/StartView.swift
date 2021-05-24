@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct StartView: View {
     @Environment(\.openURL) var openURL
+    @AppStorage("ButtonPressCounter") var buttonPressCounter = 0
+    @AppStorage("IsAppRated") var isAppRated = false
     
     init() {
         UITableView.appearance().showsVerticalScrollIndicator = false
@@ -24,6 +27,15 @@ struct StartView: View {
                 
                 Section(header: Text("Ulubione przystanki")) {
                     FavouriteBusStopsListView()
+                }
+                
+                if buttonPressCounter > 10 && !isAppRated {
+                    Section(header: Text("Pomóż rozwijać tarBUSa!")) {
+                        Button("Oceń aplikację") {
+                            SKStoreReviewController.requestReviewInCurrentScene()
+                            withAnimation { isAppRated = true }
+                        }
+                    }
                 }
                 
                 Section(header: Text("Społeczność")) {
