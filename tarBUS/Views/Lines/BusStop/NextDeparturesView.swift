@@ -30,6 +30,14 @@ struct NextDeparturesView: View {
             LazyVStack(spacing: 10) {
                 FilterView(filteredBusLines: $filteredBusLines, allDepartures: departures + departuresForNextDay)
                 
+                #if DEBUG
+                Button(action: {
+                    UIPasteboard.general.string = "https://app.tarbus.pl/store?directFrom=schedule&busStopId=\(busStop.id)\(filteredBusLines.isEmpty ? "" : "&busLineId=\(filteredBusLines.first!.id)")"
+                }, label: {
+                    Label("Kopiuj deep link", systemImage: "doc.on.doc")
+                })
+                #endif
+                
                 ForEach(filteredDepartures) { departure in
                     NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
                         NextDepartureCellView(departure: departure, isTomorrow: false)
