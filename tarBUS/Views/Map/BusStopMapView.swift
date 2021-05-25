@@ -74,6 +74,7 @@ struct BusStopMapView: View {
                     .padding(.bottom)
                 }
             }
+            .navigationTitle("Mapa")
         }
         .animation(.easeOut)
         .onAppear {

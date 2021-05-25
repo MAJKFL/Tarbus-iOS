@@ -73,6 +73,7 @@
 		AAA279DA25D30D7A00E1FB45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */; };
 		AAA32C2F25D5B37500DC9ABB /* UIKitTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA32C2E25D5B37500DC9ABB /* UIKitTabBar.swift */; };
 		AAB4673C25B3354B00B46614 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB4673B25B3354B00B46614 /* MailView.swift */; };
+		AABEBB05265D932300EFC29D /* DevMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABEBB04265D932300EFC29D /* DevMenuView.swift */; };
 		AAC692A025D1D23000477314 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6929F25D1D23000477314 /* Array+extensions.swift */; };
 		AAC692AC25D1D84100477314 /* SearchBusLinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC692AB25D1D84100477314 /* SearchBusLinesView.swift */; };
 		AAC692AF25D1D86E00477314 /* SearchBusStopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC692AE25D1D86E00477314 /* SearchBusStopsView.swift */; };
@@ -173,6 +174,7 @@
 		AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAA32C2E25D5B37500DC9ABB /* UIKitTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitTabBar.swift; sourceTree = "<group>"; };
 		AAB4673B25B3354B00B46614 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
+		AABEBB04265D932300EFC29D /* DevMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevMenuView.swift; sourceTree = "<group>"; };
 		AAC6929F25D1D23000477314 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
 		AAC692AB25D1D84100477314 /* SearchBusLinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBusLinesView.swift; sourceTree = "<group>"; };
 		AAC692AE25D1D86E00477314 /* SearchBusStopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBusStopsView.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */,
 				AAC82ECE25AEFCBE00236F31 /* AboutView.swift */,
 				AA9053B82657E78500342DF5 /* SettingsTabView.swift */,
+				AABEBB04265D932300EFC29D /* DevMenuView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				AA713EDA25FA759C00D47C80 /* MapView.swift in Sources */,
 				AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */,
 				AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */,
+				AABEBB05265D932300EFC29D /* DevMenuView.swift in Sources */,
 				AA3D20C1265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift in Sources */,
 				AAA279CF25D2F5DC00E1FB45 /* PrivacyPolicyView.swift in Sources */,
 				AAA32C2F25D5B37500DC9ABB /* UIKitTabBar.swift in Sources */,

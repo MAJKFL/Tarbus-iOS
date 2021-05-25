@@ -34,7 +34,8 @@ struct NextDeparturesView: View {
                 Button(action: {
                     UIPasteboard.general.string = "https://app.tarbus.pl/store?directFrom=schedule&busStopId=\(busStop.id)\(filteredBusLines.isEmpty ? "" : "&busLineId=\(filteredBusLines.first!.id)")"
                 }, label: {
-                    Label("Kopiuj deep link", systemImage: "doc.on.doc")
+                    Label("Copy deep link", systemImage: "doc.on.doc")
+                        .foregroundColor(Color("DebugPink"))
                 })
                 #endif
                 
