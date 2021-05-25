@@ -22,7 +22,6 @@
 		AA05BCDB25ED77BB00009711 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA05BCDA25ED77BB00009711 /* WidgetView.swift */; };
 		AA05BCDE25ED77C000009711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA05BCDD25ED77C000009711 /* Assets.xcassets */; };
 		AA05BCE425ED77C000009711 /* tarBUSWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA05BCD325ED77BB00009711 /* tarBUSWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		AA05BCF425ED7AD800009711 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */; };
 		AA05BCF725ED7B9700009711 /* date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C459725C5C4A100148F1E /* date+extensions.swift */; };
 		AA05BCFD25ED7E9E00009711 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = AA05BCFC25ED7E9E00009711 /* SQLite */; };
 		AA05BD0C25ED7FAA00009711 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248925C05A3E0038C8CE /* Route.swift */; };
@@ -74,6 +73,8 @@
 		AAA32C2F25D5B37500DC9ABB /* UIKitTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA32C2E25D5B37500DC9ABB /* UIKitTabBar.swift */; };
 		AAB4673C25B3354B00B46614 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB4673B25B3354B00B46614 /* MailView.swift */; };
 		AABEBB05265D932300EFC29D /* DevMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABEBB04265D932300EFC29D /* DevMenuView.swift */; };
+		AABEBB06265DA91000EFC29D /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */; };
+		AABEBB07265DA92F00EFC29D /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */; };
 		AAC692A025D1D23000477314 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6929F25D1D23000477314 /* Array+extensions.swift */; };
 		AAC692AC25D1D84100477314 /* SearchBusLinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC692AB25D1D84100477314 /* SearchBusLinesView.swift */; };
 		AAC692AF25D1D86E00477314 /* SearchBusStopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC692AE25D1D86E00477314 /* SearchBusStopsView.swift */; };
@@ -83,7 +84,6 @@
 		AACB90FB25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AACB90FA25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition */; };
 		AACB90FC25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AACB90FA25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition */; };
 		AACB910725F3BC7C00DB80D1 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = AACB910625F3BC7C00DB80D1 /* SQLite */; };
-		AACB910E25F3BD4100DB80D1 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */; };
 		AAD6248A25C05A3E0038C8CE /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248925C05A3E0038C8CE /* Route.swift */; };
 		AAE9B11B25AE7FA200D90F32 /* tarBUSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */; };
 		AAE9B11D25AE7FA200D90F32 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11C25AE7FA200D90F32 /* StartView.swift */; };
@@ -269,6 +269,7 @@
 		AA543C43265946840057CB33 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */,
 				AA543C41265946590057CB33 /* HapticHelper.swift */,
 			);
 			path = Helpers;
@@ -363,7 +364,6 @@
 		AAC6929D25D1D16000477314 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */,
 				AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */,
 				AA713EEB25FA8A0E00D47C80 /* tarbus.db */,
 			);
@@ -602,8 +602,8 @@
 				AA053ADC25F3B78800E1E2AE /* Route.swift in Sources */,
 				AA053ADA25F3B78800E1E2AE /* LastUpdate.swift in Sources */,
 				AA053AD825F3B78800E1E2AE /* BusStop.swift in Sources */,
+				AABEBB07265DA92F00EFC29D /* DatabaseHelper.swift in Sources */,
 				AA713EE425FA7BBF00D47C80 /* BusStopConnection.swift in Sources */,
-				AACB910E25F3BD4100DB80D1 /* DatabaseHelper.swift in Sources */,
 				AA053ADB25F3B78800E1E2AE /* BusLine.swift in Sources */,
 				AA053AC425F3B74C00E1E2AE /* IntentHandler.swift in Sources */,
 				AACB90FC25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition in Sources */,
@@ -618,13 +618,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA6CA29525F3CF9D007F088C /* WidgetModel.swift in Sources */,
+				AABEBB06265DA91000EFC29D /* DatabaseHelper.swift in Sources */,
 				AA05BD1125ED7FAA00009711 /* BusStop.swift in Sources */,
 				AA05BD0D25ED7FAA00009711 /* LastUpdate.swift in Sources */,
 				AA05BD0E25ED7FAA00009711 /* ListDeparture.swift in Sources */,
 				AA05BD0F25ED7FAA00009711 /* BusLine.swift in Sources */,
 				AACB90FB25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition in Sources */,
 				AA6CA2A025F3CFD6007F088C /* WidgetConfiguration.swift in Sources */,
-				AA05BCF425ED7AD800009711 /* DatabaseHelper.swift in Sources */,
 				AA6CA29025F3CF58007F088C /* DataProvider.swift in Sources */,
 				AA713EE325FA7BBF00D47C80 /* BusStopConnection.swift in Sources */,
 				AA05BD1025ED7FAA00009711 /* BoardDeparture.swift in Sources */,

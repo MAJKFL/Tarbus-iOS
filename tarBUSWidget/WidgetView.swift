@@ -24,60 +24,74 @@ struct WidgetView: View {
     var body: some View {
         GeometryReader { geo in
             VStack(alignment: .center) {
-                Text(data.busStopName)
-                    .font(Font.footnote.bold())
-                    .multilineTextAlignment(.center)
-                    .lineLimit(2)
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity, minHeight: geo.size.height / 4)
-                    .padding([.horizontal, .top], 10)
-                    .padding(.bottom, 5)
-                    .background(badgeGradient)
-                
-                Spacer(minLength: 5)
-                
-                VStack(spacing: 0) {
-                    ForEach(data.departures) { departure in
-                        HStack(spacing: 0) {
-                            Text(departure.busLine.name)
-                                .font(.headline)
-                                .foregroundColor(Color("MainColor"))
-                            
-                            if family == .systemMedium {
-                                Text(departure.boardName)
-                                    .padding(.leading, 5)
-                            }
-                            
+                if data.busStopId == nil {
+                    HStack {
+                        Spacer()
+                        
+                        VStack(alignment: .center) {
                             Spacer()
                             
-                            Text(departure.timeString)
-                                .font(.headline)
-                            
-                            if departure.isTomorrow {
-                                Image(systemName: "calendar.badge.clock")
-                                    .font(.footnote)
-                                    .foregroundColor(.secondary)
-                                    .padding(.leading, 2)
-                            }
-                        }
-                        .lineLimit(1)
-                        .padding(.horizontal, 10)
-                    }
-                    
-                    if data.busStopId == nil {
-                        VStack {
                             Text("🚏")
                             
-                            Text("Wybierz\nprzystanek")
+                            Text("Wybierz przystanek")
                                 .font(.subheadline)
                                 .multilineTextAlignment(.center)
+                            
+                            Text("Przytrzymaj dłużej widget i naciśnij w \"Edycja widżetu\"")
+                                .font(.footnote)
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.center)
+                            
+                            Spacer()
                         }
-                        .padding(.top)
+                        
+                        Spacer()
                     }
+                } else {
+                    Text(data.busStopName)
+                        .font(Font.footnote.bold())
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, minHeight: geo.size.height / 4)
+                        .padding([.horizontal, .top], 10)
+                        .padding(.bottom, 5)
+                        .background(badgeGradient)
                     
-                    Spacer()
+                    Spacer(minLength: 5)
+                    
+                    VStack(spacing: 0) {
+                        ForEach(data.departures) { departure in
+                            HStack(spacing: 0) {
+                                Text(departure.busLine.name)
+                                    .font(.headline)
+                                    .foregroundColor(Color("MainColor"))
+                                
+                                if family == .systemMedium {
+                                    Text(departure.boardName)
+                                        .padding(.leading, 5)
+                                }
+                                
+                                Spacer()
+                                
+                                Text(departure.timeString)
+                                    .font(.headline)
+                                
+                                if departure.isTomorrow {
+                                    Image(systemName: "calendar.badge.clock")
+                                        .font(.footnote)
+                                        .foregroundColor(.secondary)
+                                        .padding(.leading, 2)
+                                }
+                            }
+                            .lineLimit(1)
+                            .padding(.horizontal, 10)
+                        }
+                        
+                        Spacer()
+                    }
+                    .overlay(textGradient)
                 }
-                .overlay(textGradient)
             }
             .widgetURL(url)
         }

@@ -31,9 +31,9 @@ struct MainView: View {
     }
     
     @ObservedObject var dataBaseHelper = DataBaseHelper()
+    @ObservedObject var hapticHelper = HapticHelper()
     @State private var showAlert = false
     @State private var deeplink: deeplinkModel?
-    @State private var hapticHelper = HapticHelper()
     
     var body: some View {
         UIKitTabView([
