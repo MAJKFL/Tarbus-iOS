@@ -14,6 +14,7 @@ struct NextDeparturesView: View {
     
     @State private var departures = [NextDeparture]()
     @State private var departuresForNextDay = [NextDeparture]()
+    @Binding var currentView: Int
     
     var filteredDepartures: [NextDeparture] {
         if filteredBusLines.isEmpty { return departures }
@@ -39,22 +40,49 @@ struct NextDeparturesView: View {
                 })
                 #endif
                 
-                ForEach(filteredDepartures) { departure in
-                    NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
-                        NextDepartureCellView(departure: departure, isTomorrow: false)
-                    })
-                    .buttonStyle(PlainButtonStyle())
-                    .id("\(departure.id)-today")
-                }
-                
-                Divider()
-                
-                ForEach(filteredDeparturesForNextDay) { departure in
-                    NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
-                        NextDepartureCellView(departure: departure, isTomorrow: true)
-                    })
-                    .buttonStyle(PlainButtonStyle())
-                    .id("\(departure.id)-yesterday")
+                if !(filteredDepartures + filteredDeparturesForNextDay).isEmpty {
+                    ForEach(filteredDepartures) { departure in
+                        NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
+                            NextDepartureCellView(departure: departure, isTomorrow: false)
+                        })
+                        .buttonStyle(PlainButtonStyle())
+                        .id("\(departure.id)-today")
+                    }
+                    
+                    Divider()
+                    
+                    ForEach(filteredDeparturesForNextDay) { departure in
+                        NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
+                            NextDepartureCellView(departure: departure, isTomorrow: true)
+                        })
+                        .buttonStyle(PlainButtonStyle())
+                        .id("\(departure.id)-yesterday")
+                    }
+                } else {
+                    VStack(spacing: 20) {
+                        Image("noDepartures")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: UIScreen.main.bounds.width - 100)
+                        
+                        Text("Niestety, nie znaleźliśmy odjazdów w najbliższym czasie")
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.secondary)
+                        
+                        Button(action: {
+                            withAnimation(.easeIn) { currentView = 2 }
+                        }, label: {
+                            Text("Zobacz pełny rozkład jazdy")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color("MainColor"))
+                                .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                        })
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                    .padding(.horizontal)
                 }
             }
             .padding()

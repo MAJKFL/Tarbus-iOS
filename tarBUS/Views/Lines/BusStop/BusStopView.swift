@@ -11,19 +11,22 @@ struct BusStopView: View {
     let busStop: BusStop
     let filteredBusLines: [BusLine]
     @State private var isShowingAddView = false
+    @State private var currentView = 1
     @ObservedObject var favouriteBusStopsViewModel = FavouriteBusStopsViewModel()
     
     var body: some View {
-        TabView {
-            NextDeparturesView(busStop: busStop, filteredBusLines: filteredBusLines)
+        TabView(selection: $currentView) {
+            NextDeparturesView(busStop: busStop, filteredBusLines: filteredBusLines, currentView: $currentView)
             .tabItem {
                 Image(systemName: "bus.fill")
             }
+            .tag(1)
             
             PlanView(busStop: busStop)
             .tabItem {
                 Image(systemName: "note.text")
             }
+            .tag(2)
         }
         .tabViewStyle(PageTabViewStyle())
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))

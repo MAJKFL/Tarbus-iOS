@@ -75,6 +75,21 @@ class DataBaseHelper: ObservableObject {
         }.resume()
     }
     
+    func runStatement(_ query: String) throws -> String {
+        let fileManager = FileManager.default
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
+        let db = try! Connection(url.absoluteString)
+        
+        var returnString = ""
+        
+        for row in try db.prepare(query).run() {
+            returnString += "\(String(describing: row))\n"
+        }
+        
+        return returnString
+    }
+    
     func deleteAllData() {
         let fileManager = FileManager.default
         let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
