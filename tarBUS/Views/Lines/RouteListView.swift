@@ -80,7 +80,7 @@ fileprivate struct RouteView: View {
         }
         .background(Color("lightGray"))
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-        .shadow(radius: 5, x: 5, y: 5)
+        .shadow(radius: 2, x: 2, y: 2)
         .padding([.top, .horizontal])
         .onAppear {
             busStops = dataBaseHelper.getBusStops(routeId: route.id)

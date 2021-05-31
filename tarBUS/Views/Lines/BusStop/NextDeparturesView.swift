@@ -90,7 +90,7 @@ fileprivate struct NextDepartureCellView: View {
                 
                 Text(departure.busLine.name)
             }
-            .font(Font.headline.weight(.bold))
+            .font(.headline.weight(.bold))
             .foregroundColor(.white)
             .frame(maxWidth: 100, minHeight: 50, maxHeight: .infinity)
             .background(Color("MainColor"))
@@ -114,7 +114,7 @@ fileprivate struct NextDepartureCellView: View {
         }
         .background(Color("lightGray"))
         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-        .shadow(radius: 5, x: 5, y: 5)
+        .shadow(radius: 2, x: 2, y: 2)
     }
 }
 
@@ -134,7 +134,7 @@ fileprivate struct FilterView: View {
         return allBusLines.removeDuplicates().sorted(by: { $0.id < $1.id })
     }
     
-    var isDisabled: Bool {
+    var isHidden: Bool {
         busLines.count <= 1
     }
     
@@ -147,19 +147,20 @@ fileprivate struct FilterView: View {
     
     var body: some View {
         VStack {
-            Button(action: {
-                withAnimation(Animation.easeOut.speed(2)) { showPicker.toggle() }
-            }, label: {
-                HStack {
-                    Text("Filtruj")
-                    
-                    Image(systemName: "line.horizontal.3.decrease")
-                }
-                .font(.body)
-            })
-            .disabled(isDisabled)
+            if !isHidden {
+                Button(action: {
+                    withAnimation(Animation.easeOut.speed(2)) { showPicker.toggle() }
+                }, label: {
+                    HStack {
+                        Text("Filtruj")
+                        
+                        Image(systemName: "line.horizontal.3.decrease")
+                    }
+                    .font(.body)
+                })
+            }
             
-            if !isDisabled {
+            if !isHidden {
                 LazyVGrid(columns: columns) {
                     ForEach(filteredBusLines) { busLine in
                         HStack {

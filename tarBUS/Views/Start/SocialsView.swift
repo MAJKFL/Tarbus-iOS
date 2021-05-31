@@ -72,7 +72,7 @@ struct SocialsCardView: View {
         .frame(width: UIScreen.main.bounds.width / 1.5)
         .background(Color("lightGray"))
         .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
-        .shadow(radius: 5)
+        .shadow(radius: 2, x: 2, y: 2)
         .padding()
     }
 }

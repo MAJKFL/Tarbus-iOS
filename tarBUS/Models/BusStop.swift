@@ -21,7 +21,6 @@ struct BusStop: Identifiable, Codable {
     var annotation: BusStopPointAnnotation {
         let newAnnotation = BusStopPointAnnotation()
         newAnnotation.title = name
-        newAnnotation.subtitle = "Najbliższe odjazdy"
         newAnnotation.coordinate.latitude = latitude
         newAnnotation.coordinate.longitude = longitude
         newAnnotation.busStop = self

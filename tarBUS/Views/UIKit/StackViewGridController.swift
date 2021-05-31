@@ -35,9 +35,13 @@ class StackViewGridController: UIViewController {
         // Init StackView
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.alignment = .center
+        stackView.alignment = .leading
         stackView.distribution = .equalSpacing
         stackView.spacing = mySpacing
+        
+        let subtitle = UILabel()
+        subtitle.text = "Najbliższe odjazdy:"
+        stackView.addArrangedSubview(subtitle)
 
         for row in 0 ..< rows {
             let horizontalSv = UIStackView()

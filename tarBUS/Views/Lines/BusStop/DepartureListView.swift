@@ -46,9 +46,14 @@ struct DepartureListView: View {
                                     .busStopLabel()
                             }
                             
-                            Text(departures[index].busStop.name)
-                                .font(departures[index].id == mainDeparture.id ? .headline : .subheadline)
-                                .lineLimit(2)
+                            NavigationLink(
+                                destination: BusStopView(busStop: departures[index].busStop, filteredBusLines: [mainDeparture.busLine]),
+                                label: {
+                                    Text(departures[index].busStop.name)
+                                        .font(departures[index].id == mainDeparture.id ? .headline : .subheadline)
+                                        .lineLimit(2)
+                                })
+                                .buttonStyle(PlainButtonStyle())
                             
                             Spacer()
                             

@@ -135,13 +135,13 @@ fileprivate struct RouteCellView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                 
                 Text("\(route.destinationName)")
-                    .font(.title)
+                    .font(.headline)
                     .lineLimit(1)
                 
                 Spacer()
                 
-                Image(systemName: "chevron.down")
-                    .font(Font.body.bold())
+                Image(systemName: "chevron.up")
+                    .font(.headline)
                     .rotationEffect(.degrees(showHours ? 0 : -180))
                     .padding(.trailing)
             }
@@ -179,7 +179,7 @@ fileprivate struct RouteCellView: View {
         }
         .background(Color("lightGray"))
         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-        .shadow(radius: 5, x: 5, y: 5)
+        .shadow(radius: 2, x: 2, y: 2)
         .padding(.horizontal)
         .onAppear {
             if busLineName.isEmpty {

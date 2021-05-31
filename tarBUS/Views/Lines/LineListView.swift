@@ -34,10 +34,6 @@ struct LineListView: View {
                         
                         Spacer()
                     }
-                    .padding(2)
-                    .background(Color("lightGray"))
-                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                    .shadow(radius: 3, x: 3, y: 3)
                     
                     LazyVGrid(columns: columns, spacing: 10) {
                         ForEach(busLines) { line in
@@ -52,7 +48,7 @@ struct LineListView: View {
                                 .frame(maxWidth: .infinity, minHeight: 50)
                                 .background(Color("MainColor"))
                                 .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-                                .shadow(radius: 3, x: 3, y: 3)
+                                .shadow(radius: 2, x: 2, y: 2)
                             }
                             .simultaneousGesture(TapGesture().onEnded {
                                 buttonPressCounter += 1
