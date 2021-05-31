@@ -12,4 +12,6 @@ struct Route: Identifiable {
     let destinationName: String
     let busLineId: Int
     let description: String
+    
+    var towns: [String] { description.components(separatedBy: ", ") }
 }

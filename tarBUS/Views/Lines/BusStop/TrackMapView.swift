@@ -12,7 +12,7 @@ import CoreLocation
 struct TrackMapView: View {
     let connections: [BusStopConnection]
     let busStops: [BusStop]
-    let busStop: BusStop
+    let busStop: BusStop?
     
     @State private var selectedBusStop: BusStop?
     @State private var isActive = false
@@ -52,7 +52,7 @@ struct TrackMapView: View {
         ZStack {
             NavigationLink("", destination: BusStopView(busStop: selectedBusStop ?? .placeholder, filteredBusLines: []), isActive: $isActive).hidden()
             
-            MapView(coordinates: coordinates, annotations: annotations, busStopCoordinate: busStop.location, mapType: mapType, selectedBusStop: $selectedBusStop, isActive: $isActive, isTrackingUser: isTrackingUser)
+            MapView(coordinates: coordinates, annotations: annotations, busStopCoordinate: busStop?.location, mapType: mapType, selectedBusStop: $selectedBusStop, isActive: $isActive, isTrackingUser: isTrackingUser)
                 .ignoresSafeArea(.all)
             
             HStack {

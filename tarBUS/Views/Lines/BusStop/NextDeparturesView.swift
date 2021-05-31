@@ -146,8 +146,10 @@ fileprivate struct FilterView: View {
     ]
     
     var body: some View {
-        VStack {
-            if !isHidden {
+        if isHidden {
+            EmptyView()
+        } else {
+            VStack {
                 Button(action: {
                     withAnimation(Animation.easeOut.speed(2)) { showPicker.toggle() }
                 }, label: {
@@ -158,9 +160,7 @@ fileprivate struct FilterView: View {
                     }
                     .font(.body)
                 })
-            }
-            
-            if !isHidden {
+                
                 LazyVGrid(columns: columns) {
                     ForEach(filteredBusLines) { busLine in
                         HStack {
@@ -179,30 +179,30 @@ fileprivate struct FilterView: View {
                         }
                     }
                 }
-            }
-            
-            if showPicker {
-                Divider()
                 
-                LazyVGrid(columns: columns) {
-                    ForEach(busLines) { busLine in
-                        if !filteredBusLines.contains(busLine) {
-                            HStack {
-                                Text(busLine.name)
-                                
-                                Image(systemName: "plus.circle.fill")
-                                    .foregroundColor(.gray)
-                            }
-                            .frame(minWidth: 0)
-                            .padding(10)
-                            .background(Color("lightGray"))
-                            .clipShape(Capsule())
-                            .matchedGeometryEffect(id: busLine.id, in: animation)
-                            .onTapGesture {
-                                if !filteredBusLines.contains(busLine) {
-                                    withAnimation(Animation.easeOut.speed(2)) {
-                                        filteredBusLines.append(busLine)
-                                        filteredBusLines.sort(by: { $0.id < $1.id })
+                if showPicker {
+                    Divider()
+                    
+                    LazyVGrid(columns: columns) {
+                        ForEach(busLines) { busLine in
+                            if !filteredBusLines.contains(busLine) {
+                                HStack {
+                                    Text(busLine.name)
+                                    
+                                    Image(systemName: "plus.circle.fill")
+                                        .foregroundColor(.gray)
+                                }
+                                .frame(minWidth: 0)
+                                .padding(10)
+                                .background(Color("lightGray"))
+                                .clipShape(Capsule())
+                                .matchedGeometryEffect(id: busLine.id, in: animation)
+                                .onTapGesture {
+                                    if !filteredBusLines.contains(busLine) {
+                                        withAnimation(Animation.easeOut.speed(2)) {
+                                            filteredBusLines.append(busLine)
+                                            filteredBusLines.sort(by: { $0.id < $1.id })
+                                        }
                                     }
                                 }
                             }
@@ -210,7 +210,7 @@ fileprivate struct FilterView: View {
                     }
                 }
             }
+            .font(.footnote)
         }
-        .font(.footnote)
     }
 }

@@ -37,7 +37,7 @@ struct WidgetView: View {
                                 .font(.subheadline)
                                 .multilineTextAlignment(.center)
                             
-                            Text("Przytrzymaj dłużej widget i naciśnij w \"Edycja widżetu\"")
+                            Text("Przytrzymaj dłużej widget i naciśnij \"Edycja widżetu\"")
                                 .font(.footnote)
                                 .foregroundColor(.secondary)
                                 .multilineTextAlignment(.center)

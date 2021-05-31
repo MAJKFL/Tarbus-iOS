@@ -41,11 +41,6 @@ struct StartView: View {
                 Section(header: Text("Społeczność")) {
                     SocialsView()
                 }
-                
-//                Section(header: Text("Inne")) {
-//                    NavigationLink("O aplikacji", destination: AboutView())
-//                    NavigationLink("Ustawienia", destination: SettingsView())
-//                }
             }
             .listStyle(GroupedListStyle())
             .navigationTitle("tarBUS")

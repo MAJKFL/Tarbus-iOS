@@ -63,6 +63,7 @@ struct LineListView: View {
             }
             .navigationTitle("Linie")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .onAppear {
             busLines = dataBaseHelper.getBusLines()
         }
