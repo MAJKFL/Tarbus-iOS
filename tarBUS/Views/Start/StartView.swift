@@ -49,5 +49,6 @@ struct StartView: View {
                 EditButton()
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }

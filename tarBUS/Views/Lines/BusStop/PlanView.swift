@@ -33,6 +33,10 @@ struct PlanView: View {
     
     var body: some View {
         VStack {
+            Text(busStop.name)
+                .bold()
+                .padding(.top)
+            
             Picker("Dzień", selection: $dayType.animation(.easeOut)) {
                 ForEach(dayTypes.allCases, id: \.self) {
                     Text($0.rawValue)

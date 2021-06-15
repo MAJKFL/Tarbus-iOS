@@ -76,6 +76,7 @@ struct BusStopMapView: View {
             }
             .navigationTitle("Mapa")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .animation(.easeOut)
         .onAppear {
             if locationManager.authorizationStatus == .notDetermined {

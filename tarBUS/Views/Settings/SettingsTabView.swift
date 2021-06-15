@@ -74,6 +74,6 @@ struct SettingsTabView: View {
             .listStyle(GroupedListStyle())
             .navigationTitle("Ustawienia")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
-

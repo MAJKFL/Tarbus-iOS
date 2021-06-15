@@ -13,7 +13,6 @@ struct WidgetView: View {
     
     var data: DataProvider.Entry
     
-    let textGradient = LinearGradient(gradient: Gradient(colors: [.clear, .clear, .clear, Color("GradientColor")]), startPoint: .top, endPoint: .bottom)
     let badgeGradient = LinearGradient(gradient: Gradient(colors: [Color("MainColor"), Color("MainColorGradient")]), startPoint: .topLeading, endPoint: .bottomTrailing)
     
     var url: URL? {
@@ -90,7 +89,6 @@ struct WidgetView: View {
                         
                         Spacer()
                     }
-                    .overlay(textGradient)
                 }
             }
             .widgetURL(url)

@@ -27,71 +27,68 @@ struct NextDeparturesView: View {
     }
     
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 10) {
-                FilterView(filteredBusLines: $filteredBusLines, allDepartures: departures + departuresForNextDay)
-                
-                #if DEBUG
-                Button(action: {
-                    UIPasteboard.general.string = "https://app.tarbus.pl/store?directFrom=schedule&busStopId=\(busStop.id)\(filteredBusLines.isEmpty ? "" : "&busLineId=\(filteredBusLines.first!.id)")"
-                }, label: {
-                    Label("Copy deep link", systemImage: "doc.on.doc")
-                        .foregroundColor(Color("DebugPink"))
-                })
-                #endif
-                
-                if !(filteredDepartures + filteredDeparturesForNextDay).isEmpty {
-                    ForEach(filteredDepartures) { departure in
-                        NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
-                            NextDepartureCellView(departure: departure, isTomorrow: false)
-                        })
-                        .buttonStyle(PlainButtonStyle())
-                        .id("\(departure.id)-today")
-                    }
+        VStack {
+            Text(busStop.name)
+                .bold()
+                .padding(.top)
+            
+            ScrollView {
+                LazyVStack(spacing: 10) {
+                    FilterView(filteredBusLines: $filteredBusLines, allDepartures: departures + departuresForNextDay)
                     
-                    Divider()
-                    
-                    ForEach(filteredDeparturesForNextDay) { departure in
-                        NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
-                            NextDepartureCellView(departure: departure, isTomorrow: true)
-                        })
-                        .buttonStyle(PlainButtonStyle())
-                        .id("\(departure.id)-yesterday")
-                    }
-                } else {
-                    VStack(spacing: 20) {
-                        Image("noDepartures")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: UIScreen.main.bounds.width - 100)
+                    if !(filteredDepartures + filteredDeparturesForNextDay).isEmpty {
+                        ForEach(filteredDepartures) { departure in
+                            NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
+                                NextDepartureCellView(departure: departure, isTomorrow: false)
+                            })
+                            .buttonStyle(PlainButtonStyle())
+                            .id("\(departure.id)-today")
+                        }
                         
-                        Text("Niestety, nie znaleźliśmy odjazdów w najbliższym czasie")
-                            .font(.headline)
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.secondary)
+                        Divider()
                         
-                        Button(action: {
-                            withAnimation(.easeIn) { currentView = 2 }
-                        }, label: {
-                            Text("Zobacz pełny rozkład jazdy")
+                        ForEach(filteredDeparturesForNextDay) { departure in
+                            NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
+                                NextDepartureCellView(departure: departure, isTomorrow: true)
+                            })
+                            .buttonStyle(PlainButtonStyle())
+                            .id("\(departure.id)-yesterday")
+                        }
+                    } else {
+                        VStack(spacing: 20) {
+                            Image("noDepartures")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: UIScreen.main.bounds.width - 100)
+                            
+                            Text("Niestety, nie znaleźliśmy odjazdów w najbliższym czasie")
                                 .font(.headline)
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color("MainColor"))
-                                .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-                        })
-                        .buttonStyle(PlainButtonStyle())
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.secondary)
+                            
+                            Button(action: {
+                                withAnimation(.easeIn) { currentView = 2 }
+                            }, label: {
+                                Text("Zobacz pełny rozkład jazdy")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(Color("MainColor"))
+                                    .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+                            })
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
                 }
+                .padding()
+                .padding(.bottom, 25)
             }
-            .padding()
-            .padding(.bottom, 25)
+            .onAppear {
+                if departures.isEmpty {
+                    getDepartures()
+                }
         }
-        .onAppear {
-            if departures.isEmpty {
-                getDepartures()
-            }
         }
     }
     
@@ -152,8 +149,6 @@ fileprivate struct FilterView: View {
     
     @State private var showPicker = false
     
-    @Namespace private var animation
-    
     var busLines: [BusLine] {
         let allBusLines = allDepartures.map { departure in
             departure.busLine
@@ -169,7 +164,6 @@ fileprivate struct FilterView: View {
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
-        GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
@@ -177,59 +171,52 @@ fileprivate struct FilterView: View {
         if isHidden {
             EmptyView()
         } else {
-            VStack {
-                Button(action: {
-                    withAnimation(Animation.easeOut.speed(2)) { showPicker.toggle() }
-                }, label: {
-                    HStack {
-                        Text("Filtruj")
-                        
-                        Image(systemName: "line.horizontal.3.decrease")
-                    }
-                    .font(.body)
-                })
-                
-                LazyVGrid(columns: columns) {
-                    ForEach(filteredBusLines) { busLine in
-                        HStack {
-                            Text(busLine.name)
-                            
-                            Image(systemName: "xmark.circle.fill")
-                                .foregroundColor(.gray)
-                        }
-                        .frame(minWidth: 0)
-                        .padding(10)
-                        .background(Color("lightGray"))
-                        .clipShape(Capsule())
-                        .matchedGeometryEffect(id: busLine.id, in: animation)
-                        .onTapGesture {
-                            withAnimation(Animation.easeOut.speed(2)) { filteredBusLines.removeAll(where: { $0 == busLine }) }
-                        }
-                    }
-                }
-                
-                if showPicker {
-                    Divider()
-                    
+            HStack(alignment: .midFilteredBusesAndButton) {
+                if !filteredBusLines.isEmpty || showPicker {
+                VStack {
                     LazyVGrid(columns: columns) {
-                        ForEach(busLines) { busLine in
-                            if !filteredBusLines.contains(busLine) {
-                                HStack {
-                                    Text(busLine.name)
-                                    
-                                    Image(systemName: "plus.circle.fill")
-                                        .foregroundColor(.gray)
-                                }
-                                .frame(minWidth: 0)
-                                .padding(10)
-                                .background(Color("lightGray"))
-                                .clipShape(Capsule())
-                                .matchedGeometryEffect(id: busLine.id, in: animation)
-                                .onTapGesture {
-                                    if !filteredBusLines.contains(busLine) {
-                                        withAnimation(Animation.easeOut.speed(2)) {
-                                            filteredBusLines.append(busLine)
-                                            filteredBusLines.sort(by: { $0.id < $1.id })
+                        ForEach(filteredBusLines) { busLine in
+                            HStack {
+                                Text(busLine.name)
+                                
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(minWidth: 0)
+                            .padding(10)
+                            .background(Color("lightGray"))
+                            .clipShape(Capsule())
+                            .id(busLine.id)
+                            .onTapGesture {
+                                withAnimation(Animation.easeOut.speed(2)) { filteredBusLines.removeAll(where: { $0 == busLine }) }
+                            }
+                        }
+                    }
+                    .alignmentGuide(.midFilteredBusesAndButton) { d in d[VerticalAlignment.center] }
+                    
+                    if showPicker {
+                        Divider()
+                        
+                        LazyVGrid(columns: columns) {
+                            ForEach(busLines) { busLine in
+                                if !filteredBusLines.contains(busLine) {
+                                    HStack {
+                                        Text(busLine.name)
+                                        
+                                        Image(systemName: "plus.circle.fill")
+                                            .foregroundColor(.gray)
+                                    }
+                                    .frame(minWidth: 0)
+                                    .padding(10)
+                                    .background(Color("lightGray"))
+                                    .clipShape(Capsule())
+                                    .id(busLine.id)
+                                    .onTapGesture {
+                                        if !filteredBusLines.contains(busLine) {
+                                            withAnimation(Animation.easeOut.speed(2)) {
+                                                filteredBusLines.append(busLine)
+                                                filteredBusLines.sort(by: { $0.id < $1.id })
+                                            }
                                         }
                                     }
                                 }
@@ -237,8 +224,28 @@ fileprivate struct FilterView: View {
                         }
                     }
                 }
+                .frame(width: UIScreen.main.bounds.width / 3 * 2)
+                }
+                
+                Button(action: {
+                    withAnimation(Animation.easeOut.speed(2)) { showPicker.toggle() }
+                }, label: {
+                    Label("Filtruj", systemImage: "line.horizontal.3.decrease")
+                        .font(.body)
+                })
+                .alignmentGuide(.midFilteredBusesAndButton) { d in d[VerticalAlignment.center] }
             }
             .font(.footnote)
         }
     }
+}
+
+extension VerticalAlignment {
+    enum MidFilteredBusesAndButton: AlignmentID {
+        static func defaultValue(in d: ViewDimensions) -> CGFloat {
+            d[.top]
+        }
+    }
+
+    static let midFilteredBusesAndButton = VerticalAlignment(MidFilteredBusesAndButton.self)
 }
