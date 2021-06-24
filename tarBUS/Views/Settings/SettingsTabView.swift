@@ -27,9 +27,9 @@ struct SettingsTabView: View {
                     }
                 }
                 
-                Section(header: Text("Panel informacyjny")) {
-                    NavigationLink("Ustawienia panelu informacyjnego", destination: Text("Ustawienia panelu informacji"))
-                }
+//                Section(header: Text("Panel informacyjny")) {
+//                    NavigationLink("Ustawienia panelu informacyjnego", destination: Text("Ustawienia panelu informacji"))
+//                }
                 
                 Section(header: Text("Polityka prywatności")) {
                     NavigationLink(destination: PrivacyPolicyView(), label: {

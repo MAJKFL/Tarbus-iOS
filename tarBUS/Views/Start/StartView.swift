@@ -15,7 +15,7 @@ struct StartView: View {
     
     init() {
         UITableView.appearance().showsVerticalScrollIndicator = false
-        UITableView.appearance().backgroundColor = UIColor(named: "BackgroundBlue")
+        //UITableView.appearance().backgroundColor = UIColor(named: "BackgroundBlue")
     }
     
     var body: some View {

@@ -32,10 +32,10 @@ struct NextDeparturesView: View {
                 .bold()
                 .padding(.top)
             
+            FilterView(filteredBusLines: $filteredBusLines, allDepartures: departures + departuresForNextDay)
+            
             ScrollView {
                 LazyVStack(spacing: 10) {
-                    FilterView(filteredBusLines: $filteredBusLines, allDepartures: departures + departuresForNextDay)
-                    
                     if !(filteredDepartures + filteredDeparturesForNextDay).isEmpty {
                         ForEach(filteredDepartures) { departure in
                             NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {

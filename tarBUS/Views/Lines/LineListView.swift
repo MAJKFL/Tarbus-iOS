@@ -30,7 +30,7 @@ struct LineListView: View {
                             .padding(.leading, 3)
                         
                         Text("Michalus")
-                            .font(.largeTitle)
+                            .font(.title)
                         
                         Spacer()
                     }

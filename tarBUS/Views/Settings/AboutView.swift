@@ -11,7 +11,7 @@ import MessageUI
 struct AboutView: View {
     enum Mail: String, Identifiable {
         case developer = "kubaflor23@gmail.com"
-        case tarbus = "dominik00801@gmail.com"
+        case tarbus = "kontakt@tarbus.pl"
         
         var id: String {
             self.rawValue
