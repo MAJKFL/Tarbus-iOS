@@ -57,19 +57,19 @@ struct SettingsTabView: View {
                         
                         Spacer()
                         
-                        #if DEBUG
-                        Text("\(appVersionString) DEBUG")
-                            .foregroundColor(Color("DebugPink"))
-                        #else
+//                        #if DEBUG
+//                        Text("\(appVersionString) DEBUG")
+//                            .foregroundColor(Color("DebugPink"))
+//                        #else
                         Text(appVersionString)
                             .foregroundColor(.secondary)
-                        #endif
+//                        #endif
                     }
                 }
                 
-                #if DEBUG
-                DevMenuView()
-                #endif
+//                #if DEBUG
+//                DevMenuView()
+//                #endif
             }
             .listStyle(GroupedListStyle())
             .navigationTitle("Ustawienia")
