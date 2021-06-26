@@ -24,18 +24,17 @@ struct BusStopView: View {
             }
         }
     }
-    
-    let busStop: BusStop
-    let filteredBusLines: [BusLine]
-    
     @ObservedObject var favouriteBusStopsViewModel = FavouriteBusStopsViewModel()
     @State private var isShowingAddView = false
     @State private var currentView = 1
     
+    let busStop: BusStop
+    let filteredBusLines: [BusLine]
+    
     var body: some View {
         VStack(spacing: 0) {
             TabView(selection: $currentView) {
-                NextDeparturesView(busStop: busStop, filteredBusLines: filteredBusLines, currentView: $currentView)
+                NextDeparturesView(filteredBusLines: filteredBusLines, currentView: $currentView, busStop: busStop)
                 .tabItem {
                     Image(systemName: "bus.fill")
                 }

@@ -10,14 +10,14 @@ import MapKit
 import CoreLocation
 
 struct TrackMapView: View {
-    let connections: [BusStopConnection]
-    let busStops: [BusStop]
-    let busStop: BusStop?
-    
     @State private var selectedBusStop: BusStop?
     @State private var isActive = false
     @State private var mapType = MKMapType.standard
     @State private var isTrackingUser = false
+    
+    let connections: [BusStopConnection]
+    let busStops: [BusStop]
+    let busStop: BusStop?
     
     let locationManager = CLLocationManager()
     

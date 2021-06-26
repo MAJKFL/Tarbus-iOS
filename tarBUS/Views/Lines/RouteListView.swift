@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct RouteListView: View {
-    @StateObject var dataBaseHelper = DataBaseHelper()
-    @State private var routes = [Route]()
+    @ObservedObject var dataBaseHelper = DataBaseHelper()
     @ObservedObject var favouriteBusLinesViewModel = FavouriteBusLinesViewModel()
+    @State private var routes = [Route]()
     
     let busLine: BusLine
     
@@ -124,14 +124,5 @@ fileprivate struct BusStopListView: View {
                 .buttonStyle(PlainButtonStyle())
             }
         }
-    }
-}
-
-extension Image {
-    func busStopLabel() -> some View {
-        self
-            .resizable()
-            .scaledToFit()
-            .frame(minWidth: 15)
     }
 }

@@ -14,9 +14,7 @@ struct BusStopMapView: View {
     @State private var selectedBusStop: BusStop?
     @State private var isActive = false
     @State private var isTrackingUser = false
-    
     @State private var mapType = MKMapType.standard
-    
     @State private var busStops = [BusStop]()
     
     let locationManager = CLLocationManager()

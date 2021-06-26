@@ -9,12 +9,12 @@ import SwiftUI
 
 struct NextDeparturesView: View {
     @ObservedObject var databaseHelper = DataBaseHelper()
-    let busStop: BusStop
-    @State var filteredBusLines: [BusLine]
-    
     @State private var departures = [NextDeparture]()
     @State private var departuresForNextDay = [NextDeparture]()
+    @State var filteredBusLines: [BusLine]
     @Binding var currentView: Int
+    
+    let busStop: BusStop
     
     var filteredDepartures: [NextDeparture] {
         if filteredBusLines.isEmpty { return departures }
@@ -88,7 +88,7 @@ struct NextDeparturesView: View {
                 if departures.isEmpty {
                     getDepartures()
                 }
-        }
+            }
         }
     }
     
@@ -144,10 +144,10 @@ fileprivate struct NextDepartureCellView: View {
 }
 
 fileprivate struct FilterView: View {
-    @Binding var filteredBusLines: [BusLine]
-    let allDepartures: [NextDeparture]
-    
     @State private var showPicker = false
+    @Binding var filteredBusLines: [BusLine]
+    
+    let allDepartures: [NextDeparture]
     
     var busLines: [BusLine] {
         let allBusLines = allDepartures.map { departure in
@@ -238,14 +238,4 @@ fileprivate struct FilterView: View {
             .font(.footnote)
         }
     }
-}
-
-extension VerticalAlignment {
-    enum MidFilteredBusesAndButton: AlignmentID {
-        static func defaultValue(in d: ViewDimensions) -> CGFloat {
-            d[.top]
-        }
-    }
-
-    static let midFilteredBusesAndButton = VerticalAlignment(MidFilteredBusesAndButton.self)
 }

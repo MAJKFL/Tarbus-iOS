@@ -11,6 +11,7 @@ struct DepartureListView: View {
     @StateObject var databaseHelper = DataBaseHelper()
     @State private var departures = [ListDeparture]()
     @State private var isActive = false
+    
     let mainDeparture: NextDeparture
     let busStop: BusStop
     
@@ -69,12 +70,6 @@ struct DepartureListView: View {
                 }
                 .onAppear {
                     departures = databaseHelper.getDeparturesFromTrack(trackId: mainDeparture.trackId)
-                    
-//                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(400)) {
-//                        withAnimation(.spring()) {
-//                            reader.scrollTo(mainDeparture.id, anchor: .center)
-//                        }
-//                    }
                 }
             }
             .navigationTitle("Trasa \(mainDeparture.busLine.name)")
