@@ -563,4 +563,31 @@ class DataBaseHelper: ObservableObject {
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
         }.resume()
     }
+    
+    func getNearestBusStops(lat: Double, lng: Double) -> [BusStop] {
+        var busStops = [BusStop]()
+        
+        let fileManager = FileManager.default
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
+        let db = try! Connection(url.absoluteString)
+        
+        do {
+            for row in try db.prepare("SELECT * FROM BusStop ORDER BY SQRT(POWER((BusStop.lat - 50), 2) - POWER((BusStop.lng - 21), 2)) LIMIT 10") {
+                let id = Optional(row[0]) as! Int64
+                let searchName = Optional(row[1]) as! String
+                let name = Optional(row[2]) as! String
+                let longitude = Optional(row[3]) as! Double
+                let latitutde = Optional(row[4]) as! Double
+                let destinations = Optional(row[5]) as! String
+                let newBusStop = BusStop(id: Int(id), name: name, searchName: searchName, longitude: longitude, latitude: latitutde, destination: destinations)
+                busStops.append(newBusStop)
+            }
+        } catch {
+            print(error)
+        }
+        
+        print(busStops)
+        return busStops
+    }
 }

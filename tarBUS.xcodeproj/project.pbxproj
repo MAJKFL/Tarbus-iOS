@@ -65,6 +65,7 @@
 		AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086625BC7B5D0045FFD5 /* BusStop.swift */; };
 		AA781C4A26B57EDE00255597 /* SocialCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA781C4926B57EDE00255597 /* SocialCardViewModel.swift */; };
 		AA781C4C26B57F9600255597 /* SocialCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA781C4B26B57F9600255597 /* SocialCardView.swift */; };
+		AA781C4E26B59C9E00255597 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA781C4D26B59C9E00255597 /* LocationHelper.swift */; };
 		AA78CDD925B9EDB20052455A /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78CDD825B9EDB20052455A /* BusLine.swift */; };
 		AA79FD1925DC8CB2004F5723 /* ReachabilityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */; };
 		AA7CB46625FD008C00D36172 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CB46525FD008B00D36172 /* VisualEffectView.swift */; };
@@ -170,6 +171,7 @@
 		AA75086625BC7B5D0045FFD5 /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
 		AA781C4926B57EDE00255597 /* SocialCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCardViewModel.swift; sourceTree = "<group>"; };
 		AA781C4B26B57F9600255597 /* SocialCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCardView.swift; sourceTree = "<group>"; };
+		AA781C4D26B59C9E00255597 /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		AA78CDD825B9EDB20052455A /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
 		AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityTest.swift; sourceTree = "<group>"; };
 		AA7CB46525FD008B00D36172 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 			children = (
 				AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */,
 				AA543C41265946590057CB33 /* HapticHelper.swift */,
+				AA781C4D26B59C9E00255597 /* LocationHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 					};
 					AAE9B11625AE7FA100D90F32 = {
 						CreatedOnToolsVersion = 12.3;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -675,6 +679,7 @@
 				AA781C4C26B57F9600255597 /* SocialCardView.swift in Sources */,
 				AAA32C2F25D5B37500DC9ABB /* UIKitTabBar.swift in Sources */,
 				AA713EE225FA7BBF00D47C80 /* BusStopConnection.swift in Sources */,
+				AA781C4E26B59C9E00255597 /* LocationHelper.swift in Sources */,
 				AA6D11DD25D1C28D005F6F87 /* BoardDeparture.swift in Sources */,
 				AA4DAB672687A05B0009A789 /* VerticalAlignment+Extensions.swift in Sources */,
 				AA4DAB692687A1F60009A789 /* Image+Extensions.swift in Sources */,
@@ -876,6 +881,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID_SUFFIX = .beta;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = tarBUS/tarBUS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
@@ -891,6 +897,7 @@
 				MARKETING_VERSION = 2.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp;
 				PRODUCT_NAME = tarBUS;
+				SWIFT_OBJC_BRIDGING_HEADER = "tarBUS/Helpers/tarBUS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1069,6 +1076,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID_SUFFIX = .dev;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = tarBUS/tarBUS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
@@ -1084,6 +1092,8 @@
 				MARKETING_VERSION = 2.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp;
 				PRODUCT_NAME = tarBUS;
+				SWIFT_OBJC_BRIDGING_HEADER = "tarBUS/Helpers/tarBUS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1096,6 +1106,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUNDLE_ID_SUFFIX = "";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = tarBUS/tarBUS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
@@ -1111,6 +1122,7 @@
 				MARKETING_VERSION = 2.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.florekjakub.tarBUSapp$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = tarBUS;
+				SWIFT_OBJC_BRIDGING_HEADER = "tarBUS/Helpers/tarBUS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

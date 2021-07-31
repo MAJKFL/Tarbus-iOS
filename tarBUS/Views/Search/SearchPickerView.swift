@@ -6,52 +6,132 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct SearchPickerView: View {
+    @ObservedObject var databaseHelper = DataBaseHelper()
+    @ObservedObject var locationhelper = LocationHelper()
+    
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
+    @State private var tiles = [
+        SearchTileViewModel(title: "Przystanki", imageName: "BusStop", destination: AnyView(SearchBusStopsView())),
+        SearchTileViewModel(title: "Linie", imageName: "BusLine", destination: AnyView(SearchBusLinesView())),
+        SearchTileViewModel(title: "T10", imageName: "BusLine", isRecomendation: true, destination: AnyView(SearchBusLinesView()))
+    ]
+    
     var body: some View {
         NavigationView {
-            VStack {
-                List {
-                    NavigationLink(destination: SearchBusStopsView(), label: {
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                            
-                            VStack(alignment: .leading) {
-                                Text("Wyszukaj przystanki")
-                                
-                                Text("Kliknij aby wyszukać")
-                                    .font(.footnote)
-                                    .foregroundColor(.secondary)
-                            }
-                            
-                            Spacer()
-                        }
-                        .padding(.horizontal)
-                        .padding(.vertical, 5)
-                    })
-                    
-                    NavigationLink(destination: SearchBusLinesView(), label: {
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                            
-                            VStack(alignment: .leading) {
-                                Text("Wyszukaj linie autobusowe")
-                                
-                                Text("Kliknij aby wyszukać")
-                                    .font(.footnote)
-                                    .foregroundColor(.secondary)
-                            }
-                            
-                            Spacer()
-                        }
-                        .padding(.horizontal)
-                        .padding(.vertical, 5)
-                    })
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    ForEach(tiles) { tile in
+                        SearchTileView(viewModel: tile)
+                    }
                 }
-                .listStyle(InsetListStyle())
+                .padding(.horizontal)
             }
             .navigationTitle("Wyszukaj")
+            .onAppear(perform: getNearestBusStops)
+        }
+    }
+    
+    func getNearestBusStops() {
+        guard let coordinate = locationhelper.location?.coordinate else { return }
+        
+        for busStop in databaseHelper.getNearestBusStops(lat: coordinate.latitude, lng: coordinate.longitude) {
+            tiles.append(SearchTileViewModel(title: busStop.name, imageName: "BusStop", isRecomendation: true, destination: AnyView(BusStopView(busStop: busStop, filteredBusLines: []))))
         }
     }
 }
 
+struct SearchTileView: View {
+    
+    let viewModel: SearchTileViewModel
+    
+    @State private var animation = false
+    
+    var body: some View {
+        NavigationLink(destination: viewModel.destination) {
+            ZStack {
+                Image(viewModel.imageName)
+                    .resizable()
+                    .scaledToFill()
+                
+                Color("MainColor")
+                    .opacity(0.6)
+                
+                
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        Image(systemName: "star.fill")
+                            .opacity(viewModel.isRecomendation ? 1 : 0)
+                    }
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Text(viewModel.title)
+                        
+                        Spacer()
+                    }
+                }
+                .padding()
+                .foregroundColor(.white)
+                .font(.headline.weight(.heavy))
+                
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        Image(systemName: "star.fill")
+                            .opacity(viewModel.isRecomendation ? 1 : 0)
+                    }
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Text(viewModel.title)
+                        
+                        Spacer()
+                    }
+                }
+                .padding()
+                .foregroundColor(Color("MainColor"))
+                .font(.headline.weight(.heavy))
+                .mask(
+                    Rectangle()
+                        .fill(
+                            LinearGradient(gradient: .init(colors: [Color.white.opacity(0.5),Color.white.opacity(0.8),Color.white.opacity(0.5)]), startPoint: .top, endPoint: .bottom)
+                        )
+                        .rotationEffect(.init(degrees: 70))
+                        .padding(20)
+                        .offset(x: -250)
+                        .offset(x: animation ? 500 : 0)
+                )
+                .onAppear {
+                    if viewModel.isRecomendation {
+                        withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)){
+                            animation.toggle()
+                        }
+                    }
+                }
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .shadow(radius: 3, x: 3, y: 3)
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+struct SearchTileViewModel: Identifiable {
+    let id = UUID()
+    let title: String
+    let imageName: String
+    var isRecomendation = false
+    let destination: AnyView
+}
