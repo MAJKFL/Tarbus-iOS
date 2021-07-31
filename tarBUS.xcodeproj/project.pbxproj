@@ -42,8 +42,6 @@
 		AA3C459B25C5D2B500148F1E /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C459A25C5D2B500148F1E /* PlanView.swift */; };
 		AA3D20C1265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D20C0265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift */; };
 		AA42E81425F4DB5800E79DA9 /* Url+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42E81325F4DB5800E79DA9 /* Url+extensions.swift */; };
-		AA4DAB6326879F200009A789 /* SocialCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4DAB6226879F200009A789 /* SocialCardView.swift */; };
-		AA4DAB6526879F420009A789 /* SocialCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4DAB6426879F420009A789 /* SocialCardViewModel.swift */; };
 		AA4DAB672687A05B0009A789 /* VerticalAlignment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4DAB662687A05B0009A789 /* VerticalAlignment+Extensions.swift */; };
 		AA4DAB692687A1F60009A789 /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4DAB682687A1F60009A789 /* Image+Extensions.swift */; };
 		AA543C42265946590057CB33 /* HapticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA543C41265946590057CB33 /* HapticHelper.swift */; };
@@ -65,6 +63,8 @@
 		AA75086025BC5E5F0045FFD5 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = AA75085F25BC5E5F0045FFD5 /* SQLite */; };
 		AA75086325BC5F000045FFD5 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */; };
 		AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086625BC7B5D0045FFD5 /* BusStop.swift */; };
+		AA781C4A26B57EDE00255597 /* SocialCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA781C4926B57EDE00255597 /* SocialCardViewModel.swift */; };
+		AA781C4C26B57F9600255597 /* SocialCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA781C4B26B57F9600255597 /* SocialCardView.swift */; };
 		AA78CDD925B9EDB20052455A /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78CDD825B9EDB20052455A /* BusLine.swift */; };
 		AA79FD1925DC8CB2004F5723 /* ReachabilityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */; };
 		AA7CB46625FD008C00D36172 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CB46525FD008B00D36172 /* VisualEffectView.swift */; };
@@ -150,8 +150,6 @@
 		AA3C459A25C5D2B500148F1E /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		AA3D20C0265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKStoreReviewController+extensions.swift"; sourceTree = "<group>"; };
 		AA42E81325F4DB5800E79DA9 /* Url+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Url+extensions.swift"; sourceTree = "<group>"; };
-		AA4DAB6226879F200009A789 /* SocialCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCardView.swift; sourceTree = "<group>"; };
-		AA4DAB6426879F420009A789 /* SocialCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCardViewModel.swift; sourceTree = "<group>"; };
 		AA4DAB662687A05B0009A789 /* VerticalAlignment+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VerticalAlignment+Extensions.swift"; sourceTree = "<group>"; };
 		AA4DAB682687A1F60009A789 /* Image+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
 		AA543C41265946590057CB33 /* HapticHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticHelper.swift; sourceTree = "<group>"; };
@@ -170,6 +168,8 @@
 		AA713EF025FA99A200D47C80 /* TrackMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMapView.swift; sourceTree = "<group>"; };
 		AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		AA75086625BC7B5D0045FFD5 /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
+		AA781C4926B57EDE00255597 /* SocialCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCardViewModel.swift; sourceTree = "<group>"; };
+		AA781C4B26B57F9600255597 /* SocialCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCardView.swift; sourceTree = "<group>"; };
 		AA78CDD825B9EDB20052455A /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
 		AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityTest.swift; sourceTree = "<group>"; };
 		AA7CB46525FD008B00D36172 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
@@ -270,7 +270,7 @@
 			children = (
 				AA3B97D025D46AAD0027D2DD /* FavouriteBusLinesViewModel.swift */,
 				AA3B97D925D478270027D2DD /* FavouriteBusStopsViewModel.swift */,
-				AA4DAB6426879F420009A789 /* SocialCardViewModel.swift */,
+				AA781C4926B57EDE00255597 /* SocialCardViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -310,7 +310,7 @@
 				AA3B97D525D46DA80027D2DD /* FavouriteBusLinesListView.swift */,
 				AA3B97DC25D47C670027D2DD /* FavouriteBusStopsView.swift */,
 				AA9053B52657C86700342DF5 /* SocialsView.swift */,
-				AA4DAB6226879F200009A789 /* SocialCardView.swift */,
+				AA781C4B26B57F9600255597 /* SocialCardView.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -654,7 +654,6 @@
 				AA849FD725CED7EE00831982 /* SearchPickerView.swift in Sources */,
 				AA09E84425C1BD7800FA4A70 /* RouteListView.swift in Sources */,
 				AAE9B11D25AE7FA200D90F32 /* StartView.swift in Sources */,
-				AA4DAB6526879F420009A789 /* SocialCardViewModel.swift in Sources */,
 				AA713EF125FA99A200D47C80 /* TrackMapView.swift in Sources */,
 				AA75086325BC5F000045FFD5 /* DatabaseHelper.swift in Sources */,
 				AA9053B92657E78500342DF5 /* SettingsTabView.swift in Sources */,
@@ -665,14 +664,15 @@
 				AA543C42265946590057CB33 /* HapticHelper.swift in Sources */,
 				AA3B97D625D46DA80027D2DD /* FavouriteBusLinesListView.swift in Sources */,
 				AA42E81425F4DB5800E79DA9 /* Url+extensions.swift in Sources */,
+				AA781C4A26B57EDE00255597 /* SocialCardViewModel.swift in Sources */,
 				AA7CB46625FD008C00D36172 /* VisualEffectView.swift in Sources */,
 				AA713EDA25FA759C00D47C80 /* MapView.swift in Sources */,
-				AA4DAB6326879F200009A789 /* SocialCardView.swift in Sources */,
 				AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */,
 				AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */,
 				AABEBB05265D932300EFC29D /* DevMenuView.swift in Sources */,
 				AA3D20C1265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift in Sources */,
 				AAA279CF25D2F5DC00E1FB45 /* PrivacyPolicyView.swift in Sources */,
+				AA781C4C26B57F9600255597 /* SocialCardView.swift in Sources */,
 				AAA32C2F25D5B37500DC9ABB /* UIKitTabBar.swift in Sources */,
 				AA713EE225FA7BBF00D47C80 /* BusStopConnection.swift in Sources */,
 				AA6D11DD25D1C28D005F6F87 /* BoardDeparture.swift in Sources */,
