@@ -34,7 +34,7 @@ struct BusStopMapView: View {
                 NavigationLink("", destination: BusStopView(busStop: selectedBusStop ?? .placeholder, filteredBusLines: []), isActive: $isActive).hidden()
                 
                 MapView(annotations: annotations, mapType: mapType, selectedBusStop: $selectedBusStop, isActive: $isActive, isTrackingUser: isTrackingUser)
-                    .ignoresSafeArea(.all)
+                    .ignoresSafeArea(.container, edges: .top)
                 
                 HStack {
                     Spacer()

@@ -49,7 +49,7 @@ struct SearchPickerView: View {
         
         if !isFirst {
             guard nearestBusStops.count == 2 else { return }
-            guard !tiles.contains(where: { $0.busStop?.id == nearestBusStops[0].id || $0.busStop?.id == nearestBusStops[1].id }) else { return }
+            guard !tiles.contains(where: { $0.busStop?.id == nearestBusStops[0].id && $0.busStop?.id == nearestBusStops[1].id }) else { return }
         }
         
         tiles.removeAll(where: { $0.isRecomendation })
