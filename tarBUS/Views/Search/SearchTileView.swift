@@ -29,6 +29,7 @@ struct SearchTileView: View {
                         Spacer()
                         
                         Image(systemName: "location.fill")
+                            .font(.headline.weight(.heavy))
                             .opacity(viewModel.isRecomendation ? 1 : 0)
                     }
                     
@@ -41,15 +42,16 @@ struct SearchTileView: View {
                         Spacer()
                     }
                 }
-                .padding()
+                .padding(10)
                 .foregroundColor(.white)
-                .font(.headline.weight(.heavy))
+                .font(viewModel.isRecomendation ? .footnote.weight(.heavy) : .headline.weight(.heavy))
                 
                 VStack {
                     HStack {
                         Spacer()
                         
                         Image(systemName: "location.fill")
+                            .font(.headline.weight(.heavy))
                             .opacity(viewModel.isRecomendation ? 1 : 0)
                     }
                     
@@ -62,9 +64,9 @@ struct SearchTileView: View {
                         Spacer()
                     }
                 }
-                .padding()
+                .padding(10)
                 .foregroundColor(Color("MainColor"))
-                .font(.headline.weight(.heavy))
+                .font(viewModel.isRecomendation ? .footnote.weight(.heavy) : .headline.weight(.heavy))
                 .mask(
                     Rectangle()
                         .fill(
