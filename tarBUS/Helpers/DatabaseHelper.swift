@@ -573,7 +573,7 @@ class DataBaseHelper: ObservableObject {
         let db = try! Connection(url.absoluteString)
         
         do {
-            for row in try db.prepare("SELECT * FROM BusStop ORDER BY SQRT(POWER((BusStop.lat - 50), 2) - POWER((BusStop.lng - 21), 2)) LIMIT 10") {
+            for row in try db.prepare("SELECT * FROM BusStop") {
                 let id = Optional(row[0]) as! Int64
                 let searchName = Optional(row[1]) as! String
                 let name = Optional(row[2]) as! String
@@ -587,7 +587,12 @@ class DataBaseHelper: ObservableObject {
             print(error)
         }
         
-        print(busStops)
-        return busStops
+        busStops.sort(by: {
+            let firstDistance = sqrt(pow($0.latitude - lat, 2) + pow($0.longitude - lng, 2))
+            let seocondDistance = sqrt(pow($1.latitude - lat, 2) + pow($1.longitude - lng, 2))
+            return firstDistance < seocondDistance
+        })
+        
+        return Array(busStops.prefix(2))
     }
 }

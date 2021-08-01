@@ -897,7 +897,6 @@
 				MARKETING_VERSION = 2.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp;
 				PRODUCT_NAME = tarBUS;
-				SWIFT_OBJC_BRIDGING_HEADER = "tarBUS/Helpers/tarBUS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1092,7 +1091,6 @@
 				MARKETING_VERSION = 2.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.florekjakub.tarBUSapp;
 				PRODUCT_NAME = tarBUS;
-				SWIFT_OBJC_BRIDGING_HEADER = "tarBUS/Helpers/tarBUS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1122,7 +1120,6 @@
 				MARKETING_VERSION = 2.1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.florekjakub.tarBUSapp$(BUNDLE_ID_SUFFIX)";
 				PRODUCT_NAME = tarBUS;
-				SWIFT_OBJC_BRIDGING_HEADER = "tarBUS/Helpers/tarBUS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -19,8 +19,7 @@ struct SearchPickerView: View {
     
     @State private var tiles = [
         SearchTileViewModel(title: "Przystanki", imageName: "BusStop", destination: AnyView(SearchBusStopsView())),
-        SearchTileViewModel(title: "Linie", imageName: "BusLine", destination: AnyView(SearchBusLinesView())),
-        SearchTileViewModel(title: "T10", imageName: "BusLine", isRecomendation: true, destination: AnyView(SearchBusLinesView()))
+        SearchTileViewModel(title: "Linie", imageName: "BusLine", destination: AnyView(SearchBusLinesView()))
     ]
     
     var body: some View {
@@ -34,15 +33,19 @@ struct SearchPickerView: View {
                 .padding(.horizontal)
             }
             .navigationTitle("Wyszukaj")
-            .onAppear(perform: getNearestBusStops)
+            .onReceive(locationhelper.$location, perform: { location in
+                guard let location = location?.coordinate else { return }
+                getNearestBusStops(location)
+            })
         }
     }
     
-    func getNearestBusStops() {
-        guard let coordinate = locationhelper.location?.coordinate else { return }
-        
-        for busStop in databaseHelper.getNearestBusStops(lat: coordinate.latitude, lng: coordinate.longitude) {
-            tiles.append(SearchTileViewModel(title: busStop.name, imageName: "BusStop", isRecomendation: true, destination: AnyView(BusStopView(busStop: busStop, filteredBusLines: []))))
+    func getNearestBusStops(_ location: CLLocationCoordinate2D) {
+        tiles.removeAll(where: { $0.isRecomendation })
+        withAnimation(.easeIn) {
+            for busStop in databaseHelper.getNearestBusStops(lat: location.latitude, lng: location.longitude) {
+                tiles.append(SearchTileViewModel(title: busStop.name, imageName: "BusStop", isRecomendation: true, destination: AnyView(BusStopView(busStop: busStop, filteredBusLines: []))))
+            }
         }
     }
 }
@@ -61,14 +64,14 @@ struct SearchTileView: View {
                     .scaledToFill()
                 
                 Color("MainColor")
-                    .opacity(0.6)
+                    .opacity(viewModel.isRecomendation ? 0.3 : 0.6)
                 
                 
                 VStack {
                     HStack {
                         Spacer()
                         
-                        Image(systemName: "star.fill")
+                        Image(systemName: "location.fill")
                             .opacity(viewModel.isRecomendation ? 1 : 0)
                     }
                     
@@ -76,6 +79,7 @@ struct SearchTileView: View {
                     
                     HStack {
                         Text(viewModel.title)
+                            .lineLimit(2)
                         
                         Spacer()
                     }
@@ -88,7 +92,7 @@ struct SearchTileView: View {
                     HStack {
                         Spacer()
                         
-                        Image(systemName: "star.fill")
+                        Image(systemName: "location.fill")
                             .opacity(viewModel.isRecomendation ? 1 : 0)
                     }
                     
@@ -96,6 +100,7 @@ struct SearchTileView: View {
                     
                     HStack {
                         Text(viewModel.title)
+                            .lineLimit(2)
                         
                         Spacer()
                     }
@@ -106,7 +111,7 @@ struct SearchTileView: View {
                 .mask(
                     Rectangle()
                         .fill(
-                            LinearGradient(gradient: .init(colors: [Color.white.opacity(0.5),Color.white.opacity(0.8),Color.white.opacity(0.5)]), startPoint: .top, endPoint: .bottom)
+                            LinearGradient(gradient: .init(colors: [Color.white.opacity(0.4),Color.white.opacity(0.6),Color.white.opacity(0.4)]), startPoint: .top, endPoint: .bottom)
                         )
                         .rotationEffect(.init(degrees: 70))
                         .padding(20)
