@@ -42,6 +42,8 @@
 		AA3C459B25C5D2B500148F1E /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C459A25C5D2B500148F1E /* PlanView.swift */; };
 		AA3D20C1265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D20C0265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift */; };
 		AA42E81425F4DB5800E79DA9 /* Url+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42E81325F4DB5800E79DA9 /* Url+extensions.swift */; };
+		AA4A818C26B6CFDB00A12907 /* SearchTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4A818B26B6CFDB00A12907 /* SearchTileView.swift */; };
+		AA4A818E26B6D00900A12907 /* SearchTileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4A818D26B6D00800A12907 /* SearchTileViewModel.swift */; };
 		AA4DAB672687A05B0009A789 /* VerticalAlignment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4DAB662687A05B0009A789 /* VerticalAlignment+Extensions.swift */; };
 		AA4DAB692687A1F60009A789 /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4DAB682687A1F60009A789 /* Image+Extensions.swift */; };
 		AA543C42265946590057CB33 /* HapticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA543C41265946590057CB33 /* HapticHelper.swift */; };
@@ -151,6 +153,8 @@
 		AA3C459A25C5D2B500148F1E /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		AA3D20C0265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKStoreReviewController+extensions.swift"; sourceTree = "<group>"; };
 		AA42E81325F4DB5800E79DA9 /* Url+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Url+extensions.swift"; sourceTree = "<group>"; };
+		AA4A818B26B6CFDB00A12907 /* SearchTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTileView.swift; sourceTree = "<group>"; };
+		AA4A818D26B6D00800A12907 /* SearchTileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTileViewModel.swift; sourceTree = "<group>"; };
 		AA4DAB662687A05B0009A789 /* VerticalAlignment+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VerticalAlignment+Extensions.swift"; sourceTree = "<group>"; };
 		AA4DAB682687A1F60009A789 /* Image+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
 		AA543C41265946590057CB33 /* HapticHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticHelper.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				AA3B97D025D46AAD0027D2DD /* FavouriteBusLinesViewModel.swift */,
 				AA3B97D925D478270027D2DD /* FavouriteBusStopsViewModel.swift */,
 				AA781C4926B57EDE00255597 /* SocialCardViewModel.swift */,
+				AA4A818D26B6D00800A12907 /* SearchTileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				AA849FD625CED7EE00831982 /* SearchPickerView.swift */,
 				AAC692AB25D1D84100477314 /* SearchBusLinesView.swift */,
 				AAC692AE25D1D86E00477314 /* SearchBusStopsView.swift */,
+				AA4A818B26B6CFDB00A12907 /* SearchTileView.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -671,6 +677,7 @@
 				AA781C4A26B57EDE00255597 /* SocialCardViewModel.swift in Sources */,
 				AA7CB46625FD008C00D36172 /* VisualEffectView.swift in Sources */,
 				AA713EDA25FA759C00D47C80 /* MapView.swift in Sources */,
+				AA4A818E26B6D00900A12907 /* SearchTileViewModel.swift in Sources */,
 				AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */,
 				AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */,
 				AABEBB05265D932300EFC29D /* DevMenuView.swift in Sources */,
@@ -694,6 +701,7 @@
 				AA1151A125C4A75D00A2F299 /* BusStopView.swift in Sources */,
 				AA3C459825C5C4A100148F1E /* date+extensions.swift in Sources */,
 				AA691F5F25D0814D006CE292 /* DepartureListView.swift in Sources */,
+				AA4A818C26B6CFDB00A12907 /* SearchTileView.swift in Sources */,
 				AA3B97D125D46AAD0027D2DD /* FavouriteBusLinesViewModel.swift in Sources */,
 				AAC82ECF25AEFCBE00236F31 /* AboutView.swift in Sources */,
 				AA3B97DA25D478270027D2DD /* FavouriteBusStopsViewModel.swift in Sources */,

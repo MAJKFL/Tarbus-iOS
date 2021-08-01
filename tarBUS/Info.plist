@@ -34,9 +34,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Wykorzystujemy twoją lokację do wyświetlenia jej na mapie</string>
+	<string>Wykorzystujemy twoją lokację do wyświetlenia jej na mapie i rekomendowania najbliższych przystanków</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Wykorzystujemy twoją lokację do wyświetlenia jej na mapie</string>
+	<string>Wykorzystujemy twoją lokację do wyświetlenia jej na mapie i rekomendowania najbliższych przystanków</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>ConfigurationIntent</string>
