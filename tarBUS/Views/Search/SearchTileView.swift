@@ -11,7 +11,10 @@ struct SearchTileView: View {
     
     let viewModel: SearchTileViewModel
     
+    @ObservedObject var favouriteBusStopsViewModel = FavouriteBusStopsViewModel()
+    
     @State private var animation = false
+    @State private var isShowingAddView = false
     
     var body: some View {
         NavigationLink(destination: viewModel.destination) {
@@ -86,8 +89,31 @@ struct SearchTileView: View {
                 }
             }
             .clipShape(RoundedRectangle(cornerRadius: 15))
+            .contextMenu {
+                if viewModel.isRecomendation {
+                    Button(action: {
+                        if favouriteBusStopsViewModel.busStops.contains(where: { $0.id == viewModel.busStop?.id ?? 0 }) {
+                            favouriteBusStopsViewModel.remove(id: viewModel.busStop?.id ?? 0)
+                        } else {
+                            isShowingAddView = true
+                        }
+                    }, label: {
+                        Label(favouriteBusStopsViewModel.busStops.contains(where: { $0.id == viewModel.busStop?.id }) ? "Usuń z ulubionych" : "Dodaj do ulubionych", systemImage: favouriteBusStopsViewModel.busStops.contains(where: { $0.id == viewModel.busStop?.id }) ? "heart.fill" : "heart")
+                    })
+                    Button(action: actionSheet, label: { Label("Udostępnij", systemImage: "square.and.arrow.up") })
+                }
+            }
+            .sheet(isPresented: $isShowingAddView, onDismiss: favouriteBusStopsViewModel.fetch) {
+                BusStopConfirmationView(busStop: viewModel.busStop!)
+            }
             .shadow(radius: 3, x: 3, y: 3)
         }
         .buttonStyle(PlainButtonStyle())
+    }
+    
+    func actionSheet() {
+        guard let urlShare = URL(string: "https://app.tarbus.pl/store?directFrom=schedule&busStopId=\(viewModel.busStop?.id ?? 0)") else { return }
+        let activityVC = UIActivityViewController(activityItems: [urlShare], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(activityVC, animated: true, completion: nil)
     }
 }
