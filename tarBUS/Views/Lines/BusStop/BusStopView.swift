@@ -34,7 +34,7 @@ struct BusStopView: View {
     var body: some View {
         VStack(spacing: 0) {
             TabView(selection: $currentView) {
-                NextDeparturesView(filteredBusLines: filteredBusLines, currentView: $currentView, busStop: busStop)
+                NextDeparturesView(filteredBusLines: filteredBusLines, busStop: busStop)
                 .tabItem {
                     Image(systemName: "bus.fill")
                 }

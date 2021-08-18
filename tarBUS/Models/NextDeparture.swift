@@ -24,3 +24,9 @@ struct NextDeparture: Identifiable {
         return tomorrowDeparture
     }
 }
+
+struct NextDepartureDay: Identifiable {
+    let id = UUID()
+    let date: Date
+    let departures: [NextDeparture]
+}

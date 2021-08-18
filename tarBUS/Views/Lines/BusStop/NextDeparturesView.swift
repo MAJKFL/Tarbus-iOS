@@ -9,21 +9,34 @@ import SwiftUI
 
 struct NextDeparturesView: View {
     @ObservedObject var databaseHelper = DataBaseHelper()
-    @State private var departures = [NextDeparture]()
-    @State private var departuresForNextDay = [NextDeparture]()
+    @State private var days = [NextDepartureDay]()
     @State var filteredBusLines: [BusLine]
-    @Binding var currentView: Int
     
     let busStop: BusStop
     
-    var filteredDepartures: [NextDeparture] {
-        if filteredBusLines.isEmpty { return departures }
-        return departures.filter({ filteredBusLines.contains($0.busLine) })
+    var filteredDays: [NextDepartureDay] {
+        if filteredBusLines.isEmpty { return days }
+        
+        var newDays = [NextDepartureDay]()
+        for day in days {
+            let departures = day.departures
+            let filteredDepartures = departures.filter({ filteredBusLines.contains($0.busLine) })
+            let newDay = NextDepartureDay(date: day.date, departures: filteredDepartures)
+            newDays.append(newDay)
+        }
+
+        return newDays
     }
     
-    var filteredDeparturesForNextDay: [NextDeparture] {
-        if filteredBusLines.isEmpty { return departuresForNextDay }
-        return departuresForNextDay.filter({ filteredBusLines.contains($0.busLine) })
+    var allDepartures: [NextDeparture] {
+        var departures = [NextDeparture]()
+        for day in days {
+            for departure in day.departures {
+                departures.append(departure)
+            }
+        }
+        
+        return departures
     }
     
     var body: some View {
@@ -32,81 +45,101 @@ struct NextDeparturesView: View {
                 .bold()
                 .padding(.top)
             
-            FilterView(filteredBusLines: $filteredBusLines, allDepartures: departures + departuresForNextDay)
+            FilterView(filteredBusLines: $filteredBusLines, allDepartures: allDepartures)
             
             ScrollView {
                 LazyVStack(spacing: 10) {
-                    if !(filteredDepartures + filteredDeparturesForNextDay).isEmpty {
-                        ForEach(filteredDepartures) { departure in
-                            NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
-                                NextDepartureCellView(departure: departure, isTomorrow: false)
-                            })
-                            .buttonStyle(PlainButtonStyle())
-                            .id("\(departure.id)-today")
-                        }
-                        
-                        Divider()
-                        
-                        ForEach(filteredDeparturesForNextDay) { departure in
-                            NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop), label: {
-                                NextDepartureCellView(departure: departure, isTomorrow: true)
-                            })
-                            .buttonStyle(PlainButtonStyle())
-                            .id("\(departure.id)-yesterday")
-                        }
-                    } else {
-                        VStack(spacing: 20) {
-                            Image("noDepartures")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: UIScreen.main.bounds.width - 100)
-                            
-                            Text("Niestety, nie znaleźliśmy odjazdów w najbliższym czasie")
-                                .font(.headline)
-                                .multilineTextAlignment(.center)
+                    ForEach(filteredDays) { day in
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(day.date, style: .date)
                                 .foregroundColor(.secondary)
                             
-                            Button(action: {
-                                withAnimation(.easeIn) { currentView = 2 }
-                            }, label: {
-                                Text("Zobacz pełny rozkład jazdy")
-                                    .font(.headline)
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .background(Color("MainColor"))
-                                    .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
-                            })
-                            .buttonStyle(PlainButtonStyle())
+                            Divider()
+                                .onAppear {
+                                    if !days.contains(where: { $0.date == day.date.addingTimeInterval(86400) }) {
+                                        getDay(forDate: day.date.addingTimeInterval(86400))
+                                    }
+                                }
                         }
-                        .padding(.horizontal)
+                        
+                        if day.departures.isEmpty {
+                            Text("Brak odjazdów")
+                        }
+                        
+                        ForEach(day.departures) { departure in
+                            NavigationLink(destination: DepartureListView(mainDeparture: departure, busStop: busStop)) {
+                                NextDepartureCellView(departure: departure)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .id("\(day.date)\(departure.id)")
+                        }
                     }
+                    
+//                    if !(filteredDepartureDays).isEmpty {
+//
+//                    } else {
+//                        VStack(spacing: 20) {
+//                            Image("noDepartures")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: UIScreen.main.bounds.width - 100)
+//
+//                            Text("Niestety, nie znaleźliśmy odjazdów w najbliższym czasie")
+//                                .font(.headline)
+//                                .multilineTextAlignment(.center)
+//                                .foregroundColor(.secondary)
+//
+//                            Button(action: {
+//                                withAnimation(.easeIn) { currentView = 2 }
+//                            }, label: {
+//                                Text("Zobacz pełny rozkład jazdy")
+//                                    .font(.headline)
+//                                    .foregroundColor(.white)
+//                                    .padding()
+//                                    .background(Color("MainColor"))
+//                                    .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+//                            })
+//                            .buttonStyle(PlainButtonStyle())
+//                        }
+//                        .padding(.horizontal)
+//                    }
                 }
                 .padding()
                 .padding(.bottom, 25)
             }
             .onAppear {
-                if departures.isEmpty {
-                    getDepartures()
+                if days.isEmpty {
+                    getDay()
                 }
             }
         }
     }
     
-    func getDepartures() {
+    func getDay() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd-MM-yyyy"
         
         let date = Date()
+        let departures = databaseHelper.getNextDepartures(busStopId: busStop.id, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date)), startFromTime: Date().minutesSinceMidnight)
+        let day = NextDepartureDay(date: date, departures: departures)
         
-        departures = databaseHelper.getNextDepartures(busStopId: busStop.id, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date)), startFromTime: Date().minutesSinceMidnight)
-
-        departuresForNextDay = databaseHelper.getNextDepartures(busStopId: busStop.id, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date.addingTimeInterval(86400))), startFromTime: 0)
+        days.append(day)
+    }
+    
+    func getDay(forDate date: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        
+        let date = date
+        let departures = databaseHelper.getNextDepartures(busStopId: busStop.id, dayTypes: databaseHelper.getCurrentDayType(currentDateString: formatter.string(from: date)), startFromTime: 0)
+        let day = NextDepartureDay(date: date, departures: departures)
+        
+        days.append(day)
     }
 }
 
 fileprivate struct NextDepartureCellView: View {
     let departure: NextDeparture
-    let isTomorrow: Bool
     
     var body: some View {
         HStack {
@@ -129,12 +162,6 @@ fileprivate struct NextDepartureCellView: View {
                 Text(departure.timeString)
                     .fontWeight(.bold)
                     .padding(.trailing)
-                
-                if isTomorrow {
-                    Text("Jutro")
-                        .font(.footnote)
-                        .foregroundColor(Color("MainColor"))
-                }
             }
         }
         .background(Color("lightGray"))

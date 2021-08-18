@@ -20,6 +20,14 @@ class LocationHelper: NSObject, ObservableObject {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
+    
+    func stopUpdatingLocation() {
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func startUpdatingLocation() {
+        locationManager.startUpdatingLocation()
+    }
 }
 
 extension LocationHelper: CLLocationManagerDelegate {

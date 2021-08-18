@@ -34,6 +34,8 @@ struct SearchPickerView: View {
             }
             .navigationTitle("Wyszukaj")
             .onAppear {
+                print("startUpdatingLocation")
+                locationhelper.startUpdatingLocation()
                 guard let location = locationhelper.location?.coordinate else { return }
                 getNearestBusStops(location, isFirst: true)
             }
@@ -41,6 +43,10 @@ struct SearchPickerView: View {
                 guard let location = location?.coordinate else { return }
                 getNearestBusStops(location, isFirst: false)
             })
+            .onDisappear {
+                print("stopUpdatingLocation")
+                locationhelper.stopUpdatingLocation()
+            }
         }
     }
     
