@@ -43,7 +43,8 @@ struct NextDeparturesView: View {
         VStack {
             Text(busStop.name)
                 .bold()
-                .padding(.top)
+                .multilineTextAlignment(.center)
+                .padding([.top, .horizontal])
             
             FilterView(filteredBusLines: $filteredBusLines, allDepartures: allDepartures)
             

@@ -48,6 +48,7 @@ struct SearchPickerView: View {
                 locationhelper.stopUpdatingLocation()
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     func getNearestBusStops(_ location: CLLocationCoordinate2D, isFirst: Bool) {
