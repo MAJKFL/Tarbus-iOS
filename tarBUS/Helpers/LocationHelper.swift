@@ -12,6 +12,14 @@ class LocationHelper: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
     @Published var location: CLLocation? = nil
     
+    var isLocationAvailable: Bool {
+        if locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted || locationManager.authorizationStatus == .notDetermined {
+            return false
+        } else {
+            return true
+        }
+    }
+    
     override init() {
         super.init()
         locationManager.delegate = self

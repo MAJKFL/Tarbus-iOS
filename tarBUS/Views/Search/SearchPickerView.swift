@@ -12,6 +12,8 @@ struct SearchPickerView: View {
     @ObservedObject var databaseHelper = DataBaseHelper()
     @ObservedObject var locationhelper = LocationHelper()
     
+    @AppStorage("IsLocationPromptDismissed") var isLocationPromptDismissed = false
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -28,6 +30,10 @@ struct SearchPickerView: View {
                 LazyVGrid(columns: columns) {
                     ForEach(tiles) { tile in
                         SearchTileView(viewModel: tile)
+                    }
+                    
+                    if !locationhelper.isLocationAvailable && !isLocationPromptDismissed {
+                        locationNotAvailableTile()
                     }
                 }
                 .padding(.horizontal)
@@ -70,5 +76,55 @@ struct SearchPickerView: View {
                 tiles.append(SearchTileViewModel(title: busStop.name, imageName: "BusStop", busStop: busStop))
             }
         }
+    }
+}
+
+struct locationNotAvailableTile: View {
+    @AppStorage("IsLocationPromptDismissed") var isLocationPromptDismissed = false
+    
+    var body: some View {
+        Button(action: {
+            if let bundleId = Bundle.main.bundleIdentifier,
+               let url = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/\(bundleId)") {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }) {
+            ZStack {
+                VStack {
+                    Image(systemName: "location.slash.fill")
+                    
+                    Spacer()
+                    
+                    Text("Brak przystanków")
+                    
+                    Text("Ustawienia")
+                        .foregroundColor(.blue)
+                        .font(.footnote)
+                }
+                .font(.headline)
+                .multilineTextAlignment(.center)
+                .padding()
+                .background(Color("lightGray"))
+                
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        Button(action: {
+                            withAnimation(.easeIn) { isLocationPromptDismissed = true }
+                        }, label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.secondary)
+                                .padding(10)
+                        })
+                    }
+                    
+                    Spacer()
+                }
+            }
+        }
+        .buttonStyle(PlainButtonStyle())
+        .clipShape(RoundedRectangle(cornerRadius: 15))
+        .shadow(radius: 3, x: 3, y: 3)
     }
 }
