@@ -29,7 +29,7 @@ struct StartView: View {
                     FavouriteBusStopsListView()
                 }
                 
-                if buttonPressCounter > 10 && !isAppRated {
+                if buttonPressCounter > 5 && !isAppRated {
                     Section(header: Text("Pomóż rozwijać tarBUSa!")) {
                         Button("Oceń aplikację") {
                             SKStoreReviewController.requestReviewInCurrentScene()

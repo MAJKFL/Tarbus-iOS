@@ -18,6 +18,63 @@ class DataBaseHelper: ObservableObject {
     static let databaseFileName = "tarbus.db"
     static let groupName = "group.florekjakub.tarBUSapp"
     
+    var db: Connection?
+    
+    init() {
+        do {
+            try connectDatabase()
+        } catch {
+            print(error.localizedDescription)
+            copyDatabaseIfNeeded()
+        }
+    }
+    
+    func connectDatabase() throws {
+        let fileManager = FileManager.default
+        let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let databaseURL = groupURL.appendingPathComponent(Self.databaseFileName)
+        
+        db = try Connection(databaseURL.absoluteString)
+    }
+    
+    func copyDatabaseIfNeeded() {
+        let fileManager = FileManager.default
+        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
+        let finalDatabaseURL = documentsUrl.appendingPathComponent(Self.databaseFileName)
+        let fileURLs = try? fileManager.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+        let documentsURL = Bundle.main.resourceURL?.appendingPathComponent(Self.databaseFileName)
+        
+        for fileURL in fileURLs ?? [] {
+            if (fileURL.absoluteString as NSString).lastPathComponent == Self.databaseFileName {
+                let stringPath = Bundle.main.path(forResource: "tarbus", ofType: "db")!
+                if fileManager.contentsEqual(atPath: fileURL.absoluteString, andPath: stringPath) {
+                    return
+                } else {
+                    print(fileURL)
+                    do {
+                        try fileManager.removeItem(at: fileURL)
+                        try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
+                        try connectDatabase()
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
+    
+        if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false){
+            print("DB does not exist in documents folder")
+            
+            do {
+              try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
+              } catch let error as NSError {
+                  print("Couldn't copy file to final location! Error:\(error.description)")
+              }
+        } else {
+            print("Database file found at path: \(finalDatabaseURL.path)")
+        }
+    }
+    
     func fetchData() {
         let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-3/database.json")!
         let request = URLRequest(url: url)
@@ -75,19 +132,22 @@ class DataBaseHelper: ObservableObject {
         }.resume()
     }
     
-    func runStatement(_ query: String) throws -> String {
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
-        
-        var returnString = ""
-        
-        for row in try db.prepare(query).run() {
-            returnString += "\(String(describing: row))\n"
-        }
-        
-        return returnString
+    func saveLastUpdateToUserDefaults() {
+        let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-1/last-update.json")!
+        let request = URLRequest(url: url)
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(LastUpdate.self, from: data) {
+                    let defaults = UserDefaults.standard
+                    DispatchQueue.main.async {
+                        defaults.set(decodedResponse.formatted, forKey: "LastUpdate")
+                    }
+                    return
+                }
+            }
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+        }.resume()
     }
     
     func deleteAllData() {
@@ -106,54 +166,10 @@ class DataBaseHelper: ObservableObject {
         }
     }
     
-    func copyDatabaseIfNeeded() {
-        // Move database file from bundle to documents folder
-        
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let finalDatabaseURL = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let fileURLs = try? fileManager.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-        let documentsURL = Bundle.main.resourceURL?.appendingPathComponent(Self.databaseFileName)
-        
-        for fileURL in fileURLs ?? [] {
-            if (fileURL.absoluteString as NSString).lastPathComponent == Self.databaseFileName {
-                let stringPath = Bundle.main.path(forResource: "tarbus", ofType: "db")!
-                if fileManager.contentsEqual(atPath: fileURL.absoluteString, andPath: stringPath) {
-                    return
-                } else {
-                    print(fileURL)
-                    do {
-                        try fileManager.removeItem(at: fileURL)
-                        try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
-            }
-        }
-    
-        if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false){
-            print("DB does not exist in documents folder")
-            
-            do {
-                  try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
-                  } catch let error as NSError {
-                    print("Couldn't copy file to final location! Error:\(error.description)")
-            }
-
-        } else {
-            print("Database file found at path: \(finalDatabaseURL.path)")
-        }
-    
-    }
-    
     func getBusLines() -> [BusLine] {
-        var busLines = [BusLine]()
+        guard let db = db else { return [] }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var busLines = [BusLine]()
         
         do {
             for row in try db.prepare("SELECT * FROM BusLine;") {
@@ -170,12 +186,9 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getRoutes(busLineId: Int) -> [Route] {
-        var routes = [Route]()
+        guard let db = db else { return [] }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var routes = [Route]()
         
         do {
             for row in try db.prepare("SELECT * FROM Route WHERE Route.r_bus_line_id = \(busLineId)") {
@@ -194,12 +207,9 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getBusStops(routeId: Int) -> [BusStop] {
-        var busStops = [BusStop]()
+        guard let db = db else { return [] }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var busStops = [BusStop]()
         
         do {
             for row in try db.prepare("SELECT * FROM RouteConnections JOIN BusStop ON BusStop.bs_id = RouteConnections.rc_bus_stop_id WHERE RouteConnections.rc_route_id = \(routeId) ORDER BY rc_lp") {
@@ -220,12 +230,9 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getNextDepartures(busStopId: Int, dayTypes: String, startFromTime: Int) -> [NextDeparture] {
-        var departures = [NextDeparture]()
+        guard let db = db else { return [] }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var departures = [NextDeparture]()
         
         let strArray = dayTypes.components(separatedBy: " ")
         
@@ -271,12 +278,9 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getDeparturesByRouteAndDay(dayTypesQuery: String, routeId: Int, busStopId: Int) -> [BoardDeparture] {
-        var departures = [BoardDeparture]()
+        guard let db = db else { return [] }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var departures = [BoardDeparture]()
         
         do {
             for row in try db.prepare("""
@@ -306,12 +310,9 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getDestinations(busStopId: Int) -> [Route] {
-        var routes = [Route]()
+        guard let db = db else { return [] }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var routes = [Route]()
         
         do {
             for row in try db.prepare("SELECT * FROM Route WHERE Route.r_id IN (SELECT DISTINCT t_route_id FROM Departure JOIN Track ON Departure.d_track_id = Track.t_id WHERE d_bus_stop_id = \(busStopId))") {
@@ -330,12 +331,9 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getBusLine(busLineId: Int) -> BusLine? {
-        var busLines = [BusLine]()
+        guard let db = db else { return nil }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var busLines = [BusLine]()
         
         do {
             for row in try db.prepare("SELECT * FROM BusLine WHERE BusLine.bl_id = \(busLineId)") {
@@ -356,12 +354,9 @@ class DataBaseHelper: ObservableObject {
     }
     
     func searchBusStops(text: String) -> [BusStop] {
-        var busStops = [BusStop]()
+        guard let db = db else { return [] }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var busStops = [BusStop]()
         
         let searchText = text.lowercased().folding(options: .diacriticInsensitive, locale: .current).replacingOccurrences(of: "ł", with: "l")
         
@@ -400,12 +395,9 @@ class DataBaseHelper: ObservableObject {
     }
     
     func searchBusLines(text: String) -> [BusLine] {
-        var busLines = [BusLine]()
+        guard let db = db else { return [] }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var busLines = [BusLine]()
         
         let searchText = text.lowercased().folding(options: .diacriticInsensitive, locale: .current).replacingOccurrences(of: "ł", with: "l")
         
@@ -440,12 +432,9 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getDeparturesFromTrack(trackId: String) -> [ListDeparture] {
-        var departures = [ListDeparture]()
+        guard let db = db else { return [] }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var departures = [ListDeparture]()
         
         do {
             for row in try db.prepare("""
@@ -474,12 +463,9 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getCurrentDayType(currentDateString: String) -> String {
-        var string = ""
+        guard let db = db else { return "" }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var string = ""
         
         do {
             for row in try db.prepare("SELECT c_day_types FROM Calendar WHERE c_date = '\(currentDateString)'") {
@@ -519,12 +505,9 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getBusStopConnections(fromId: Int, toId: Int) -> [BusStopConnection] {
-        var busStopConnections = [BusStopConnection]()
+        guard let db = db else { return [] }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var busStopConnections = [BusStopConnection]()
         
         do {
             for row in try db.prepare("SELECT * FROM BusStopConnection WHERE bsc_from_bus_stop_id = \(fromId) AND bsc_to_bus_stop_id = \(toId)") {
@@ -546,31 +529,10 @@ class DataBaseHelper: ObservableObject {
         getAllBusStops().first(where: { $0.id == id })
     }
     
-    func saveLastUpdateToUserDefaults() {
-        let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-1/last-update.json")!
-        let request = URLRequest(url: url)
-
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode(LastUpdate.self, from: data) {
-                    let defaults = UserDefaults.standard
-                    DispatchQueue.main.async {
-                        defaults.set(decodedResponse.formatted, forKey: "LastUpdate")
-                    }
-                    return
-                }
-            }
-            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
-        }.resume()
-    }
-    
     func getNearestBusStops(lat: Double, lng: Double) -> [BusStop] {
-        var busStops = [BusStop]()
+        guard let db = db else { return [] }
         
-        let fileManager = FileManager.default
-        let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
-        let url = documentsUrl.appendingPathComponent(Self.databaseFileName)
-        let db = try! Connection(url.absoluteString)
+        var busStops = [BusStop]()
         
         do {
             for row in try db.prepare("SELECT * FROM BusStop") {

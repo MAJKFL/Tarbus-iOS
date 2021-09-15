@@ -9,7 +9,8 @@ import SwiftUI
 import MapKit
 import CoreLocation
 
-struct BusStopMapView: View {
+
+struct MainMapView: View {
     @ObservedObject var databaseHelper = DataBaseHelper()
     @State private var selectedBusStop: BusStop?
     @State private var isActive = false

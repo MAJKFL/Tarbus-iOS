@@ -8,7 +8,7 @@
 import SwiftUI
 import StoreKit
 
-struct SettingsTabView: View {
+struct SettingsView: View {
     @ObservedObject var databaseHelper = DataBaseHelper()
     @AppStorage("LastUpdate") var lastUpdate = ""
     
@@ -26,10 +26,6 @@ struct SettingsTabView: View {
                         SKStoreReviewController.requestReviewInCurrentScene()
                     }
                 }
-                
-//                Section(header: Text("Panel informacyjny")) {
-//                    NavigationLink("Ustawienia panelu informacyjnego", destination: Text("Ustawienia panelu informacji"))
-//                }
                 
                 Section(header: Text("Polityka prywatności")) {
                     NavigationLink(destination: PrivacyPolicyView(), label: {
@@ -57,19 +53,10 @@ struct SettingsTabView: View {
                         
                         Spacer()
                         
-//                        #if DEBUG
-//                        Text("\(appVersionString) DEBUG")
-//                            .foregroundColor(Color("DebugPink"))
-//                        #else
                         Text(appVersionString)
                             .foregroundColor(.secondary)
-//                        #endif
                     }
                 }
-                
-//                #if DEBUG
-//                DevMenuView()
-//                #endif
             }
             .listStyle(GroupedListStyle())
             .navigationTitle("Ustawienia")

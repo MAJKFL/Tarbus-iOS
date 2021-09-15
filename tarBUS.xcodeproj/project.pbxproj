@@ -46,8 +46,7 @@
 		AA4A818E26B6D00900A12907 /* SearchTileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4A818D26B6D00800A12907 /* SearchTileViewModel.swift */; };
 		AA4DAB672687A05B0009A789 /* VerticalAlignment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4DAB662687A05B0009A789 /* VerticalAlignment+Extensions.swift */; };
 		AA4DAB692687A1F60009A789 /* Image+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4DAB682687A1F60009A789 /* Image+Extensions.swift */; };
-		AA543C42265946590057CB33 /* HapticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA543C41265946590057CB33 /* HapticHelper.swift */; };
-		AA578FC825FCE35B00CB5FD5 /* BusStopMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA578FC725FCE35B00CB5FD5 /* BusStopMapView.swift */; };
+		AA578FC825FCE35B00CB5FD5 /* MainMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA578FC725FCE35B00CB5FD5 /* MainMapView.swift */; };
 		AA63EC0F25C85783000360E0 /* NextDeparturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA63EC0E25C85783000360E0 /* NextDeparturesView.swift */; };
 		AA691F5F25D0814D006CE292 /* DepartureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA691F5E25D0814D006CE292 /* DepartureListView.swift */; };
 		AA6CA29025F3CF58007F088C /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6CA28F25F3CF58007F088C /* DataProvider.swift */; };
@@ -71,15 +70,14 @@
 		AA78CDD925B9EDB20052455A /* BusLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA78CDD825B9EDB20052455A /* BusLine.swift */; };
 		AA79FD1925DC8CB2004F5723 /* ReachabilityTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */; };
 		AA7CB46625FD008C00D36172 /* VisualEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CB46525FD008B00D36172 /* VisualEffectView.swift */; };
-		AA849FD725CED7EE00831982 /* SearchPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA849FD625CED7EE00831982 /* SearchPickerView.swift */; };
+		AA849FD725CED7EE00831982 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA849FD625CED7EE00831982 /* SearchView.swift */; };
 		AA849FDC25CEE33600831982 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA849FDB25CEE33600831982 /* SearchBarView.swift */; };
 		AA9053B62657C86700342DF5 /* SocialsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9053B52657C86700342DF5 /* SocialsView.swift */; };
-		AA9053B92657E78500342DF5 /* SettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9053B82657E78500342DF5 /* SettingsTabView.swift */; };
+		AA9053B92657E78500342DF5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9053B82657E78500342DF5 /* SettingsView.swift */; };
 		AAA279CF25D2F5DC00E1FB45 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */; };
 		AAA279DA25D30D7A00E1FB45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */; };
 		AAA32C2F25D5B37500DC9ABB /* UIKitTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA32C2E25D5B37500DC9ABB /* UIKitTabBar.swift */; };
 		AAB4673C25B3354B00B46614 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB4673B25B3354B00B46614 /* MailView.swift */; };
-		AABEBB05265D932300EFC29D /* DevMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABEBB04265D932300EFC29D /* DevMenuView.swift */; };
 		AABEBB06265DA91000EFC29D /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */; };
 		AABEBB07265DA92F00EFC29D /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */; };
 		AAC692A025D1D23000477314 /* Array+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC6929F25D1D23000477314 /* Array+extensions.swift */; };
@@ -157,8 +155,7 @@
 		AA4A818D26B6D00800A12907 /* SearchTileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTileViewModel.swift; sourceTree = "<group>"; };
 		AA4DAB662687A05B0009A789 /* VerticalAlignment+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VerticalAlignment+Extensions.swift"; sourceTree = "<group>"; };
 		AA4DAB682687A1F60009A789 /* Image+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+Extensions.swift"; sourceTree = "<group>"; };
-		AA543C41265946590057CB33 /* HapticHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticHelper.swift; sourceTree = "<group>"; };
-		AA578FC725FCE35B00CB5FD5 /* BusStopMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopMapView.swift; sourceTree = "<group>"; };
+		AA578FC725FCE35B00CB5FD5 /* MainMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapView.swift; sourceTree = "<group>"; };
 		AA63EC0E25C85783000360E0 /* NextDeparturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextDeparturesView.swift; sourceTree = "<group>"; };
 		AA691F5E25D0814D006CE292 /* DepartureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureListView.swift; sourceTree = "<group>"; };
 		AA6CA28F25F3CF58007F088C /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
@@ -179,16 +176,15 @@
 		AA78CDD825B9EDB20052455A /* BusLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLine.swift; sourceTree = "<group>"; };
 		AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityTest.swift; sourceTree = "<group>"; };
 		AA7CB46525FD008B00D36172 /* VisualEffectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectView.swift; sourceTree = "<group>"; };
-		AA849FD625CED7EE00831982 /* SearchPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPickerView.swift; sourceTree = "<group>"; };
+		AA849FD625CED7EE00831982 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		AA849FDB25CEE33600831982 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		AA9053B52657C86700342DF5 /* SocialsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialsView.swift; sourceTree = "<group>"; };
-		AA9053B82657E78500342DF5 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
+		AA9053B82657E78500342DF5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		AA96904B25EAA5B80093D3D2 /* tarBUS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tarBUS.entitlements; sourceTree = "<group>"; };
 		AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		AAA279D925D30D7A00E1FB45 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAA32C2E25D5B37500DC9ABB /* UIKitTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitTabBar.swift; sourceTree = "<group>"; };
 		AAB4673B25B3354B00B46614 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
-		AABEBB04265D932300EFC29D /* DevMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevMenuView.swift; sourceTree = "<group>"; };
 		AAC6929F25D1D23000477314 /* Array+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+extensions.swift"; sourceTree = "<group>"; };
 		AAC692AB25D1D84100477314 /* SearchBusLinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBusLinesView.swift; sourceTree = "<group>"; };
 		AAC692AE25D1D86E00477314 /* SearchBusStopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBusStopsView.swift; sourceTree = "<group>"; };
@@ -286,7 +282,6 @@
 			isa = PBXGroup;
 			children = (
 				AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */,
-				AA543C41265946590057CB33 /* HapticHelper.swift */,
 				AA781C4D26B59C9E00255597 /* LocationHelper.swift */,
 			);
 			path = Helpers;
@@ -295,7 +290,7 @@
 		AA578FC625FCE33400CB5FD5 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				AA578FC725FCE35B00CB5FD5 /* BusStopMapView.swift */,
+				AA578FC725FCE35B00CB5FD5 /* MainMapView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -305,8 +300,7 @@
 			children = (
 				AAA279CE25D2F5DC00E1FB45 /* PrivacyPolicyView.swift */,
 				AAC82ECE25AEFCBE00236F31 /* AboutView.swift */,
-				AA9053B82657E78500342DF5 /* SettingsTabView.swift */,
-				AABEBB04265D932300EFC29D /* DevMenuView.swift */,
+				AA9053B82657E78500342DF5 /* SettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -361,7 +355,7 @@
 		AAC6929925D1D03800477314 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				AA849FD625CED7EE00831982 /* SearchPickerView.swift */,
+				AA849FD625CED7EE00831982 /* SearchView.swift */,
 				AAC692AB25D1D84100477314 /* SearchBusLinesView.swift */,
 				AAC692AE25D1D86E00477314 /* SearchBusStopsView.swift */,
 				AA4A818B26B6CFDB00A12907 /* SearchTileView.swift */,
@@ -661,17 +655,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA849FD725CED7EE00831982 /* SearchPickerView.swift in Sources */,
+				AA849FD725CED7EE00831982 /* SearchView.swift in Sources */,
 				AA09E84425C1BD7800FA4A70 /* RouteListView.swift in Sources */,
 				AAE9B11D25AE7FA200D90F32 /* StartView.swift in Sources */,
 				AA713EF125FA99A200D47C80 /* TrackMapView.swift in Sources */,
 				AA75086325BC5F000045FFD5 /* DatabaseHelper.swift in Sources */,
-				AA9053B92657E78500342DF5 /* SettingsTabView.swift in Sources */,
+				AA9053B92657E78500342DF5 /* SettingsView.swift in Sources */,
 				AA78CDD925B9EDB20052455A /* BusLine.swift in Sources */,
-				AA578FC825FCE35B00CB5FD5 /* BusStopMapView.swift in Sources */,
+				AA578FC825FCE35B00CB5FD5 /* MainMapView.swift in Sources */,
 				AA6D11D925D1C060005F6F87 /* NextDeparture.swift in Sources */,
 				AA63EC0F25C85783000360E0 /* NextDeparturesView.swift in Sources */,
-				AA543C42265946590057CB33 /* HapticHelper.swift in Sources */,
 				AA3B97D625D46DA80027D2DD /* FavouriteBusLinesListView.swift in Sources */,
 				AA42E81425F4DB5800E79DA9 /* Url+extensions.swift in Sources */,
 				AA781C4A26B57EDE00255597 /* SocialCardViewModel.swift in Sources */,
@@ -680,7 +673,6 @@
 				AA4A818E26B6D00900A12907 /* SearchTileViewModel.swift in Sources */,
 				AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */,
 				AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */,
-				AABEBB05265D932300EFC29D /* DevMenuView.swift in Sources */,
 				AA3D20C1265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift in Sources */,
 				AAA279CF25D2F5DC00E1FB45 /* PrivacyPolicyView.swift in Sources */,
 				AA781C4C26B57F9600255597 /* SocialCardView.swift in Sources */,

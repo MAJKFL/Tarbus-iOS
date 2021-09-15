@@ -31,17 +31,16 @@ struct MainView: View {
     }
     
     @ObservedObject var dataBaseHelper = DataBaseHelper()
-    @ObservedObject var hapticHelper = HapticHelper()
-    @State private var showAlert = false
     @State private var deeplink: deeplinkModel?
+    @State private var showAlert = false
     
     var body: some View {
         UIKitTabView([
             UIKitTabView.Tab(view: StartView(), barItem: UITabBarItem(title: "Start", image: UIImage(systemName: "house.fill"), selectedImage: UIImage(systemName: "house.fill"))),
             UIKitTabView.Tab(view: LineListView(), barItem: UITabBarItem(title: "Linie", image: UIImage(systemName: "point.fill.topleft.down.curvedto.point.fill.bottomright.up"), selectedImage: UIImage(systemName: "point.fill.topleft.down.curvedto.point.fill.bottomright.up"))),
-            UIKitTabView.Tab(view: BusStopMapView(), barItem: UITabBarItem(title: "Mapa", image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map"))),
-            UIKitTabView.Tab(view: SearchPickerView(), barItem: UITabBarItem(title: "Szukaj", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))),
-            UIKitTabView.Tab(view: SettingsTabView(), barItem: UITabBarItem(title: "Ustawienia", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear")))
+            UIKitTabView.Tab(view: MainMapView(), barItem: UITabBarItem(title: "Mapa", image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map"))),
+            UIKitTabView.Tab(view: SearchView(), barItem: UITabBarItem(title: "Szukaj", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))),
+            UIKitTabView.Tab(view: SettingsView(), barItem: UITabBarItem(title: "Ustawienia", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear")))
         ])
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Brak połączenia z internetem"), message: Text("Nie możemy sprawdzić czy rozkład jazdy jest aktualny! Możesz kontynuować w trybie offline lub spróbować ponownie"), primaryButton: .default(Text("Sprawdź ponownie"), action: databaseInit), secondaryButton: .cancel(Text("OK")))
@@ -54,26 +53,19 @@ struct MainView: View {
         }
         .onAppear(perform: databaseInit)
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
-            hapticHelper.prepareHaptics()
-            hapticHelper.deeplinkStart()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
                 guard let url = userActivity.webpageURL else { return }
-                hapticHelper.deeplinkSucces()
                 handleDeepLink(url)
             }
         }
         .onOpenURL(perform: { url in
-            hapticHelper.prepareHaptics()
-            hapticHelper.deeplinkStart()
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
-                hapticHelper.deeplinkSucces()
                 handleDeepLink(url)
             }
         })
     }
     
     func databaseInit() {
-        dataBaseHelper.copyDatabaseIfNeeded()
         if ReachabilityTest.isConnectedToNetwork() {
             dataBaseHelper.saveLastUpdateToUserDefaults()
             dataBaseHelper.fetchData()

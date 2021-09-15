@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreLocation
 
-struct SearchPickerView: View {
+struct SearchView: View {
     @ObservedObject var databaseHelper = DataBaseHelper()
     @ObservedObject var locationhelper = LocationHelper()
     
