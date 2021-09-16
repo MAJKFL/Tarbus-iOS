@@ -23,7 +23,6 @@
 		AA05BCDE25ED77C000009711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA05BCDD25ED77C000009711 /* Assets.xcassets */; };
 		AA05BCE425ED77C000009711 /* tarBUSWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA05BCD325ED77BB00009711 /* tarBUSWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA05BCF725ED7B9700009711 /* date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C459725C5C4A100148F1E /* date+extensions.swift */; };
-		AA05BCFD25ED7E9E00009711 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = AA05BCFC25ED7E9E00009711 /* SQLite */; };
 		AA05BD0C25ED7FAA00009711 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248925C05A3E0038C8CE /* Route.swift */; };
 		AA05BD0D25ED7FAA00009711 /* LastUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EC525AEF07700236F31 /* LastUpdate.swift */; };
 		AA05BD0E25ED7FAA00009711 /* ListDeparture.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D11E025D1C74D005F6F87 /* ListDeparture.swift */; };
@@ -61,7 +60,6 @@
 		AA713EE425FA7BBF00D47C80 /* BusStopConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA713EE125FA7BBF00D47C80 /* BusStopConnection.swift */; };
 		AA713EEC25FA8A0E00D47C80 /* tarbus.db in Resources */ = {isa = PBXBuildFile; fileRef = AA713EEB25FA8A0E00D47C80 /* tarbus.db */; };
 		AA713EF125FA99A200D47C80 /* TrackMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA713EF025FA99A200D47C80 /* TrackMapView.swift */; };
-		AA75086025BC5E5F0045FFD5 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = AA75085F25BC5E5F0045FFD5 /* SQLite */; };
 		AA75086325BC5F000045FFD5 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */; };
 		AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086625BC7B5D0045FFD5 /* BusStop.swift */; };
 		AA781C4A26B57EDE00255597 /* SocialCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA781C4926B57EDE00255597 /* SocialCardViewModel.swift */; };
@@ -88,8 +86,10 @@
 		AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC82EDD25AF2DFC00236F31 /* LineListView.swift */; };
 		AACB90FB25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AACB90FA25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition */; };
 		AACB90FC25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AACB90FA25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition */; };
-		AACB910725F3BC7C00DB80D1 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = AACB910625F3BC7C00DB80D1 /* SQLite */; };
 		AAD6248A25C05A3E0038C8CE /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD6248925C05A3E0038C8CE /* Route.swift */; };
+		AAD9AE9D26F2891D007E1E63 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = AAD9AE9C26F2891D007E1E63 /* GRDB */; };
+		AAD9AE9F26F28935007E1E63 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = AAD9AE9E26F28935007E1E63 /* GRDB */; };
+		AAD9AEA126F2893C007E1E63 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = AAD9AEA026F2893C007E1E63 /* GRDB */; };
 		AAE9B11B25AE7FA200D90F32 /* tarBUSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11A25AE7FA200D90F32 /* tarBUSApp.swift */; };
 		AAE9B11D25AE7FA200D90F32 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9B11C25AE7FA200D90F32 /* StartView.swift */; };
 		AAE9B11F25AE7FA400D90F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAE9B11E25AE7FA400D90F32 /* Assets.xcassets */; };
@@ -207,7 +207,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AACB910725F3BC7C00DB80D1 /* SQLite in Frameworks */,
+				AAD9AEA126F2893C007E1E63 /* GRDB in Frameworks */,
 				AA053AC125F3B74C00E1E2AE /* Intents.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,9 +216,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA05BCFD25ED7E9E00009711 /* SQLite in Frameworks */,
 				AA05BCD825ED77BB00009711 /* SwiftUI.framework in Frameworks */,
 				AA05BCD625ED77BB00009711 /* WidgetKit.framework in Frameworks */,
+				AAD9AE9F26F28935007E1E63 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +226,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA75086025BC5E5F0045FFD5 /* SQLite in Frameworks */,
+				AAD9AE9D26F2891D007E1E63 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +487,7 @@
 			);
 			name = tarBusIntentExtension;
 			packageProductDependencies = (
-				AACB910625F3BC7C00DB80D1 /* SQLite */,
+				AAD9AEA026F2893C007E1E63 /* GRDB */,
 			);
 			productName = tarBusIntentExtension;
 			productReference = AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */;
@@ -507,7 +507,7 @@
 			);
 			name = tarBUSWidgetExtension;
 			packageProductDependencies = (
-				AA05BCFC25ED7E9E00009711 /* SQLite */,
+				AAD9AE9E26F28935007E1E63 /* GRDB */,
 			);
 			productName = tarBUSWidgetExtension;
 			productReference = AA05BCD325ED77BB00009711 /* tarBUSWidgetExtension.appex */;
@@ -530,7 +530,7 @@
 			);
 			name = tarBUS;
 			packageProductDependencies = (
-				AA75085F25BC5E5F0045FFD5 /* SQLite */,
+				AAD9AE9C26F2891D007E1E63 /* GRDB */,
 			);
 			productName = tarBUS;
 			productReference = AAE9B11725AE7FA200D90F32 /* tarBUS.app */;
@@ -568,7 +568,7 @@
 			);
 			mainGroup = AAE9B10E25AE7FA100D90F32;
 			packageReferences = (
-				AA75085E25BC5E5F0045FFD5 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+				AAD9AE9B26F2891D007E1E63 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 			);
 			productRefGroup = AAE9B11825AE7FA200D90F32 /* Products */;
 			projectDirPath = "";
@@ -1171,31 +1171,31 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		AA75085E25BC5E5F0045FFD5 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+		AAD9AE9B26F2891D007E1E63 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.12.2;
+				minimumVersion = 5.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AA05BCFC25ED7E9E00009711 /* SQLite */ = {
+		AAD9AE9C26F2891D007E1E63 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AA75085E25BC5E5F0045FFD5 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
-			productName = SQLite;
+			package = AAD9AE9B26F2891D007E1E63 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
 		};
-		AA75085F25BC5E5F0045FFD5 /* SQLite */ = {
+		AAD9AE9E26F28935007E1E63 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AA75085E25BC5E5F0045FFD5 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
-			productName = SQLite;
+			package = AAD9AE9B26F2891D007E1E63 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
 		};
-		AACB910625F3BC7C00DB80D1 /* SQLite */ = {
+		AAD9AEA026F2893C007E1E63 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AA75085E25BC5E5F0045FFD5 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
-			productName = SQLite;
+			package = AAD9AE9B26F2891D007E1E63 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

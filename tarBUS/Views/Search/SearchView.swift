@@ -58,15 +58,19 @@ struct SearchView: View {
     }
     
     func getNearestBusStops(_ location: CLLocationCoordinate2D, isFirst: Bool) {
+        print("BAJOAJAJO________________")
         let nearestBusStops = databaseHelper.getNearestBusStops(lat: location.latitude, lng: location.longitude)
         
         if !isFirst {
-            guard nearestBusStops.count == 2 else { return }
+            guard nearestBusStops.count == 6 else { return }
 
-            let doesContainFrst = tiles.contains(where: { $0.busStop?.id == nearestBusStops[0].id })
-            let doesContainScnd = tiles.contains(where: { $0.busStop?.id == nearestBusStops[1].id })
+            var contains = [Bool]()
             
-            if doesContainFrst && doesContainScnd { return }
+            for index in 0...5 {
+                contains.append(tiles.contains(where: { $0.busStop?.id == nearestBusStops[index].id }))
+            }
+            
+            if contains[0] && contains[1] && contains[2] && contains[3] && contains[4] && contains[5] { return }
         }
         
         tiles.removeAll(where: { $0.isRecomendation })
