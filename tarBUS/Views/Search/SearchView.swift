@@ -58,7 +58,6 @@ struct SearchView: View {
     }
     
     func getNearestBusStops(_ location: CLLocationCoordinate2D, isFirst: Bool) {
-        print("BAJOAJAJO________________")
         let nearestBusStops = databaseHelper.getNearestBusStops(lat: location.latitude, lng: location.longitude)
         
         if !isFirst {

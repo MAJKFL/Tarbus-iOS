@@ -9,32 +9,17 @@ import GRDB
 import Foundation
 import WidgetKit
 
-enum InternetConnectivityError: Error {
-    case noInternetConnection
-}
-
 class DataBaseHelper: ObservableObject {
     static let tableNames = ["BusStop", "Departure", "BusLine", "Calendar", "Destinations", "Track", "AlertHistory", "RouteConnections", "LastUpdated", "BusStopConnection", "LastUpdated", "Route"]
     static let databaseFileName = "tarbus.db"
     static let groupName = "group.florekjakub.tarBUSapp"
     
-    var dbQueue: DatabaseQueue?
-    
-    init() {
-        do {
-            try connectDatabase()
-        } catch {
-            print(error.localizedDescription)
-            copyDatabaseIfNeeded()
-        }
-    }
-    
-    func connectDatabase() throws {
+    func getDBQueue() -> DatabaseQueue? {
         let fileManager = FileManager.default
         let groupURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: Self.groupName)!
         let databaseURL = groupURL.appendingPathComponent(Self.databaseFileName)
         
-        dbQueue = try DatabaseQueue(path: databaseURL.absoluteString)
+        return try? DatabaseQueue(path: databaseURL.absoluteString)
     }
     
     func copyDatabaseIfNeeded() {
@@ -54,7 +39,6 @@ class DataBaseHelper: ObservableObject {
                     do {
                         try fileManager.removeItem(at: fileURL)
                         try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
-                        try connectDatabase()
                     } catch {
                         print(error.localizedDescription)
                     }
@@ -64,9 +48,8 @@ class DataBaseHelper: ObservableObject {
     
         if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false){
             print("DB does not exist in documents folder")
-            
             do {
-              try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
+                try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
               } catch let error as NSError {
                   print("Couldn't copy file to final location! Error:\(error.description)")
               }
@@ -112,7 +95,8 @@ class DataBaseHelper: ObservableObject {
                                 sqlStatement.removeLast()
                                 sqlStatement += ";"
                                 
-                                try? self.dbQueue?.write { db in
+                                let dbQueue = self.getDBQueue()
+                                try? dbQueue?.write { db in
                                     try? db.execute(sql: sqlStatement)
                                 }
                                 
@@ -146,6 +130,8 @@ class DataBaseHelper: ObservableObject {
     }
     
     func deleteAllData() {
+        let dbQueue = getDBQueue()
+        
         try? dbQueue?.write { db in
             for tableName in Self.tableNames {
                 try? db.execute(sql: "DELETE FROM \(tableName)")
@@ -154,6 +140,7 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getBusLines() -> [BusLine] {
+        let dbQueue = getDBQueue()
         var busLines = [BusLine]()
         
         try? dbQueue?.read { db in
@@ -172,6 +159,7 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getRoutes(busLineId: Int) -> [Route] {
+        let dbQueue = getDBQueue()
         var routes = [Route]()
         
         try? dbQueue?.read { db in
@@ -194,6 +182,7 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getBusStops(routeId: Int) -> [BusStop] {
+        let dbQueue = getDBQueue()
         var busStops = [BusStop]()
         
         try? dbQueue?.read { db in
@@ -220,13 +209,12 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getNextDepartures(busStopId: Int, dayTypes: String, startFromTime: Int) -> [NextDeparture] {
+        let dbQueue = getDBQueue()
         var departures = [NextDeparture]()
         
         let strArray = dayTypes.components(separatedBy: " ")
         var dayTypesQuery = ""
-        for element in strArray {
-            dayTypesQuery += "instr(Track.t_day_types, '\(element)') OR "
-        }
+        for element in strArray { dayTypesQuery += "instr(Track.t_day_types, '\(element)') OR " }
         dayTypesQuery.removeLast(4)
         
         try? dbQueue?.read { db in
@@ -258,6 +246,7 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getDeparturesByRouteAndDay(dayTypesQuery: String, routeId: Int, busStopId: Int) -> [BoardDeparture] {
+        let dbQueue = getDBQueue()
         var departures = [BoardDeparture]()
         
         try? dbQueue?.read { db in
@@ -287,6 +276,7 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getDestinations(busStopId: Int) -> [Route] {
+        let dbQueue = getDBQueue()
         var routes = [Route]()
         
         try? dbQueue?.read { db in
@@ -312,6 +302,7 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getBusLine(busLineId: Int) -> BusLine? {
+        let dbQueue = getDBQueue()
         var busLine: BusLine?
         
         try? dbQueue?.read { db in
@@ -330,6 +321,7 @@ class DataBaseHelper: ObservableObject {
     }
     
     func searchBusStops(text: String) -> [BusStop] {
+        let dbQueue = getDBQueue()
         var busStops = [BusStop]()
         
         let searchText = text.lowercased().folding(options: .diacriticInsensitive, locale: .current).replacingOccurrences(of: "ł", with: "l")
@@ -360,6 +352,7 @@ class DataBaseHelper: ObservableObject {
     }
     
     func searchBusLines(text: String) -> [BusLine] {
+        let dbQueue = getDBQueue()
         var busLines = [BusLine]()
         
         let searchText = text.lowercased().folding(options: .diacriticInsensitive, locale: .current).replacingOccurrences(of: "ł", with: "l")
@@ -386,6 +379,7 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getDeparturesFromTrack(trackId: String) -> [ListDeparture] {
+        let dbQueue = getDBQueue()
         var departures = [ListDeparture]()
         
         try? dbQueue?.read { db in
@@ -417,6 +411,7 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getCurrentDayType(currentDateString: String) -> String {
+        let dbQueue = getDBQueue()
         var string = ""
         
         try? dbQueue?.read { db in
@@ -429,6 +424,7 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getAllBusStops() -> [BusStop] {
+        let dbQueue = getDBQueue()
         var busStops = [BusStop]()
         
         try? dbQueue?.read { db in
@@ -452,11 +448,12 @@ class DataBaseHelper: ObservableObject {
     }
     
     func getBusStopConnections(fromId: Int, toId: Int) -> [BusStopConnection] {
+        let dbQueue = getDBQueue()
         var busStopConnections = [BusStopConnection]()
         
         try? dbQueue?.read { db in
             if let rows = try? Row.fetchCursor(db, sql: """
-                "SELECT *
+                SELECT *
                 FROM BusStopConnection
                 WHERE bsc_from_bus_stop_id = \(fromId)
                 AND bsc_to_bus_stop_id = \(toId)

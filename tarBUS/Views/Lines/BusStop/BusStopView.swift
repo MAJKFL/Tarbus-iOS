@@ -70,7 +70,9 @@ struct BusStopView: View {
                     ForEach(CurrentBusStopView.allCases) {
                         Text($0.title)
                     }
-                }.pickerStyle(SegmentedPickerStyle())
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .frame(width: 180)
             }
         }
         .sheet(isPresented: $isShowingAddView, onDismiss: favouriteBusStopsViewModel.fetch) {

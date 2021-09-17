@@ -66,6 +66,7 @@ struct MainView: View {
     }
     
     func databaseInit() {
+        dataBaseHelper.copyDatabaseIfNeeded()
         if ReachabilityTest.isConnectedToNetwork() {
             dataBaseHelper.saveLastUpdateToUserDefaults()
             dataBaseHelper.fetchData()

@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum dayTypes: String, CaseIterable {
-    case workingDays = "Dni robocze"
+    case workingDays = "Robocze"
     case saturdays = "Soboty"
     case holidays = "Święta"
     
@@ -51,7 +51,7 @@ struct PlanView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(routes) { route in
-                            RouteCellView(route: route, busStop: busStop, dayType: dayType)
+                            RouteTileView(route: route, busStop: busStop, dayType: dayType)
                         }
                     }
                     .padding(.bottom, 25)
@@ -61,7 +61,7 @@ struct PlanView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(routes) { route in
-                            RouteCellView(route: route, busStop: busStop, dayType: dayType)
+                            RouteTileView(route: route, busStop: busStop, dayType: dayType)
                         }
                     }
                     .padding(.bottom, 25)
@@ -71,7 +71,7 @@ struct PlanView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         ForEach(routes) { route in
-                            RouteCellView(route: route, busStop: busStop, dayType: dayType)
+                            RouteTileView(route: route, busStop: busStop, dayType: dayType)
                         }
                     }
                     .padding(.bottom, 25)
@@ -90,7 +90,7 @@ struct PlanView: View {
     
 }
 
-fileprivate struct RouteCellView: View {
+fileprivate struct RouteTileView: View {
     @StateObject var dataBaseHelper = DataBaseHelper()
     @State private var showHours = false
     @State private var departures = [BoardDeparture]()
@@ -120,7 +120,7 @@ fileprivate struct RouteCellView: View {
     ]
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack {
                 VStack {
                     HStack {
@@ -155,10 +155,13 @@ fileprivate struct RouteCellView: View {
                     ForEach(departures) { departure in
                         HStack(spacing: 0) {
                             Text(departure.timeString)
+                                .layoutPriority(1)
                             
                             if departure.symbols != "-" {
                                 Text(departure.symbols)
                                     .fontWeight(.bold)
+                                    .lineLimit(1)
+                                    .layoutPriority(0)
                             }
                         }
                     }
@@ -168,6 +171,11 @@ fileprivate struct RouteCellView: View {
                 }
                 
                 VStack(alignment: .leading) {
+                    Text("LEGENDA")
+                        .font(.footnote.bold())
+                    
+                    if legend.isEmpty { Text("Brak oznaczeń dla linii na tym przystanku").font(.footnote).foregroundColor(.secondary).transition(.opacity) }
+                    
                     ForEach(legend, id: \.self) { str in
                         HStack {
                             Text(str)
@@ -176,7 +184,7 @@ fileprivate struct RouteCellView: View {
                             
                             Spacer()
                         }
-                   }
+                    }
                 }
                 .padding([.horizontal, .bottom])
             }

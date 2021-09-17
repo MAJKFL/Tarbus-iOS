@@ -173,18 +173,37 @@ struct BusStopConfirmationView: View {
     @State private var userName = ""
     let busStop: BusStop
     
+    let nameSuggestions = ["DOM", "PRACA", "SZKOŁA"]
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
                 Text(busStop.name)
-                    .font(.headline)
+                    .font(.title2.bold())
                 
-                Text("Kierunki: \(busStop.destination)")
+                Text(busStop.destination)
+                    .font(.subheadline)
                 
-                Text("Lokalizacja: \(busStop.longitude), \(busStop.latitude)")
+                Divider()
                 
-                TextField(busStop.userName ?? "Twoja nazwa dla przystanku", text: $userName, onCommit: addNewBusStop)
+                Text("Podpowiedzi nazwy:")
+                    .bold()
+                
+                HStack {
+                    ForEach(nameSuggestions, id: \.self) { name in
+                        Button(action: { userName = name }) {
+                            Text(name)
+                                .padding(10)
+                                .background(Color("DarkerGrey"))
+                                .clipShape(Capsule())
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                }
+                
+                TextField(busStop.userName ?? "Twoja nazwa przystanku", text: $userName, onCommit: addNewBusStop)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .font(.title3)
                 
                 if userName.count >= 20 {
                     HStack(spacing: 5) {
@@ -200,8 +219,8 @@ struct BusStopConfirmationView: View {
             }
             .padding(.horizontal)
             .onReceive(Just(userName)) { _ in limitText(20) }
-            .navigationTitle("Dodaj nazwę")
-            .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Dodaj przystanek")
             .navigationBarItems(leading: Button("Anuluj", action: { presentationMode.wrappedValue.dismiss() }), trailing: Button("Zapisz", action: addNewBusStop))
         }
     }
