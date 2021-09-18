@@ -52,32 +52,49 @@ fileprivate struct RouteView: View {
     let busLine: BusLine
     
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
             HStack {
-                Image(systemName: "arrow.turn.up.right")
-                    .foregroundColor(Color("MainColor"))
-                
-                VStack(alignment: .leading) {
-                    Text(route.destinationName)
-                        .fontWeight(.bold)
-                    
-                    Text(route.description)
-                        .font(.footnote)
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Cel")
+                        .font(.subheadline)
                         .foregroundColor(.secondary)
-                        .lineLimit(1)
+                    
+                    Text(route.destinationName)
+                        .font(.title3)
                 }
                 
                 Spacer()
                 
-                Image(systemName: "chevron.up")
-                    .rotationEffect(.degrees(isShowingRoute ? 0 : -180))
+                Button(action: {}) {
+                    HStack {
+                        Image(systemName: "map")
+                        
+                        Text("Mapa")
+                    }
+                }
             }
-            .padding()
+            
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Przez")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    
+                if isShowingRoute {
+                    BusStopListView(busStops: busStops, busLine: busLine)
+                } else {
+                    PlaceListView()
+                }
+            }
+            
+            VStack {
+                Text(isShowingRoute ? "Zwiń" : "Rozwiń")
                 
-            if isShowingRoute {
-                BusStopListView(busStops: busStops, busLine: busLine)
+                Image(systemName: "chevron.down")
+                    .rotationEffect(.degrees(isShowingRoute ? -180 : 0))
             }
+            .font(.headline)
         }
+        .padding()
         .background(Color("lightGray"))
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         .shadow(radius: 2, x: 2, y: 2)
@@ -102,26 +119,56 @@ fileprivate struct BusStopListView: View {
                     HStack {
                         switch(index) {
                         case 0:
-                            Image("firstBusStopWhite")
+                            Image("routeFirstBusStop")
                                 .busStopLabel()
                         case busStops.count - 1:
-                            Image("lastBusStopWhite")
+                            Image("routeLastBusStop")
                                 .busStopLabel()
                         default:
-                            Image("nextBusStop")
+                            Image("routeBusStop")
                                 .busStopLabel()
                         }
                         
                         Text(busStops[index].name)
-                            .lineLimit(2)
+                            .lineLimit(1)
                         
                         Spacer()
                     }
                     .frame(maxHeight: 50)
                     .font(.headline)
-                    .padding(.horizontal)
                 }
                 .buttonStyle(PlainButtonStyle())
+            }
+        }
+    }
+}
+
+fileprivate struct PlaceListView: View {
+    let places = [1, 2, 3, 4]
+    
+    var body: some View {
+        LazyVStack(alignment: .leading, spacing: 0) {
+            ForEach(places.indices, id: \.self) { index in
+                HStack {
+                    switch(index) {
+                    case 0:
+                        Image("routeFirstBusStop")
+                            .busStopLabel()
+                    case places.count - 1:
+                        Image("routeLastBusStop")
+                            .busStopLabel()
+                    default:
+                        Image("routeBusStop")
+                            .busStopLabel()
+                    }
+                    
+                    Text("Miejscowość\(places[index])")
+                        .lineLimit(1)
+                    
+                    Spacer()
+                }
+                .frame(maxHeight: 50)
+                .font(.headline)
             }
         }
     }

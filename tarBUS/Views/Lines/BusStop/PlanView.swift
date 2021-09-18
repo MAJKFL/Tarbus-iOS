@@ -166,15 +166,12 @@ fileprivate struct RouteTileView: View {
                         }
                     }
                 }
-                .onAppear {
-                    getDepartures()
-                }
                 
                 VStack(alignment: .leading) {
                     Text("LEGENDA")
                         .font(.footnote.bold())
                     
-                    if legend.isEmpty { Text("Brak oznaczeń dla linii na tym przystanku").font(.footnote).foregroundColor(.secondary).transition(.opacity) }
+                    if legend.isEmpty { Text("Brak oznaczeń dla linii na tym przystanku").font(.footnote).foregroundColor(.secondary) }
                     
                     ForEach(legend, id: \.self) { str in
                         HStack {
@@ -194,6 +191,7 @@ fileprivate struct RouteTileView: View {
         .shadow(radius: 2, x: 2, y: 2)
         .padding(.horizontal)
         .onAppear {
+            getDepartures()
             if busLineName.isEmpty {
                 busLineName = dataBaseHelper.getBusLine(busLineId: route.busLineId)?.name ?? ""
             }

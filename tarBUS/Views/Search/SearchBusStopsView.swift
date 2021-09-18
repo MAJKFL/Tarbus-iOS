@@ -47,6 +47,7 @@ struct SearchBusStopsView: View {
                         .buttonStyle(PlainButtonStyle())
                     }
                 }
+                .listStyle(InsetListStyle())
             }
             
             Spacer()

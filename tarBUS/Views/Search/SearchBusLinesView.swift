@@ -43,6 +43,7 @@ struct SearchBusLinesView: View {
                         .buttonStyle(PlainButtonStyle())
                     }
                 }
+                .listStyle(InsetListStyle())
             }
             
             Spacer()
