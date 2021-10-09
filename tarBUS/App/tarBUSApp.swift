@@ -51,28 +51,30 @@ struct MainView: View {
                     .ignoresSafeArea(.all)
             }
         }
-        .onAppear(perform: databaseInit)
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(200)) {
                 guard let url = userActivity.webpageURL else { return }
                 handleDeepLink(url)
             }
         }
         .onOpenURL(perform: { url in
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(200)) {
                 handleDeepLink(url)
             }
         })
+        .onAppear(perform: databaseInit)
     }
     
     func databaseInit() {
-        dataBaseHelper.copyDatabaseIfNeeded()
-        if ReachabilityTest.isConnectedToNetwork() {
-            dataBaseHelper.saveLastUpdateToUserDefaults()
-            dataBaseHelper.fetchData()
-        } else {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(100)) {
-                showAlert = true
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(300)) {
+            if deeplink == nil {
+                dataBaseHelper.copyDatabaseIfNeeded()
+                if ReachabilityTest.isConnectedToNetwork() {
+                    dataBaseHelper.saveLastUpdateToUserDefaults()
+                    dataBaseHelper.fetchData()
+                } else {
+                    showAlert = true
+                }
             }
         }
     }
