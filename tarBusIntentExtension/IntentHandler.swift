@@ -27,11 +27,3 @@ class IntentHandler: INExtension, SelectBusStopIntentHandling {
     }
     
 }
-
-extension BusStopParam {
-    convenience init(busStop: BusStop) {
-        self.init(identifier: "\(busStop.id)", display: busStop.name)
-        self.name = busStop.name
-        self.number = NSNumber(value: busStop.id)
-    }
-}
