@@ -52,13 +52,13 @@ struct MainView: View {
             }
         }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(200)) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
                 guard let url = userActivity.webpageURL else { return }
                 handleDeepLink(url)
             }
         }
         .onOpenURL(perform: { url in
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(200)) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1000)) {
                 handleDeepLink(url)
             }
         })
@@ -66,7 +66,7 @@ struct MainView: View {
     }
     
     func databaseInit() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(300)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1100)) {
             if deeplink == nil {
                 dataBaseHelper.copyDatabaseIfNeeded()
                 if ReachabilityTest.isConnectedToNetwork() {
