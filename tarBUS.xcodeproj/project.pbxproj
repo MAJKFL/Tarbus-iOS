@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A3F45EB272C1D870060D030 /* ChooseCompaniesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EA272C1D870060D030 /* ChooseCompaniesView.swift */; };
+		3A3F45EB272C1D870060D030 /* SelectCompaniesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EA272C1D870060D030 /* SelectCompaniesView.swift */; };
 		3A3F45ED272C21700060D030 /* CompanyVersionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EC272C21700060D030 /* CompanyVersionHelper.swift */; };
 		3A3F45EF272C21B00060D030 /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EE272C21B00060D030 /* Companies.swift */; };
 		3AC1D162272C3C9E003A571D /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3AC1D161272C3C9E003A571D /* SDWebImageSwiftUI */; };
+		3AC1D164272C440C003A571D /* SelectedCompaniesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */; };
+		3AC1D166272C46FF003A571D /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EE272C21B00060D030 /* Companies.swift */; };
+		3AC1D167272C46FF003A571D /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EE272C21B00060D030 /* Companies.swift */; };
+		3AC1D168272C472A003A571D /* SelectedCompaniesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */; };
+		3AC1D169272C472B003A571D /* SelectedCompaniesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */; };
 		AA053AC125F3B74C00E1E2AE /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA053AC025F3B74C00E1E2AE /* Intents.framework */; };
 		AA053AC425F3B74C00E1E2AE /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA053AC325F3B74C00E1E2AE /* IntentHandler.swift */; };
 		AA053AC825F3B74C00E1E2AE /* tarBusIntentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -136,9 +141,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3A3F45EA272C1D870060D030 /* ChooseCompaniesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCompaniesView.swift; sourceTree = "<group>"; };
+		3A3F45EA272C1D870060D030 /* SelectCompaniesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCompaniesView.swift; sourceTree = "<group>"; };
 		3A3F45EC272C21700060D030 /* CompanyVersionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyVersionHelper.swift; sourceTree = "<group>"; };
 		3A3F45EE272C21B00060D030 /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
+		3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCompaniesViewModel.swift; sourceTree = "<group>"; };
 		AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = tarBusIntentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA053AC025F3B74C00E1E2AE /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		AA053AC325F3B74C00E1E2AE /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -286,6 +292,7 @@
 				AA3B97D925D478270027D2DD /* FavouriteBusStopsViewModel.swift */,
 				AA781C4926B57EDE00255597 /* SocialCardViewModel.swift */,
 				AA4A818D26B6D00800A12907 /* SearchTileViewModel.swift */,
+				3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -326,7 +333,7 @@
 				AA3B97DC25D47C670027D2DD /* FavouriteBusStopsView.swift */,
 				AA9053B52657C86700342DF5 /* SocialsView.swift */,
 				AA781C4B26B57F9600255597 /* SocialCardView.swift */,
-				3A3F45EA272C1D870060D030 /* ChooseCompaniesView.swift */,
+				3A3F45EA272C1D870060D030 /* SelectCompaniesView.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -633,11 +640,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AC1D166272C46FF003A571D /* Companies.swift in Sources */,
 				AABCDF5627208EB4006635FD /* BusStopParam+Extensions.swift in Sources */,
 				AA053ADC25F3B78800E1E2AE /* Route.swift in Sources */,
 				AA053ADA25F3B78800E1E2AE /* LastUpdate.swift in Sources */,
 				AA053AD825F3B78800E1E2AE /* BusStop.swift in Sources */,
 				AABEBB07265DA92F00EFC29D /* DatabaseHelper.swift in Sources */,
+				3AC1D169272C472B003A571D /* SelectedCompaniesViewModel.swift in Sources */,
 				AA713EE425FA7BBF00D47C80 /* BusStopConnection.swift in Sources */,
 				AA053ADB25F3B78800E1E2AE /* BusLine.swift in Sources */,
 				AA053AC425F3B74C00E1E2AE /* IntentHandler.swift in Sources */,
@@ -661,8 +670,10 @@
 				AACB90FB25F3BB4C00DB80D1 /* WidgetIntent.intentdefinition in Sources */,
 				AA6CA2A025F3CFD6007F088C /* WidgetConfiguration.swift in Sources */,
 				AA6CA29025F3CF58007F088C /* DataProvider.swift in Sources */,
+				3AC1D167272C46FF003A571D /* Companies.swift in Sources */,
 				AA713EE325FA7BBF00D47C80 /* BusStopConnection.swift in Sources */,
 				AA05BD1025ED7FAA00009711 /* BoardDeparture.swift in Sources */,
+				3AC1D168272C472A003A571D /* SelectedCompaniesViewModel.swift in Sources */,
 				AA05BCDB25ED77BB00009711 /* WidgetView.swift in Sources */,
 				AA05BCF725ED7B9700009711 /* date+extensions.swift in Sources */,
 				AA05BD0C25ED7FAA00009711 /* Route.swift in Sources */,
@@ -692,6 +703,7 @@
 				3A3F45ED272C21700060D030 /* CompanyVersionHelper.swift in Sources */,
 				AA4A818E26B6D00900A12907 /* SearchTileViewModel.swift in Sources */,
 				AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */,
+				3AC1D164272C440C003A571D /* SelectedCompaniesViewModel.swift in Sources */,
 				AAC82EDE25AF2DFC00236F31 /* LineListView.swift in Sources */,
 				AA3D20C1265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift in Sources */,
 				AAA279CF25D2F5DC00E1FB45 /* PrivacyPolicyView.swift in Sources */,
@@ -701,7 +713,7 @@
 				AA781C4E26B59C9E00255597 /* LocationHelper.swift in Sources */,
 				AA6D11DD25D1C28D005F6F87 /* BoardDeparture.swift in Sources */,
 				AA4DAB672687A05B0009A789 /* VerticalAlignment+Extensions.swift in Sources */,
-				3A3F45EB272C1D870060D030 /* ChooseCompaniesView.swift in Sources */,
+				3A3F45EB272C1D870060D030 /* SelectCompaniesView.swift in Sources */,
 				AA4DAB692687A1F60009A789 /* Image+Extensions.swift in Sources */,
 				AAC692A025D1D23000477314 /* Array+extensions.swift in Sources */,
 				AA13B73E25FC094A0090F823 /* StackViewGridController.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  ChooseCarriersView.swift
+//  SelectCompaniesView.swift
 //  tarBUS
 //
 //  Created by Jakub Florek on 29/10/2021.
@@ -8,11 +8,11 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct ChooseCompaniesView: View {
+struct SelectCompaniesView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var companyVersionHelper = CompanyVersionHelper()
-    @State private var selectedCompanies = [Company]()
+    @ObservedObject var viewModel = SelectedCompaniesViewModel()
     
     var body: some View {
         VStack(spacing: 40) {
@@ -26,18 +26,18 @@ struct ChooseCompaniesView: View {
             List {
                 ForEach(companyVersionHelper.companies?.versions ?? []) { company in
                     Button {
-                        if selectedCompanies.contains(where: { $0.subscribeCode == company.subscribeCode }) {
+                        if viewModel.companies.contains(where: { $0.subscribeCode == company.subscribeCode }) {
                             withAnimation(.easeInOut) {
-                                selectedCompanies.removeAll(where: { $0.subscribeCode == company.subscribeCode })
+                                viewModel.remove(id: company.id)
                             }
                         } else {
                             withAnimation(.easeInOut) {
-                                selectedCompanies.append(company)
+                                viewModel.add(company)
                             }
                         }
                     } label: {
                         HStack {
-                            Image(systemName: selectedCompanies.contains(where: { $0.subscribeCode == company.subscribeCode }) ? "checkmark.square.fill" : "square")
+                            Image(systemName: viewModel.companies.contains(where: { $0.subscribeCode == company.subscribeCode }) ? "checkmark.square.fill" : "square")
                                 .foregroundColor(.secondary)
                             
                             WebImage(url: company.imgURL)
@@ -77,7 +77,7 @@ struct ChooseCompaniesView: View {
                     .background(Color.accentColor)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-            .disabled(selectedCompanies.isEmpty)
+            .disabled(viewModel.companies.isEmpty)
         }
         .padding([.horizontal, .top])
     }
@@ -85,6 +85,6 @@ struct ChooseCompaniesView: View {
 
 struct ChooseCarriersView_Previews: PreviewProvider {
     static var previews: some View {
-        ChooseCompaniesView()
+        SelectCompaniesView()
     }
 }
