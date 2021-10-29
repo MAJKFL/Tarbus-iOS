@@ -66,7 +66,7 @@ struct MainView: View {
     }
     
     func databaseInit() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1100)) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1200)) {
             if deeplink == nil {
                 dataBaseHelper.copyDatabaseIfNeeded()
                 if ReachabilityTest.isConnectedToNetwork() {
