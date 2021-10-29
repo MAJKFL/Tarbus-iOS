@@ -9,10 +9,10 @@ import Foundation
 
 struct Companies: Codable {
     let note: String
-    let versions: [Company]
+    let versions: [CompanyVersion]
 }
 
-struct Company: Codable, Identifiable {
+struct CompanyVersion: Codable, Identifiable {
     let companyName: String
     let subscribeCode: String
     let validationDate: Int

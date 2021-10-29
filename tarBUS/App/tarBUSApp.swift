@@ -47,7 +47,7 @@ struct MainView: View {
             Alert(title: Text("Brak połączenia z internetem"), message: Text("Nie możemy sprawdzić czy rozkład jazdy jest aktualny! Możesz kontynuować w trybie offline lub spróbować ponownie"), primaryButton: .default(Text("Sprawdź ponownie"), action: databaseInit), secondaryButton: .cancel(Text("OK")))
         }
         .fullScreenCover(isPresented: $isFirstStart, onDismiss: databaseInit) {
-            SelectCompaniesView()
+            SelectCompanyVersionsView()
         }
         .sheet(item: $deeplink) { deeplink in
             NavigationView {

@@ -111,11 +111,11 @@ class DataBaseHelper: ObservableObject {
         }.resume()
     }
     
-    func fetchSelectedCompanies() -> [Company] {
+    func fetchSelectedCompanyVersions() -> [CompanyVersion] {
         let defaults = UserDefaults(suiteName: Self.groupName)
         
         if let data = defaults?.data(forKey: SelectedCompaniesViewModel.saveKey) {
-            if let decoded = try? JSONDecoder().decode([Company].self, from: data) {
+            if let decoded = try? JSONDecoder().decode([CompanyVersion].self, from: data) {
                 return decoded
             }
         }

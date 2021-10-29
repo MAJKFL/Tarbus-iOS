@@ -8,7 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct SelectCompaniesView: View {
+struct SelectCompanyVersionsView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var companyVersionHelper = CompanyVersionHelper()
@@ -24,29 +24,29 @@ struct SelectCompaniesView: View {
                 .multilineTextAlignment(.center)
             
             List {
-                ForEach(companyVersionHelper.companies?.versions ?? []) { company in
+                ForEach(companyVersionHelper.companies?.versions ?? []) { version in
                     Button {
-                        if viewModel.companies.contains(where: { $0.subscribeCode == company.subscribeCode }) {
+                        if viewModel.versions.contains(where: { $0.subscribeCode == version.subscribeCode }) {
                             withAnimation(.easeInOut) {
-                                viewModel.remove(id: company.id)
+                                viewModel.remove(id: version.id)
                             }
                         } else {
                             withAnimation(.easeInOut) {
-                                viewModel.add(company)
+                                viewModel.add(version)
                             }
                         }
                     } label: {
                         HStack {
-                            Image(systemName: viewModel.companies.contains(where: { $0.subscribeCode == company.subscribeCode }) ? "checkmark.square.fill" : "square")
+                            Image(systemName: viewModel.versions.contains(where: { $0.subscribeCode == version.subscribeCode }) ? "checkmark.square.fill" : "square")
                                 .foregroundColor(.secondary)
                             
-                            WebImage(url: company.imgURL)
+                            WebImage(url: version.imgURL)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50)
                             
                             VStack(alignment: .leading) {
-                                Text(company.companyName)
+                                Text(version.companyName)
                                 
                                 Text("Jakiś opis")
                                     .font(.subheadline)
@@ -77,7 +77,7 @@ struct SelectCompaniesView: View {
                     .background(Color.accentColor)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-            .disabled(viewModel.companies.isEmpty)
+            .disabled(viewModel.versions.isEmpty)
         }
         .padding([.horizontal, .top])
     }
@@ -85,6 +85,6 @@ struct SelectCompaniesView: View {
 
 struct ChooseCarriersView_Previews: PreviewProvider {
     static var previews: some View {
-        SelectCompaniesView()
+        SelectCompanyVersionsView()
     }
 }
