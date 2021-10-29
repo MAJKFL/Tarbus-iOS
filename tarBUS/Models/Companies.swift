@@ -12,9 +12,13 @@ struct Companies: Codable {
     let versions: [Company]
 }
 
-struct Company: Codable {
+struct Company: Codable, Identifiable {
     let companyName: String
     let subscribeCode: String
     let validationDate: Int
     let avatarSrc: String
+    
+    var id: String { subscribeCode }
+    
+    var imgURL: URL? { URL(string: avatarSrc) }
 }

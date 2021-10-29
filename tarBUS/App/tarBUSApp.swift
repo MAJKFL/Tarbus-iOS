@@ -31,6 +31,7 @@ struct MainView: View {
     }
     
     @ObservedObject var dataBaseHelper = DataBaseHelper()
+    @AppStorage("IsFirstStart") var isFirstStart = true
     @State private var deeplink: deeplinkModel?
     @State private var showAlert = false
     
@@ -44,6 +45,9 @@ struct MainView: View {
         ])
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Brak połączenia z internetem"), message: Text("Nie możemy sprawdzić czy rozkład jazdy jest aktualny! Możesz kontynuować w trybie offline lub spróbować ponownie"), primaryButton: .default(Text("Sprawdź ponownie"), action: databaseInit), secondaryButton: .cancel(Text("OK")))
+        }
+        .fullScreenCover(isPresented: $isFirstStart, onDismiss: databaseInit) {
+            ChooseCompaniesView()
         }
         .sheet(item: $deeplink) { deeplink in
             NavigationView {
@@ -62,19 +66,21 @@ struct MainView: View {
                 handleDeepLink(url)
             }
         })
-        .onAppear(perform: databaseInit)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1200)) {
+                databaseInit()
+            }
+        }
     }
     
     func databaseInit() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1200)) {
-            if deeplink == nil {
-                dataBaseHelper.copyDatabaseIfNeeded()
-                if ReachabilityTest.isConnectedToNetwork() {
-                    dataBaseHelper.saveLastUpdateToUserDefaults()
-                    dataBaseHelper.fetchData()
-                } else {
-                    showAlert = true
-                }
+        if deeplink == nil && !isFirstStart {
+            dataBaseHelper.copyDatabaseIfNeeded()
+            if ReachabilityTest.isConnectedToNetwork() {
+                dataBaseHelper.saveLastUpdateToUserDefaults()
+                dataBaseHelper.fetchData()
+            } else {
+                showAlert = true
             }
         }
     }

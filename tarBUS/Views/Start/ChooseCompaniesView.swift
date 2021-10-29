@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ChooseCompaniesView: View {
-    @State private var companies = [Int]()
+    @Environment(\.presentationMode) var presentationMode
+    
+    @ObservedObject var companyVersionHelper = CompanyVersionHelper()
+    @State private var selectedCompanies = [Company]()
     
     var body: some View {
         VStack(spacing: 40) {
@@ -20,45 +24,60 @@ struct ChooseCompaniesView: View {
                 .multilineTextAlignment(.center)
             
             List {
-                ForEach(1..<3, id: \.self) { company in
-                    HStack {
-                        Button {
-                            if companies.contains(company) {
-                                companies.removeAll(where: { $0 == company })
-                            } else {
-                                companies.append(company)
+                ForEach(companyVersionHelper.companies?.versions ?? []) { company in
+                    Button {
+                        if selectedCompanies.contains(where: { $0.subscribeCode == company.subscribeCode }) {
+                            withAnimation(.easeInOut) {
+                                selectedCompanies.removeAll(where: { $0.subscribeCode == company.subscribeCode })
                             }
-                        } label: {
-                            Image(systemName: companies.contains(company) ? "checkmark.square" : "square")
+                        } else {
+                            withAnimation(.easeInOut) {
+                                selectedCompanies.append(company)
+                            }
                         }
-                        .buttonStyle(.plain)
-                        .foregroundColor(.secondary)
-
-                        
-                        Image("michalus")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 50, height: 50)
-                        
-                        VStack(alignment: .leading) {
-                            Text("Michalus")
+                    } label: {
+                        HStack {
+                            Image(systemName: selectedCompanies.contains(where: { $0.subscribeCode == company.subscribeCode }) ? "checkmark.square.fill" : "square")
+                                .foregroundColor(.secondary)
                             
-                            Text("Jakiś opis")
-                                .font(.subheadline)
-                                .lineLimit(1)
+                            WebImage(url: company.imgURL)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 50, height: 50)
+                            
+                            VStack(alignment: .leading) {
+                                Text(company.companyName)
+                                
+                                Text("Jakiś opis")
+                                    .font(.subheadline)
+                                    .lineLimit(1)
+                            }
+                            
+                            Spacer()
+                            
+                            Button {
+                            } label: {
+                                Image(systemName: "info.circle")
+                            }
                         }
-                        
-                        Spacer()
-                        
-                        Button {
-                        } label: {
-                            Image(systemName: "info.circle")
-                        }
+                        .font(.headline)
                     }
-                    .font(.headline)
+                    .buttonStyle(.plain)
                 }
             }
             .clipShape(RoundedRectangle(cornerRadius: 30))
+            
+            Button {
+                presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text("Potwierdź")
+                    .buttonStyle(.plain)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, minHeight: 50)
+                    .background(Color.accentColor)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            }
+            .disabled(selectedCompanies.isEmpty)
         }
         .padding([.horizontal, .top])
     }

@@ -10,6 +10,7 @@
 		3A3F45EB272C1D870060D030 /* ChooseCompaniesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EA272C1D870060D030 /* ChooseCompaniesView.swift */; };
 		3A3F45ED272C21700060D030 /* CompanyVersionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EC272C21700060D030 /* CompanyVersionHelper.swift */; };
 		3A3F45EF272C21B00060D030 /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EE272C21B00060D030 /* Companies.swift */; };
+		3AC1D162272C3C9E003A571D /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3AC1D161272C3C9E003A571D /* SDWebImageSwiftUI */; };
 		AA053AC125F3B74C00E1E2AE /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA053AC025F3B74C00E1E2AE /* Intents.framework */; };
 		AA053AC425F3B74C00E1E2AE /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA053AC325F3B74C00E1E2AE /* IntentHandler.swift */; };
 		AA053AC825F3B74C00E1E2AE /* tarBusIntentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -236,6 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AC1D162272C3C9E003A571D /* SDWebImageSwiftUI in Frameworks */,
 				AAD9AE9D26F2891D007E1E63 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +547,7 @@
 			name = tarBUS;
 			packageProductDependencies = (
 				AAD9AE9C26F2891D007E1E63 /* GRDB */,
+				3AC1D161272C3C9E003A571D /* SDWebImageSwiftUI */,
 			);
 			productName = tarBUS;
 			productReference = AAE9B11725AE7FA200D90F32 /* tarBUS.app */;
@@ -583,6 +586,7 @@
 			mainGroup = AAE9B10E25AE7FA100D90F32;
 			packageReferences = (
 				AAD9AE9B26F2891D007E1E63 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+				3AC1D160272C3C9E003A571D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = AAE9B11825AE7FA200D90F32 /* Products */;
 			projectDirPath = "";
@@ -884,7 +888,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1022,7 +1026,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1078,7 +1082,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1191,6 +1195,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3AC1D160272C3C9E003A571D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		AAD9AE9B26F2891D007E1E63 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift.git";
@@ -1202,6 +1214,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3AC1D161272C3C9E003A571D /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AC1D160272C3C9E003A571D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
 		AAD9AE9C26F2891D007E1E63 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AAD9AE9B26F2891D007E1E63 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
