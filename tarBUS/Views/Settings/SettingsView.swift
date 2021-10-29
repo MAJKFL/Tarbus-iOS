@@ -10,7 +10,6 @@ import StoreKit
 
 struct SettingsView: View {
     @ObservedObject var databaseHelper = DataBaseHelper()
-    @AppStorage("LastUpdate") var lastUpdate = ""
     
     let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     
@@ -34,17 +33,6 @@ struct SettingsView: View {
                         }
                     })
                     .buttonStyle(PlainButtonStyle())
-                }
-                
-                Section(header: Text("Baza danych")) {
-                    HStack {
-                        Text("Ostatnia aktualizacja")
-                        
-                        Spacer()
-                        
-                        Text(lastUpdate)
-                            .foregroundColor(.secondary)
-                    }
                 }
                 
                 Section(header: Text("Informacje o aplikacji tarBUS")) {

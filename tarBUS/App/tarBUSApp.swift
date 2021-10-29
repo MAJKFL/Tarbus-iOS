@@ -77,7 +77,6 @@ struct MainView: View {
         if deeplink == nil && !isFirstStart {
             dataBaseHelper.copyDatabaseIfNeeded()
             if ReachabilityTest.isConnectedToNetwork() {
-                dataBaseHelper.saveLastUpdateToUserDefaults()
                 dataBaseHelper.fetchData()
             } else {
                 showAlert = true

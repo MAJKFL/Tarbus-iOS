@@ -123,24 +123,6 @@ class DataBaseHelper: ObservableObject {
         return []
     }
     
-    func saveLastUpdateToUserDefaults() {
-        let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-1/last-update.json")!
-        let request = URLRequest(url: url)
-
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode(LastUpdate.self, from: data) {
-                    let defaults = UserDefaults.standard
-                    DispatchQueue.main.async {
-                        defaults.set(decodedResponse.formatted, forKey: "LastUpdate")
-                    }
-                    return
-                }
-            }
-            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
-        }.resume()
-    }
-    
     func deleteAllData() {
         let dbQueue = getDBQueue()
         
