@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A3F45EB272C1D870060D030 /* SelectCompanyVersionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EA272C1D870060D030 /* SelectCompanyVersionsView.swift */; };
-		3A3F45ED272C21700060D030 /* CompanyVersionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EC272C21700060D030 /* CompanyVersionHelper.swift */; };
+		3A3F45ED272C21700060D030 /* CompanyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EC272C21700060D030 /* CompanyHelper.swift */; };
 		3A3F45EF272C21B00060D030 /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EE272C21B00060D030 /* Companies.swift */; };
 		3AC1D162272C3C9E003A571D /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3AC1D161272C3C9E003A571D /* SDWebImageSwiftUI */; };
 		3AC1D164272C440C003A571D /* SelectedCompaniesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */; };
@@ -142,7 +142,7 @@
 
 /* Begin PBXFileReference section */
 		3A3F45EA272C1D870060D030 /* SelectCompanyVersionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCompanyVersionsView.swift; sourceTree = "<group>"; };
-		3A3F45EC272C21700060D030 /* CompanyVersionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyVersionHelper.swift; sourceTree = "<group>"; };
+		3A3F45EC272C21700060D030 /* CompanyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyHelper.swift; sourceTree = "<group>"; };
 		3A3F45EE272C21B00060D030 /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
 		3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCompaniesViewModel.swift; sourceTree = "<group>"; };
 		AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = tarBusIntentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -302,7 +302,7 @@
 			children = (
 				AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */,
 				AA781C4D26B59C9E00255597 /* LocationHelper.swift */,
-				3A3F45EC272C21700060D030 /* CompanyVersionHelper.swift */,
+				3A3F45EC272C21700060D030 /* CompanyHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -700,7 +700,7 @@
 				AA781C4A26B57EDE00255597 /* SocialCardViewModel.swift in Sources */,
 				AA7CB46625FD008C00D36172 /* VisualEffectView.swift in Sources */,
 				AA713EDA25FA759C00D47C80 /* MapView.swift in Sources */,
-				3A3F45ED272C21700060D030 /* CompanyVersionHelper.swift in Sources */,
+				3A3F45ED272C21700060D030 /* CompanyHelper.swift in Sources */,
 				AA4A818E26B6D00900A12907 /* SearchTileViewModel.swift in Sources */,
 				AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */,
 				3AC1D164272C440C003A571D /* SelectedCompaniesViewModel.swift in Sources */,

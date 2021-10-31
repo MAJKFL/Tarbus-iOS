@@ -11,7 +11,7 @@ import SDWebImageSwiftUI
 struct SelectCompanyVersionsView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @ObservedObject var companyVersionHelper = CompanyVersionHelper()
+    @ObservedObject var companyVersionHelper = CompanyHelper()
     @ObservedObject var viewModel = SelectedCompaniesViewModel()
     
     var body: some View {

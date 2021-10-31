@@ -31,6 +31,7 @@ struct MainView: View {
     }
     
     @ObservedObject var dataBaseHelper = DataBaseHelper()
+    @ObservedObject var companyHelper = CompanyHelper()
     @AppStorage("IsFirstStart") var isFirstStart = true
     @State private var deeplink: deeplinkModel?
     @State private var showAlert = false

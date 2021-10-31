@@ -62,6 +62,8 @@ class DataBaseHelper: ObservableObject {
         let url = URL(string: "https://dpajak99.github.io/tarbus-api/v2-1-3/database.json")!
         let request = URLRequest(url: url)
         
+        print(getSubscribeCodes())
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 self.deleteAllData()
@@ -111,7 +113,7 @@ class DataBaseHelper: ObservableObject {
         }.resume()
     }
     
-    func fetchSelectedCompanyVersions() -> [CompanyVersion] {
+    func getCompanyVersions() -> [CompanyVersion] {
         let defaults = UserDefaults(suiteName: Self.groupName)
         
         if let data = defaults?.data(forKey: SelectedCompaniesViewModel.saveKey) {
@@ -121,6 +123,14 @@ class DataBaseHelper: ObservableObject {
         }
 
         return []
+    }
+    
+    func getSubscribeCodes() -> [String: Int] {
+        let defaults = UserDefaults(suiteName: Self.groupName)
+        
+        let dictionary = defaults?.object(forKey: "SubscribeCodes") as? [String: Int] ?? [:]
+        
+        return dictionary
     }
     
     func deleteAllData() {
