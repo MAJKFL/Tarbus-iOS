@@ -81,17 +81,17 @@ struct BusStopView: View {
         }
         .navigationTitle(busStop.name)
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            let intent = SelectBusStopIntent()
-            intent.busStop = BusStopParam(busStop: busStop)
-            
-            let interaction = INInteraction(intent: intent, response: nil)
-            interaction.donate { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-            }
-        }
+//        .onAppear {
+//            let intent = SelectBusStopIntent()
+//            intent.busStop = BusStopParam(busStop: busStop)
+//            
+//            let interaction = INInteraction(intent: intent, response: nil)
+//            interaction.donate { error in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                }
+//            }
+//        }
     }
     
     func actionSheet() {

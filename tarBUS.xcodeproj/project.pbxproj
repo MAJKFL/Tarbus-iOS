@@ -16,6 +16,8 @@
 		3AC1D167272C46FF003A571D /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EE272C21B00060D030 /* Companies.swift */; };
 		3AC1D168272C472A003A571D /* SelectedCompaniesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */; };
 		3AC1D169272C472B003A571D /* SelectedCompaniesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */; };
+		3AC4F9CA27302B2F00216F5A /* tarbus.db in Resources */ = {isa = PBXBuildFile; fileRef = 3AC4F9C927302B2F00216F5A /* tarbus.db */; };
+		3AFD17712734343200F18FB9 /* DatabaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFD17702734343200F18FB9 /* DatabaseRepository.swift */; };
 		AA053AC125F3B74C00E1E2AE /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA053AC025F3B74C00E1E2AE /* Intents.framework */; };
 		AA053AC425F3B74C00E1E2AE /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA053AC325F3B74C00E1E2AE /* IntentHandler.swift */; };
 		AA053AC825F3B74C00E1E2AE /* tarBusIntentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -67,7 +69,6 @@
 		AA713EE225FA7BBF00D47C80 /* BusStopConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA713EE125FA7BBF00D47C80 /* BusStopConnection.swift */; };
 		AA713EE325FA7BBF00D47C80 /* BusStopConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA713EE125FA7BBF00D47C80 /* BusStopConnection.swift */; };
 		AA713EE425FA7BBF00D47C80 /* BusStopConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA713EE125FA7BBF00D47C80 /* BusStopConnection.swift */; };
-		AA713EEC25FA8A0E00D47C80 /* tarbus.db in Resources */ = {isa = PBXBuildFile; fileRef = AA713EEB25FA8A0E00D47C80 /* tarbus.db */; };
 		AA713EF125FA99A200D47C80 /* TrackMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA713EF025FA99A200D47C80 /* TrackMapView.swift */; };
 		AA75086325BC5F000045FFD5 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */; };
 		AA75086725BC7B5D0045FFD5 /* BusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA75086625BC7B5D0045FFD5 /* BusStop.swift */; };
@@ -145,6 +146,8 @@
 		3A3F45EC272C21700060D030 /* CompanyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyHelper.swift; sourceTree = "<group>"; };
 		3A3F45EE272C21B00060D030 /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
 		3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCompaniesViewModel.swift; sourceTree = "<group>"; };
+		3AC4F9C927302B2F00216F5A /* tarbus.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = tarbus.db; sourceTree = "<group>"; };
+		3AFD17702734343200F18FB9 /* DatabaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepository.swift; sourceTree = "<group>"; };
 		AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = tarBusIntentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA053AC025F3B74C00E1E2AE /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		AA053AC325F3B74C00E1E2AE /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -182,7 +185,6 @@
 		AA6D11E025D1C74D005F6F87 /* ListDeparture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDeparture.swift; sourceTree = "<group>"; };
 		AA713ED925FA759C00D47C80 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		AA713EE125FA7BBF00D47C80 /* BusStopConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopConnection.swift; sourceTree = "<group>"; };
-		AA713EEB25FA8A0E00D47C80 /* tarbus.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = tarbus.db; sourceTree = "<group>"; };
 		AA713EF025FA99A200D47C80 /* TrackMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMapView.swift; sourceTree = "<group>"; };
 		AA75086225BC5F000045FFD5 /* DatabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseHelper.swift; sourceTree = "<group>"; };
 		AA75086625BC7B5D0045FFD5 /* BusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStop.swift; sourceTree = "<group>"; };
@@ -402,7 +404,8 @@
 			isa = PBXGroup;
 			children = (
 				AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */,
-				AA713EEB25FA8A0E00D47C80 /* tarbus.db */,
+				3AC4F9C927302B2F00216F5A /* tarbus.db */,
+				3AFD17702734343200F18FB9 /* DatabaseRepository.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -628,8 +631,8 @@
 			files = (
 				AAA279DA25D30D7A00E1FB45 /* LaunchScreen.storyboard in Resources */,
 				AAE9B12225AE7FA400D90F32 /* Preview Assets.xcassets in Resources */,
+				3AC4F9CA27302B2F00216F5A /* tarbus.db in Resources */,
 				AAE9B11F25AE7FA400D90F32 /* Assets.xcassets in Resources */,
-				AA713EEC25FA8A0E00D47C80 /* tarbus.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,6 +700,7 @@
 				AA63EC0F25C85783000360E0 /* NextDeparturesView.swift in Sources */,
 				AA3B97D625D46DA80027D2DD /* FavouriteBusLinesListView.swift in Sources */,
 				AA42E81425F4DB5800E79DA9 /* Url+extensions.swift in Sources */,
+				3AFD17712734343200F18FB9 /* DatabaseRepository.swift in Sources */,
 				AA781C4A26B57EDE00255597 /* SocialCardViewModel.swift in Sources */,
 				AA7CB46625FD008C00D36172 /* VisualEffectView.swift in Sources */,
 				AA713EDA25FA759C00D47C80 /* MapView.swift in Sources */,

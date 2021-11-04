@@ -40,11 +40,6 @@ class SelectedCompaniesViewModel: ObservableObject {
         save()
     }
     
-    func move(from source: IndexSet, to destination: Int) {
-        versions.move(fromOffsets: source, toOffset: destination)
-        save()
-    }
-    
     private func save() {
         if let encoded = try? JSONEncoder().encode(versions) {
             defaults?.set(encoded, forKey: Self.saveKey)

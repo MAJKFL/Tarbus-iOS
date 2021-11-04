@@ -31,6 +31,7 @@ struct MainView: View {
     }
     
     @ObservedObject var dataBaseHelper = DataBaseHelper()
+    @ObservedObject var databaseRepository = DatabaseRepository()
     @ObservedObject var companyHelper = CompanyHelper()
     @AppStorage("IsFirstStart") var isFirstStart = true
     @State private var deeplink: deeplinkModel?
@@ -76,9 +77,9 @@ struct MainView: View {
     
     func databaseInit() {
         if deeplink == nil && !isFirstStart {
-            dataBaseHelper.copyDatabaseIfNeeded()
+            databaseRepository.copyDatabaseIfNeeded()
             if ReachabilityTest.isConnectedToNetwork() {
-                dataBaseHelper.fetchData()
+                databaseRepository.fetch()
             } else {
                 showAlert = true
             }
