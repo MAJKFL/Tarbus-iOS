@@ -21,30 +21,43 @@ struct WelcomeView: View {
             SelectCompanyVersionsView(isFirstLaunch: $isFirstLaunch)
         } else {
             VStack {
+                Spacer(minLength: UIScreen.main.bounds.height / 3)
+                
                 Image("logoHorizontal")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 250, height: 100)
                 
+                Spacer()
+                
                 Button("URUCHOM W TRYBIE OFFLINE") {
                     presentationMode.wrappedValue.dismiss()
                 }
-                .font(.subheadline)
+                .font(.headline)
+                
+                Spacer()
                 
                 if fetchFailed {
-                    Image(systemName: "exclamationmark.circle")
-                        .foregroundColor(.red)
-                    
-                    Text("Błąd aktualizacji rozkladu jazdy")
-                        .font(.subheadline)
-                        .foregroundColor(.red)
+                    VStack {
+                        Image(systemName: "exclamationmark.circle")
+                            .font(.title)
+                        
+                        Text("Błąd aktualizacji rozkladu jazdy")
+                            .font(.subheadline)
+                    }
+                    .foregroundColor(.red)
                 } else {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
-                    
-                    Text("Trwa aktualizowanie rozkładu jazdy")
-                        .font(.subheadline)
+                    VStack {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                        
+                        Text("Trwa aktualizowanie rozkładu jazdy")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
                 }
+                
+                Spacer()
             }
             .onChange(of: databaseRepository.status, perform: { newValue in
                 switch newValue {
@@ -65,9 +78,13 @@ struct WelcomeView: View {
     func databaseInit() {
         databaseRepository.copyDatabaseIfNeeded()
         if ReachabilityTest.isConnectedToNetwork() {
+            databaseRepository.status = .fetching
             databaseRepository.fetch()
         } else {
-            showAlert = true
+            databaseRepository.status = .faliure
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(200)) {
+                showAlert = true
+            }
         }
     }
 }
