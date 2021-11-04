@@ -18,6 +18,7 @@
 		3AC1D169272C472B003A571D /* SelectedCompaniesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */; };
 		3AC4F9CA27302B2F00216F5A /* tarbus.db in Resources */ = {isa = PBXBuildFile; fileRef = 3AC4F9C927302B2F00216F5A /* tarbus.db */; };
 		3AFD17712734343200F18FB9 /* DatabaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFD17702734343200F18FB9 /* DatabaseRepository.swift */; };
+		3AFD1774273436C800F18FB9 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFD1773273436C800F18FB9 /* WelcomeView.swift */; };
 		AA053AC125F3B74C00E1E2AE /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA053AC025F3B74C00E1E2AE /* Intents.framework */; };
 		AA053AC425F3B74C00E1E2AE /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA053AC325F3B74C00E1E2AE /* IntentHandler.swift */; };
 		AA053AC825F3B74C00E1E2AE /* tarBusIntentExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -148,6 +149,7 @@
 		3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCompaniesViewModel.swift; sourceTree = "<group>"; };
 		3AC4F9C927302B2F00216F5A /* tarbus.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = tarbus.db; sourceTree = "<group>"; };
 		3AFD17702734343200F18FB9 /* DatabaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepository.swift; sourceTree = "<group>"; };
+		3AFD1773273436C800F18FB9 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = tarBusIntentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA053AC025F3B74C00E1E2AE /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		AA053AC325F3B74C00E1E2AE /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -253,6 +255,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3AFD1772273436A300F18FB9 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				3A3F45EA272C1D870060D030 /* SelectCompanyVersionsView.swift */,
+				3AFD1773273436C800F18FB9 /* WelcomeView.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
 		AA053AC225F3B74C00E1E2AE /* tarBusIntentExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,7 +346,6 @@
 				AA3B97DC25D47C670027D2DD /* FavouriteBusStopsView.swift */,
 				AA9053B52657C86700342DF5 /* SocialsView.swift */,
 				AA781C4B26B57F9600255597 /* SocialCardView.swift */,
-				3A3F45EA272C1D870060D030 /* SelectCompanyVersionsView.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -404,8 +414,8 @@
 			isa = PBXGroup;
 			children = (
 				AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */,
-				3AC4F9C927302B2F00216F5A /* tarbus.db */,
 				3AFD17702734343200F18FB9 /* DatabaseRepository.swift */,
+				3AC4F9C927302B2F00216F5A /* tarbus.db */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -463,6 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				AAC6929325D1CFBD00477314 /* UIKit */,
+				3AFD1772273436A300F18FB9 /* Welcome */,
 				AAC6929225D1CF9400477314 /* Start */,
 				AAC6929425D1CFD300477314 /* Lines */,
 				AA578FC625FCE33400CB5FD5 /* Map */,
@@ -715,6 +726,7 @@
 				AAA32C2F25D5B37500DC9ABB /* UIKitTabBar.swift in Sources */,
 				AA713EE225FA7BBF00D47C80 /* BusStopConnection.swift in Sources */,
 				AA781C4E26B59C9E00255597 /* LocationHelper.swift in Sources */,
+				3AFD1774273436C800F18FB9 /* WelcomeView.swift in Sources */,
 				AA6D11DD25D1C28D005F6F87 /* BoardDeparture.swift in Sources */,
 				AA4DAB672687A05B0009A789 /* VerticalAlignment+Extensions.swift in Sources */,
 				3A3F45EB272C1D870060D030 /* SelectCompanyVersionsView.swift in Sources */,

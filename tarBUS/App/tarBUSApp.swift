@@ -31,11 +31,10 @@ struct MainView: View {
     }
     
     @ObservedObject var dataBaseHelper = DataBaseHelper()
-    @ObservedObject var databaseRepository = DatabaseRepository()
     @ObservedObject var companyHelper = CompanyHelper()
-    @AppStorage("IsFirstStart") var isFirstStart = true
     @State private var deeplink: deeplinkModel?
-    @State private var showAlert = false
+    @State private var showBusStopFromDeeplink = false
+    @State private var showWelcomeScreen = true
     
     var body: some View {
         UIKitTabView([
@@ -45,15 +44,12 @@ struct MainView: View {
             UIKitTabView.Tab(view: SearchView(), barItem: UITabBarItem(title: "Szukaj", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))),
             UIKitTabView.Tab(view: SettingsView(), barItem: UITabBarItem(title: "Ustawienia", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear")))
         ])
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Brak połączenia z internetem"), message: Text("Nie możemy sprawdzić czy rozkład jazdy jest aktualny! Możesz kontynuować w trybie offline lub spróbować ponownie"), primaryButton: .default(Text("Sprawdź ponownie"), action: databaseInit), secondaryButton: .cancel(Text("OK")))
+        .fullScreenCover(isPresented: $showWelcomeScreen, onDismiss: showDeeplink) {
+            WelcomeView()
         }
-        .fullScreenCover(isPresented: $isFirstStart, onDismiss: databaseInit) {
-            SelectCompanyVersionsView()
-        }
-        .sheet(item: $deeplink) { deeplink in
+        .sheet(isPresented: $showBusStopFromDeeplink) {
             NavigationView {
-                BusStopView(busStop: deeplink.busStop!, filteredBusLines: deeplink.filteredBusLines)
+                BusStopView(busStop: deeplink!.busStop!, filteredBusLines: deeplink?.filteredBusLines ?? [])
                     .ignoresSafeArea(.all)
             }
         }
@@ -68,22 +64,6 @@ struct MainView: View {
                 handleDeepLink(url)
             }
         })
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1200)) {
-                databaseInit()
-            }
-        }
-    }
-    
-    func databaseInit() {
-        if deeplink == nil && !isFirstStart {
-            databaseRepository.copyDatabaseIfNeeded()
-            if ReachabilityTest.isConnectedToNetwork() {
-                databaseRepository.fetch()
-            } else {
-                showAlert = true
-            }
-        }
     }
     
     func handleDeepLink(_ url: URL) {
@@ -101,6 +81,12 @@ struct MainView: View {
             }
             
             deeplink = deeplinkData
+        }
+    }
+    
+    func showDeeplink() {
+        if deeplink != nil {
+            showBusStopFromDeeplink = true
         }
     }
 }

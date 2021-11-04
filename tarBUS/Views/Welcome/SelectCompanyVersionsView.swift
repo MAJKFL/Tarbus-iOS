@@ -9,8 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct SelectCompanyVersionsView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
+    @Binding var isFirstLaunch: Bool
     @ObservedObject var companyVersionHelper = CompanyHelper()
     @ObservedObject var viewModel = SelectedCompaniesViewModel()
     
@@ -56,6 +55,7 @@ struct SelectCompanyVersionsView: View {
                             Spacer()
                             
                             Button {
+                                
                             } label: {
                                 Image(systemName: "info.circle")
                             }
@@ -68,7 +68,7 @@ struct SelectCompanyVersionsView: View {
             .clipShape(RoundedRectangle(cornerRadius: 30))
             
             Button {
-                presentationMode.wrappedValue.dismiss()
+                isFirstLaunch = false
             } label: {
                 Text("Potwierdź")
                     .buttonStyle(.plain)
@@ -80,11 +80,5 @@ struct SelectCompanyVersionsView: View {
             .disabled(viewModel.versions.isEmpty)
         }
         .padding([.horizontal, .top])
-    }
-}
-
-struct ChooseCarriersView_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectCompanyVersionsView()
     }
 }

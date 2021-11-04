@@ -9,7 +9,18 @@ import Foundation
 import GRDB
 import WidgetKit
 
+enum FetchingStatus {
+    case success
+    case faliure
+    case fetching
+}
+
 class DatabaseRepository: ObservableObject {
+    @Published var status = FetchingStatus.fetching
+    
+    var companies = [String]()
+    var fetchedCompanies = [String]()
+    
     func copyDatabaseIfNeeded() {
         let fileManager = FileManager.default
         let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: DataBaseHelper.groupName)!
@@ -60,6 +71,17 @@ class DatabaseRepository: ObservableObject {
                         repeat {
                             objectsToIterate = self.saveToDatabase(objectsToIterate)
                         } while !objectsToIterate.isEmpty
+                        
+                        /// Uncomment after database private key bug fix
+                        
+//                        self.fetchedCompanies.append(subscribeCode)
+//
+//                        print(self.companies)
+//                        print(self.fetchedCompanies)
+//
+//                        if self.companies.count == self.fetchedCompanies.count {
+//                            DispatchQueue.main.async { self.status = .success }
+//                        }
                     }
                 } catch {
                     print(error.localizedDescription)
@@ -136,24 +158,27 @@ class DatabaseRepository: ObservableObject {
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
-                DispatchQueue.main.async {
-                    guard let newSubscribeCodes = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Int] else { return }
-                    
-                    let oldSubscribeCodes = userDefaults?.object(forKey: "SubscribeCodes") as? [String: Int] ?? [:]
-                    
-                    let companyVersions = self.getCompanyVersions()
-                    
-                    for companyVersion in companyVersions {
+                guard let newSubscribeCodes = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Int] else { return }
+                
+                let oldSubscribeCodes = userDefaults?.object(forKey: "SubscribeCodes") as? [String: Int] ?? [:]
+
+                let companyVersions = self.getCompanyVersions()
+
+                for companyVersion in companyVersions {
+                    self.companies.append(companyVersion.subscribeCode)
 //                        if oldSubscribeCodes[companyVersion.subscribeCode] != newSubscribeCodes[companyVersion.subscribeCode] {
-                            self.testFetchData(subscribeCode: companyVersion.subscribeCode)
+                    self.testFetchData(subscribeCode: companyVersion.subscribeCode)
 //                        }
-                    }
-                    
-                    userDefaults?.set(newSubscribeCodes, forKey: "SubscribeCodes")
                 }
+                
+                DispatchQueue.main.async { self.status = .success }
+                
+                userDefaults?.set(newSubscribeCodes, forKey: "SubscribeCodes")
+                
                 return
             }
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+            DispatchQueue.main.async { self.status = .faliure }
         }.resume()
     }
     
