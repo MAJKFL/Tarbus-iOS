@@ -20,10 +20,10 @@ struct WidgetModel: TimelineEntry {
     
     static var snapshotPlaceholder: WidgetModel {
         WidgetModel(date: Date(), busStopName: "Tarnów, Krakowska 02 - Planty", busStopId: 404, departures: [
-            NextDeparture(id: 1, trackId: "", timeString: "11:50", timeInt: 0, boardName: "Łękawka Kościół", busLine: BusLine(id: 1, name: "T08")),
-            NextDeparture(id: 2, trackId: "", timeString: "11:59", timeInt: 0, boardName: "Kochanowskiego Chyszowska", busLine: BusLine(id: 2, name: "T24")),
-            NextDeparture(id: 3, trackId: "", timeString: "12:20", timeInt: 0, boardName: "Krakowska Planty", busLine: BusLine(id: 3, name: "T39")),
-            NextDeparture(id: 4, trackId: "", timeString: "12:25", timeInt: 0, boardName: "Kłokowa", busLine: BusLine(id: 4, name: "T25"))
+            NextDeparture(id: 1, trackId: "", timeString: "11:50", timeInt: 0, boardName: "Łękawka Kościół", busLine: BusLine(id: 1, name: "T08", versionID: 0)),
+            NextDeparture(id: 2, trackId: "", timeString: "11:59", timeInt: 0, boardName: "Kochanowskiego Chyszowska", busLine: BusLine(id: 2, name: "T24", versionID: 0)),
+            NextDeparture(id: 3, trackId: "", timeString: "12:20", timeInt: 0, boardName: "Krakowska Planty", busLine: BusLine(id: 3, name: "T39", versionID: 0)),
+            NextDeparture(id: 4, trackId: "", timeString: "12:25", timeInt: 0, boardName: "Kłokowa", busLine: BusLine(id: 4, name: "T25", versionID: 0))
         ])
     }
 }

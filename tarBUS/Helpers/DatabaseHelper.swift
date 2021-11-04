@@ -32,7 +32,8 @@ class DataBaseHelper: ObservableObject {
                 while let row = try? rows.next() {
                     let id: Int? = row["bl_id"]
                     let name: String? = row["bl_name"]
-                    busLines.append(BusLine(id: id ?? 0, name: name ?? ""))
+                    let versionID: Int? = row["bl_version_id"]
+                    busLines.append(BusLine(id: id ?? 0, name: name ?? "", versionID: versionID ?? 0))
                 }
             }
         }
@@ -118,7 +119,8 @@ class DataBaseHelper: ObservableObject {
                     let timeString: String? = row["d_time_string"]
                     let timeInt: Int? = row["d_time_in_min"]
                     let boardName: String? = row["ds_direction_board_name"]
-                    let busLine: BusLine = BusLine(id: row["bl_id"], name: row["bl_name"])
+                    let versionID: Int? = row["bl_version_id"]
+                    let busLine: BusLine = BusLine(id: row["bl_id"], name: row["bl_name"], versionID: versionID ?? 0)
                     departures.append(NextDeparture(id: id ?? 0, trackId: trackId ?? "", timeString: timeString ?? "", timeInt: timeInt ?? 0, boardName: boardName ?? "", busLine: busLine))
                 }
             }
@@ -195,13 +197,14 @@ class DataBaseHelper: ObservableObject {
                 """) {
                 let id: Int? = row["bl_id"]
                 let name: String? = row["bl_name"]
-                busLine = BusLine(id: id ?? 0, name: name ?? "")
+                let versionID: Int? = row["bl_version_id"]
+                busLine = BusLine(id: id ?? 0, name: name ?? "", versionID: versionID ?? 0)
             }
         }
         
         return busLine
     }
-    
+        
     func searchBusStops(text: String) -> [BusStop] {
         let dbQueue = Self.getDBQueue()
         var busStops = [BusStop]()
@@ -252,7 +255,8 @@ class DataBaseHelper: ObservableObject {
                 while let row = try? rows.next() {
                     let id: Int? = row["bl_id"]
                     let name: String? = row["bl_name"]
-                    busLines.append(BusLine(id: id ?? 0, name: name ?? ""))
+                    let versionID: Int? = row["bl_version_id"]
+                    busLines.append(BusLine(id: id ?? 0, name: name ?? "", versionID: versionID ?? 0))
                 }
             }
         }
