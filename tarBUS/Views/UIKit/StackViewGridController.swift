@@ -12,9 +12,7 @@ class StackViewGridController: UIViewController {
 
     let mySpacing: CGFloat = 5.0
     
-    var departures: [NextDeparture] {
-        getDepartures()
-    }
+    var departures = [NextDeparture]()
     
     var rows: Int {
         let length = Double(departures.count)
@@ -28,6 +26,7 @@ class StackViewGridController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        departures = getDepartures()
         stackedGrid(rows: rows, columns: 3, departures: departures, rootView: view)
     }
 

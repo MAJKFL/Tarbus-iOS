@@ -25,25 +25,7 @@ class DatabaseRepository: ObservableObject {
         let fileManager = FileManager.default
         let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: DataBaseHelper.groupName)!
         let finalDatabaseURL = documentsUrl.appendingPathComponent(DataBaseHelper.databaseFileName)
-        let fileURLs = try? fileManager.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
         let documentsURL = Bundle.main.resourceURL?.appendingPathComponent(DataBaseHelper.databaseFileName)
-        
-        for fileURL in fileURLs ?? [] {
-            if (fileURL.absoluteString as NSString).lastPathComponent == DataBaseHelper.databaseFileName {
-                let stringPath = Bundle.main.path(forResource: "tarbus", ofType: "db")!
-                if fileManager.contentsEqual(atPath: fileURL.absoluteString, andPath: stringPath) {
-                    return
-                } else {
-                    print(fileURL)
-                    do {
-                        try fileManager.removeItem(at: fileURL)
-                        try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
-            }
-        }
     
         if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false){
             print("DB does not exist in documents folder")
@@ -165,12 +147,13 @@ class DatabaseRepository: ObservableObject {
                 let companyVersions = self.getCompanyVersions()
 
                 for companyVersion in companyVersions {
-                    self.companies.append(companyVersion.subscribeCode)
-//                        if oldSubscribeCodes[companyVersion.subscribeCode] != newSubscribeCodes[companyVersion.subscribeCode] {
-                    self.testFetchData(subscribeCode: companyVersion.subscribeCode)
-//                        }
+                    if oldSubscribeCodes[companyVersion.subscribeCode] != newSubscribeCodes[companyVersion.subscribeCode] {
+                        self.companies.append(companyVersion.subscribeCode)
+                        self.testFetchData(subscribeCode: companyVersion.subscribeCode)
+                    }
                 }
                 
+                /// Comment after database private key bug fix
                 DispatchQueue.main.async { self.status = .success }
                 
                 userDefaults?.set(newSubscribeCodes, forKey: "SubscribeCodes")

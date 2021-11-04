@@ -101,12 +101,6 @@ struct MapView: UIViewRepresentable {
                 annotationView?.centerOffset = CGPoint(x: 0, y: 0)
                 
                 annotationView?.image = busStopAnnotation.image
-                
-                let controller = StackViewGridController()
-                
-                controller.busStop = busStopAnnotation.busStop
-                
-                annotationView?.detailCalloutAccessoryView = controller.view
             } else {
                 annotationView?.annotation = annotation
             }
@@ -131,6 +125,16 @@ struct MapView: UIViewRepresentable {
             
             parent.selectedBusStop = annotation.busStop
             parent.isActive = true
+        }
+        
+        func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView){
+            guard let annotation = view.annotation as? BusStopPointAnnotation else { return }
+            
+            let controller = StackViewGridController()
+            
+            controller.busStop = annotation.busStop
+            
+            view.detailCalloutAccessoryView = controller.view
         }
     }
 }

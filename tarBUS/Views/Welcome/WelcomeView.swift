@@ -27,7 +27,7 @@ struct WelcomeView: View {
                     .frame(width: 250, height: 100)
                 
                 Button("URUCHOM W TRYBIE OFFLINE") {
-                    print(databaseRepository.status)
+                    presentationMode.wrappedValue.dismiss()
                 }
                 .font(.subheadline)
                 
@@ -54,9 +54,7 @@ struct WelcomeView: View {
                 }
             })
             .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .milliseconds(1200)) {
-                    databaseInit()
-                }
+                databaseInit()
             }
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Brak połączenia z internetem"), message: Text("Nie możemy sprawdzić czy rozkład jazdy jest aktualny! Możesz kontynuować w trybie offline lub spróbować ponownie"), primaryButton: .default(Text("Sprawdź ponownie"), action: databaseInit), secondaryButton: .cancel(Text("OK")))
