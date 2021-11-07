@@ -13,3 +13,9 @@ extension URL {
         return url.queryItems?.first(where: { $0.name == queryParamaterName })?.value
     }
 }
+
+extension URL: Identifiable {
+    public var id: String {
+        self.absoluteString
+    }
+}

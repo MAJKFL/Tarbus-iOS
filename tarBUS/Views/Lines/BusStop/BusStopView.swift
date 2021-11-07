@@ -32,6 +32,16 @@ struct BusStopView: View {
     let busStop: BusStop
     let filteredBusLines: [BusLine]
     
+    init(busStop: BusStop, filteredBusLines: [BusLine]) {
+        self.busStop = busStop
+        self.filteredBusLines = filteredBusLines
+    }
+    
+    init(deeplink: Deeplink) {
+        self.busStop = deeplink.busStop
+        self.filteredBusLines = deeplink.filteredBusLines
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             TabView(selection: $currentView) {
