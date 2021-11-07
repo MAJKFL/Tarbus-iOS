@@ -357,6 +357,23 @@ class DataBaseHelper: ObservableObject {
         return busStopConnections
     }
     
+    func getVersionId(subscribeCode: String) -> Int {
+        let dbQueue = Self.getDBQueue()
+        var versionID = 0
+        
+        try? dbQueue?.read { db in
+            if let row = try Row.fetchOne(db, sql: """
+                SELECT *
+                FROM Versions
+                WHERE v_subscribe_code = '\(subscribeCode)'
+                """) {
+                versionID = row["v_id"]
+            }
+        }
+        
+        return versionID
+    }
+    
     func getNearestBusStops(lat: Double, lng: Double) -> [BusStop] {
         var busStops = getAllBusStops()
         

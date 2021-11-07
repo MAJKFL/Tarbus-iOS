@@ -39,7 +39,7 @@ struct LineListView: View {
                         }
                         
                         LazyVGrid(columns: columns, spacing: 10) {
-                            ForEach(busLines) { line in
+                            ForEach(busLines.filter({ $0.versionID == dataBaseHelper.getVersionId(subscribeCode: company.subscribeCode) })) { line in
                                 NavigationLink(destination: RouteListView(busLine: line)) {
                                     HStack {
                                         Image(systemName: "bus.fill")
