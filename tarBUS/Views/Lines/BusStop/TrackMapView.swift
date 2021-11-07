@@ -53,7 +53,7 @@ struct TrackMapView: View {
             NavigationLink("", destination: BusStopView(busStop: selectedBusStop ?? .placeholder, filteredBusLines: []), isActive: $isActive).hidden()
             
             MapView(coordinates: coordinates, annotations: annotations, busStopCoordinate: busStop?.location, mapType: mapType, selectedBusStop: $selectedBusStop, isActive: $isActive, isTrackingUser: isTrackingUser)
-                .padding([.horizontal, .bottom])
+                .ignoresSafeArea(.all, edges: .top)
             
             HStack {
                 Spacer()
@@ -91,7 +91,6 @@ struct TrackMapView: View {
                 .padding(.bottom)
             }
         }
-        .animation(.easeOut)
         .onAppear {
             if locationManager.authorizationStatus == .notDetermined {
                 locationManager.requestWhenInUseAuthorization()
