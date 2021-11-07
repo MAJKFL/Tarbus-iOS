@@ -18,33 +18,43 @@ struct tarBUSApp: App {
 
 struct MainView: View {
     @State private var showWelcomeScreen = true
+    
+    @State private var showDeeplink = false
     @State private var deeplinkURL: URL?
     
     var body: some View {
-        UIKitTabView([
-            UIKitTabView.Tab(view: StartView(), barItem: UITabBarItem(title: "Start", image: UIImage(systemName: "house.fill"), selectedImage: UIImage(systemName: "house.fill"))),
-            UIKitTabView.Tab(view: LineListView(), barItem: UITabBarItem(title: "Linie", image: UIImage(systemName: "point.fill.topleft.down.curvedto.point.fill.bottomright.up"), selectedImage: UIImage(systemName: "point.fill.topleft.down.curvedto.point.fill.bottomright.up"))),
-            UIKitTabView.Tab(view: MainMapView(), barItem: UITabBarItem(title: "Mapa", image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map"))),
-            UIKitTabView.Tab(view: SearchView(), barItem: UITabBarItem(title: "Szukaj", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))),
-            UIKitTabView.Tab(view: SettingsView(), barItem: UITabBarItem(title: "Ustawienia", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear")))
-        ])
+        NavigationView {
+            ZStack {
+                NavigationLink("", isActive: $showDeeplink) {
+                    if let deeplinkURL = deeplinkURL {
+                        if let deeplink = handleDeepLink(deeplinkURL) {
+                            BusStopView(deeplink: deeplink)
+                                .ignoresSafeArea(.all)
+                        }
+                    }
+                }
+                
+                UIKitTabView([
+                    UIKitTabView.Tab(view: StartView(), barItem: UITabBarItem(title: "Start", image: UIImage(systemName: "house.fill"), selectedImage: UIImage(systemName: "house.fill"))),
+                    UIKitTabView.Tab(view: LineListView(), barItem: UITabBarItem(title: "Linie", image: UIImage(systemName: "point.fill.topleft.down.curvedto.point.fill.bottomright.up"), selectedImage: UIImage(systemName: "point.fill.topleft.down.curvedto.point.fill.bottomright.up"))),
+                    UIKitTabView.Tab(view: MainMapView(), barItem: UITabBarItem(title: "Mapa", image: UIImage(systemName: "map"), selectedImage: UIImage(systemName: "map"))),
+                    UIKitTabView.Tab(view: SearchView(), barItem: UITabBarItem(title: "Szukaj", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))),
+                    UIKitTabView.Tab(view: SettingsView(), barItem: UITabBarItem(title: "Ustawienia", image: UIImage(systemName: "gear"), selectedImage: UIImage(systemName: "gear")))
+                ])
+            }
+                .navigationBarHidden(true)
+        }
         .fullScreenCover(isPresented: $showWelcomeScreen) {
             WelcomeView()
-        }
-        .sheet(item: $deeplinkURL) { url in
-            NavigationView {
-                if let deeplink = handleDeepLink(url) {
-                    BusStopView(deeplink: deeplink)
-                        .ignoresSafeArea(.all)
-                }
-            }
         }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { userActivity in
             guard let url = userActivity.webpageURL else { return }
             deeplinkURL = url
+            showDeeplink = true
         }
         .onOpenURL(perform: { url in
             deeplinkURL = url
+            showDeeplink = true
         })
     }
     
