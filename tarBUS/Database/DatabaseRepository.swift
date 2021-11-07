@@ -21,14 +21,26 @@ class DatabaseRepository: ObservableObject {
     var companies = [String]()
     var fetchedCompanies = [String]()
     
+    let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    
     func copyDatabaseIfNeeded() {
         let fileManager = FileManager.default
         let documentsUrl = fileManager.containerURL(forSecurityApplicationGroupIdentifier: DataBaseHelper.groupName)!
         let finalDatabaseURL = documentsUrl.appendingPathComponent(DataBaseHelper.databaseFileName)
         let documentsURL = Bundle.main.resourceURL?.appendingPathComponent(DataBaseHelper.databaseFileName)
     
-        if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false){
+        if !( (try? finalDatabaseURL.checkResourceIsReachable()) ?? false) {
             print("DB does not exist in documents folder")
+            
+            do {
+                let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+                for fileURL in fileURLs {
+                    if fileURL.pathExtension == "mp3" {
+                        try FileManager.default.removeItem(at: fileURL)
+                    }
+                }
+            } catch  { print(error) }
+            
             do {
                 try fileManager.copyItem(atPath: (documentsURL?.path)!, toPath: finalDatabaseURL.path)
               } catch let error as NSError {

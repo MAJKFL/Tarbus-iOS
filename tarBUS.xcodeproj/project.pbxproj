@@ -16,7 +16,7 @@
 		3AC1D167272C46FF003A571D /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EE272C21B00060D030 /* Companies.swift */; };
 		3AC1D168272C472A003A571D /* SelectedCompaniesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */; };
 		3AC1D169272C472B003A571D /* SelectedCompaniesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */; };
-		3AC4F9CA27302B2F00216F5A /* tarbus.db in Resources */ = {isa = PBXBuildFile; fileRef = 3AC4F9C927302B2F00216F5A /* tarbus.db */; };
+		3AC4F9CA27302B2F00216F5A /* tarbus2.1.5.db in Resources */ = {isa = PBXBuildFile; fileRef = 3AC4F9C927302B2F00216F5A /* tarbus2.1.5.db */; };
 		3AFD17712734343200F18FB9 /* DatabaseRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFD17702734343200F18FB9 /* DatabaseRepository.swift */; };
 		3AFD1774273436C800F18FB9 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFD1773273436C800F18FB9 /* WelcomeView.swift */; };
 		AA053AC125F3B74C00E1E2AE /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA053AC025F3B74C00E1E2AE /* Intents.framework */; };
@@ -147,7 +147,7 @@
 		3A3F45EC272C21700060D030 /* CompanyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyHelper.swift; sourceTree = "<group>"; };
 		3A3F45EE272C21B00060D030 /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
 		3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCompaniesViewModel.swift; sourceTree = "<group>"; };
-		3AC4F9C927302B2F00216F5A /* tarbus.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = tarbus.db; sourceTree = "<group>"; };
+		3AC4F9C927302B2F00216F5A /* tarbus2.1.5.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = tarbus2.1.5.db; sourceTree = "<group>"; };
 		3AFD17702734343200F18FB9 /* DatabaseRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRepository.swift; sourceTree = "<group>"; };
 		3AFD1773273436C800F18FB9 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		AA053ABF25F3B74C00E1E2AE /* tarBusIntentExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = tarBusIntentExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -415,7 +415,7 @@
 			children = (
 				AA79FD1825DC8CB2004F5723 /* ReachabilityTest.swift */,
 				3AFD17702734343200F18FB9 /* DatabaseRepository.swift */,
-				3AC4F9C927302B2F00216F5A /* tarbus.db */,
+				3AC4F9C927302B2F00216F5A /* tarbus2.1.5.db */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -642,7 +642,7 @@
 			files = (
 				AAA279DA25D30D7A00E1FB45 /* LaunchScreen.storyboard in Resources */,
 				AAE9B12225AE7FA400D90F32 /* Preview Assets.xcassets in Resources */,
-				3AC4F9CA27302B2F00216F5A /* tarbus.db in Resources */,
+				3AC4F9CA27302B2F00216F5A /* tarbus2.1.5.db in Resources */,
 				AAE9B11F25AE7FA400D90F32 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

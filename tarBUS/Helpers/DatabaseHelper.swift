@@ -9,7 +9,7 @@ import GRDB
 import Foundation
 
 class DataBaseHelper: ObservableObject {
-    static let databaseFileName = "tarbus.db"
+    static let databaseFileName = "tarbus2.1.5.db"
     static let groupName = "group.florekjakub.tarBUSapp"
     static var subscribeCodeURL = URL(string: "https://api.tarbus.pl/static/config/database-info.json")!
     
