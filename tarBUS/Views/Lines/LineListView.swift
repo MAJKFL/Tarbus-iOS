@@ -24,19 +24,30 @@ struct LineListView: View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 ForEach(selectedCompaniesViewModel.versions) { company in
-                    VStack(spacing: 15) {
+                    VStack(alignment: .leading, spacing: 10) {
                         HStack {
                             WebImage(url: company.imgURL)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 50, height: 50)
+                                .frame(width: 80, height: 80)
                                 .padding(.leading, 3)
                             
-                            Text(company.companyName)
-                                .font(.title)
+                            VStack(alignment: .leading) {
+                                Text("Przewoźnik")
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                                
+                                Text(company.companyName)
+                                    .font(.title)
+                            }
                             
                             Spacer()
                         }
+                        .padding(.bottom, 5)
+                        
+                        Text("LINIE AUTOBUSOWE")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
                         
                         LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(busLines.filter({ $0.versionID == dataBaseHelper.getVersionId(subscribeCode: company.subscribeCode) })) { line in
