@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FavouriteBusLinesListView: View {
     @ObservedObject var favouriteBusLinesViewModel = FavouriteBusLinesViewModel()
+    @ObservedObject var databaseHelper = DataBaseHelper()
     @State private var isShowingAddView = false
     @State private var isShowingAll = false
     
@@ -33,7 +34,7 @@ struct FavouriteBusLinesListView: View {
                         VStack(alignment: .leading) {
                             Text(busLine.name)
                             
-                            Text("Michalus")
+                            Text(databaseHelper.getCompanyName(versionID: busLine.versionID))
                                 .font(.footnote)
                                 .foregroundColor(.secondary)
                         }
@@ -111,7 +112,7 @@ struct BusLineAddView: View {
                                             .font(.headline)
                                             .lineLimit(1)
                                         
-                                        Text("Michalus")
+                                        Text(databaseHelper.getCompanyName(versionID: busLine.versionID))
                                             .font(.subheadline)
                                             .foregroundColor(.secondary)
                                     }

@@ -374,6 +374,35 @@ class DataBaseHelper: ObservableObject {
         return versionID
     }
     
+    func getCompanyName(versionID: Int) -> String {
+        let dbQueue = Self.getDBQueue()
+        var name = ""
+        
+        var companyID = 0
+        
+        try? dbQueue?.read { db in
+            if let row = try Row.fetchOne(db, sql: """
+                SELECT *
+                FROM Versions
+                WHERE v_id = '\(versionID)'
+                """) {
+                companyID = row["v_company_id"]
+            }
+        }
+        
+        try? dbQueue?.read { db in
+            if let row = try Row.fetchOne(db, sql: """
+                SELECT *
+                FROM Company
+                WHERE cpn_id = '\(companyID)'
+                """) {
+                name = row["cpn_name"]
+            }
+        }
+        
+        return name
+    }
+    
     func getNearestBusStops(lat: Double, lng: Double) -> [BusStop] {
         var busStops = getAllBusStops()
         

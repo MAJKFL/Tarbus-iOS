@@ -35,7 +35,7 @@ struct SearchBusLinesView: View {
                                     .font(.headline)
                                     .lineLimit(1)
                                 
-                                Text("Michalus")
+                                Text(databaseHelper.getCompanyName(versionID: busLine.versionID))
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                             }
