@@ -11,6 +11,7 @@
 		3A3F45ED272C21700060D030 /* CompanyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EC272C21700060D030 /* CompanyHelper.swift */; };
 		3A3F45EF272C21B00060D030 /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EE272C21B00060D030 /* Companies.swift */; };
 		3A5DBAB32738044700359DCD /* Deeplink.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5DBAB22738044700359DCD /* Deeplink.swift.swift */; };
+		3A88E26A273D23A30042D865 /* XMLParsing in Frameworks */ = {isa = PBXBuildFile; productRef = 3A88E269273D23A30042D865 /* XMLParsing */; };
 		3AC1D162272C3C9E003A571D /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3AC1D161272C3C9E003A571D /* SDWebImageSwiftUI */; };
 		3AC1D164272C440C003A571D /* SelectedCompaniesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */; };
 		3AC1D166272C46FF003A571D /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EE272C21B00060D030 /* Companies.swift */; };
@@ -53,7 +54,6 @@
 		AA3C459825C5C4A100148F1E /* date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C459725C5C4A100148F1E /* date+extensions.swift */; };
 		AA3C459B25C5D2B500148F1E /* PlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3C459A25C5D2B500148F1E /* PlanView.swift */; };
 		AA3D20C1265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3D20C0265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift */; };
-		AA42E81425F4DB5800E79DA9 /* Url+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA42E81325F4DB5800E79DA9 /* Url+extensions.swift */; };
 		AA4A818C26B6CFDB00A12907 /* SearchTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4A818B26B6CFDB00A12907 /* SearchTileView.swift */; };
 		AA4A818E26B6D00900A12907 /* SearchTileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4A818D26B6D00800A12907 /* SearchTileViewModel.swift */; };
 		AA4DAB672687A05B0009A789 /* VerticalAlignment+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4DAB662687A05B0009A789 /* VerticalAlignment+Extensions.swift */; };
@@ -173,7 +173,6 @@
 		AA3C459725C5C4A100148F1E /* date+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "date+extensions.swift"; sourceTree = "<group>"; };
 		AA3C459A25C5D2B500148F1E /* PlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanView.swift; sourceTree = "<group>"; };
 		AA3D20C0265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKStoreReviewController+extensions.swift"; sourceTree = "<group>"; };
-		AA42E81325F4DB5800E79DA9 /* Url+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Url+extensions.swift"; sourceTree = "<group>"; };
 		AA4A818B26B6CFDB00A12907 /* SearchTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTileView.swift; sourceTree = "<group>"; };
 		AA4A818D26B6D00800A12907 /* SearchTileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTileViewModel.swift; sourceTree = "<group>"; };
 		AA4DAB662687A05B0009A789 /* VerticalAlignment+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VerticalAlignment+Extensions.swift"; sourceTree = "<group>"; };
@@ -250,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AC1D162272C3C9E003A571D /* SDWebImageSwiftUI in Frameworks */,
+				3A88E26A273D23A30042D865 /* XMLParsing in Frameworks */,
 				AAD9AE9D26F2891D007E1E63 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,7 +403,6 @@
 			children = (
 				AA3C459725C5C4A100148F1E /* date+extensions.swift */,
 				AAC6929F25D1D23000477314 /* Array+extensions.swift */,
-				AA42E81325F4DB5800E79DA9 /* Url+extensions.swift */,
 				AA3D20C0265C0E8E0011AD86 /* SKStoreReviewController+extensions.swift */,
 				AA4DAB662687A05B0009A789 /* VerticalAlignment+Extensions.swift */,
 				AA4DAB682687A1F60009A789 /* Image+Extensions.swift */,
@@ -572,6 +571,7 @@
 			packageProductDependencies = (
 				AAD9AE9C26F2891D007E1E63 /* GRDB */,
 				3AC1D161272C3C9E003A571D /* SDWebImageSwiftUI */,
+				3A88E269273D23A30042D865 /* XMLParsing */,
 			);
 			productName = tarBUS;
 			productReference = AAE9B11725AE7FA200D90F32 /* tarBUS.app */;
@@ -611,6 +611,7 @@
 			packageReferences = (
 				AAD9AE9B26F2891D007E1E63 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 				3AC1D160272C3C9E003A571D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				3A88E268273D23A30042D865 /* XCRemoteSwiftPackageReference "XMLParsing" */,
 			);
 			productRefGroup = AAE9B11825AE7FA200D90F32 /* Products */;
 			projectDirPath = "";
@@ -713,7 +714,6 @@
 				AA6D11D925D1C060005F6F87 /* NextDeparture.swift in Sources */,
 				AA63EC0F25C85783000360E0 /* NextDeparturesView.swift in Sources */,
 				AA3B97D625D46DA80027D2DD /* FavouriteBusLinesListView.swift in Sources */,
-				AA42E81425F4DB5800E79DA9 /* Url+extensions.swift in Sources */,
 				3AFD17712734343200F18FB9 /* DatabaseRepository.swift in Sources */,
 				AA781C4A26B57EDE00255597 /* SocialCardViewModel.swift in Sources */,
 				AA7CB46625FD008C00D36172 /* VisualEffectView.swift in Sources */,
@@ -1227,6 +1227,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3A88E268273D23A30042D865 /* XCRemoteSwiftPackageReference "XMLParsing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ShawnMoore/XMLParsing";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
 		3AC1D160272C3C9E003A571D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
@@ -1246,6 +1254,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3A88E269273D23A30042D865 /* XMLParsing */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A88E268273D23A30042D865 /* XCRemoteSwiftPackageReference "XMLParsing" */;
+			productName = XMLParsing;
+		};
 		3AC1D161272C3C9E003A571D /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3AC1D160272C3C9E003A571D /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
