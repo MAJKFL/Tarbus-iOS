@@ -10,6 +10,7 @@
 		3A3F45EB272C1D870060D030 /* SelectCompanyVersionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EA272C1D870060D030 /* SelectCompanyVersionsView.swift */; };
 		3A3F45ED272C21700060D030 /* CompanyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EC272C21700060D030 /* CompanyHelper.swift */; };
 		3A3F45EF272C21B00060D030 /* Companies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3F45EE272C21B00060D030 /* Companies.swift */; };
+		3A4D1461273EE2BA0047DF4E /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4D1460273EE2BA0047DF4E /* URL+Extensions.swift */; };
 		3A5DBAB32738044700359DCD /* Deeplink.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5DBAB22738044700359DCD /* Deeplink.swift.swift */; };
 		3A88E26A273D23A30042D865 /* XMLParsing in Frameworks */ = {isa = PBXBuildFile; productRef = 3A88E269273D23A30042D865 /* XMLParsing */; };
 		3AC1D162272C3C9E003A571D /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3AC1D161272C3C9E003A571D /* SDWebImageSwiftUI */; };
@@ -147,6 +148,7 @@
 		3A3F45EA272C1D870060D030 /* SelectCompanyVersionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCompanyVersionsView.swift; sourceTree = "<group>"; };
 		3A3F45EC272C21700060D030 /* CompanyHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyHelper.swift; sourceTree = "<group>"; };
 		3A3F45EE272C21B00060D030 /* Companies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Companies.swift; sourceTree = "<group>"; };
+		3A4D1460273EE2BA0047DF4E /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		3A5DBAB22738044700359DCD /* Deeplink.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deeplink.swift.swift; sourceTree = "<group>"; };
 		3AC1D163272C440C003A571D /* SelectedCompaniesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCompaniesViewModel.swift; sourceTree = "<group>"; };
 		3AC4F9C927302B2F00216F5A /* tarbus2.1.5.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = tarbus2.1.5.db; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 				AA4DAB662687A05B0009A789 /* VerticalAlignment+Extensions.swift */,
 				AA4DAB682687A1F60009A789 /* Image+Extensions.swift */,
 				AABCDF5427208EB4006635FD /* BusStopParam+Extensions.swift */,
+				3A4D1460273EE2BA0047DF4E /* URL+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				AA4DAB672687A05B0009A789 /* VerticalAlignment+Extensions.swift in Sources */,
 				3A3F45EB272C1D870060D030 /* SelectCompanyVersionsView.swift in Sources */,
 				AA4DAB692687A1F60009A789 /* Image+Extensions.swift in Sources */,
+				3A4D1461273EE2BA0047DF4E /* URL+Extensions.swift in Sources */,
 				AAC692A025D1D23000477314 /* Array+extensions.swift in Sources */,
 				AA13B73E25FC094A0090F823 /* StackViewGridController.swift in Sources */,
 				AA9053B62657C86700342DF5 /* SocialsView.swift in Sources */,
